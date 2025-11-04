@@ -1,0 +1,137 @@
+// src/mocks/handlers.ts
+import { http, HttpResponse } from 'msw';
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+
+// Estado persistente para as tabs/códigos (singleton)
+let tabsState = [
+  {
+    id: 1,
+    code: 'CHILLI001',
+    value: 1500, // R$ 15,00
+    redeemedAt: null,
+    createdAt: '2024-01-15T10:30:00Z'
+  },
+  {
+    id: 2,
+    code: 'CHILLI002',
+    value: 2000, // R$ 20,00
+    redeemedAt: '2024-01-16T14:20:00Z',
+    createdAt: '2024-01-15T11:45:00Z'
+  },
+  {
+    id: 3,
+    code: 'CHILLI003',
+    value: 1500, // R$ 15,00
+    redeemedAt: null,
+    createdAt: '2024-01-17T09:15:00Z'
+  }
+];
+
+let nextId = 4; // Próximo ID para novos códigos
+
+export const handlers = [
+  // Auth endpoints
+  http.post(`${API_BASE_URL}/auth/login`, async ({ request }) => {
+    const body = await request.json() as { cpf: string; password: string };
+    
+    // Credenciais de teste válidas
+    const validCpf = '11111111111';
+    const validPassword = 'senha123';
+    
+    if (body.cpf === validCpf && body.password === validPassword) {
+      return HttpResponse.json({
+        token: 'mock-jwt-token-12345',
+        user: {
+          id: 1,
+          cpf: body.cpf,
+          email: 'usuario@exemplo.com',
+          name: 'Usuário Demo'
+        }
+      }, { status: 200 });
+    }
+    
+    return HttpResponse.json(
+      { message: 'Credenciais inválidas' },
+      { status: 401 }
+    );
+  }),
+
+  http.post(`${API_BASE_URL}/auth/register`, async ({ request }) => {
+    const body = await request.json() as { name: string; email: string; password: string };
+    
+    if (body.name && body.email && body.password) {
+      return HttpResponse.json({
+        message: 'Usuário criado com sucesso',
+        user: {
+          id: 2,
+          name: body.name,
+          email: body.email
+        }
+      }, { status: 201 });
+    }
+    
+    return HttpResponse.json(
+      { message: 'Dados inválidos' },
+      { status: 400 }
+    );
+  }),
+
+  // Redemptions summary
+  http.get(`${API_BASE_URL}/redemptions/summary`, () => {
+    return HttpResponse.json({
+      totalValue: 5000, // R$ 50,00 em centavos
+      codesCount: 12,
+      pendingRedemptions: 2
+    });
+  }),
+
+  // User codes - usando estado persistente
+  http.get(`${API_BASE_URL}/codes`, () => {
+    return HttpResponse.json(tabsState);
+  }),
+
+  // Register new code - adiciona ao estado persistente
+  http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
+    const body = await request.json() as { code: string };
+    
+    if (body.code) {
+      const newCode = {
+        id: nextId++,
+        code: body.code,
+        value: 1500, // R$ 15,00 padrão
+        redeemedAt: null,
+        createdAt: new Date().toISOString()
+      };
+      
+      // Adiciona ao estado persistente
+      tabsState.push(newCode);
+      
+      return HttpResponse.json({
+        ...newCode,
+        message: 'Código registrado com sucesso!'
+      }, { status: 201 });
+    }
+    
+    return HttpResponse.json(
+      { message: 'Código inválido' },
+      { status: 400 }
+    );
+  }),
+
+  // Delete code - remove do estado persistente
+  http.delete(`${API_BASE_URL}/codes/:id`, ({ params }) => {
+    const id = parseInt(params.id as string);
+    const index = tabsState.findIndex(tab => tab.id === id);
+    
+    if (index !== -1) {
+      tabsState.splice(index, 1);
+      return HttpResponse.json({ message: 'Código removido com sucesso!' });
+    }
+    
+    return HttpResponse.json(
+      { message: 'Código não encontrado' },
+      { status: 404 }
+    );
+  })
+];
