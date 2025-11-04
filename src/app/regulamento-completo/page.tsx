@@ -39,15 +39,15 @@ export default function RegulamentoCompleto() {
           </Typography>
 
           <Box sx={{ mt: 4, textAlign: 'center' }}>
-            <Button 
-              component={Link} 
-              href="/" 
-              variant="contained" 
-              color="primary" 
-              size="large"
-            >
-              Voltar ao Início
-            </Button>
+            <Link href="/">
+              <Button 
+                variant="contained" 
+                color="primary" 
+                size="large"
+              >
+                Voltar ao Início
+              </Button>
+            </Link>
           </Box>
         </Paper>
       </Container>
