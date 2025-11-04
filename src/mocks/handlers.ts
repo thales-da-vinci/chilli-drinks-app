@@ -3,32 +3,10 @@ import { http, HttpResponse } from 'msw';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
-// Estado persistente para as tabs/códigos (singleton)
-let tabsState = [
-  {
-    id: 1,
-    code: 'CHILLI001',
-    value: 1500, // R$ 15,00
-    redeemedAt: null,
-    createdAt: '2024-01-15T10:30:00Z'
-  },
-  {
-    id: 2,
-    code: 'CHILLI002',
-    value: 2000, // R$ 20,00
-    redeemedAt: '2024-01-16T14:20:00Z',
-    createdAt: '2024-01-15T11:45:00Z'
-  },
-  {
-    id: 3,
-    code: 'CHILLI003',
-    value: 1500, // R$ 15,00
-    redeemedAt: null,
-    createdAt: '2024-01-17T09:15:00Z'
-  }
-];
+// Estado persistente para as tabs/códigos (singleton) - LIMPO PARA TESTE
+let tabsState = [];
 
-let nextId = 4; // Próximo ID para novos códigos
+let nextId = 1; // Próximo ID para novos códigos
 
 export const handlers = [
   // Auth endpoints
