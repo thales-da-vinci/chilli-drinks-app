@@ -4,7 +4,7 @@ import { ReactNode } from 'react';
 import type { Metadata } from 'next';
 import { ThemeRegistry } from '@/components/ThemeRegistry/ThemeRegistry';
 import { QueryProvider } from '@/components/providers/QueryProvider';
-import { ClientAppWrapper } from '@/components/ClientAppWrapper';
+import ClientAppWrapper from '@/components/ClientAppWrapper';
 import { GiftCardModalProvider } from '@/contexts/GiftCardModalContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 
