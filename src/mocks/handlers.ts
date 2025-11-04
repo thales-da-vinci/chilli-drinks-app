@@ -3,8 +3,17 @@ import { http, HttpResponse } from 'msw';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
 
+// Interface para os códigos/tabs
+interface TabCode {
+  id: number;
+  code: string;
+  value: number;
+  redeemedAt: string | null;
+  createdAt: string;
+}
+
 // Estado persistente para as tabs/códigos (singleton) - LIMPO PARA TESTE
-let tabsState = [];
+let tabsState: TabCode[] = [];
 
 let nextId = 1; // Próximo ID para novos códigos
 
