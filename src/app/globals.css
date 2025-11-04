@@ -1,26 +1,71 @@
 @import "tailwindcss";
 
 :root {
+  --chilli-red: #FF0000;
+  --chilli-black: #1A1A1A;
+  --chilli-orange: #FF6B00;
+  --chilli-blue: #0066FF;
+  --chilli-green: #00CC66;
+  --chilli-purple: #8B00FF;
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1A1A1A;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-chilli-red: var(--chilli-red);
+  --color-chilli-black: var(--chilli-black);
+  --color-chilli-orange: var(--chilli-orange);
+  --color-chilli-blue: var(--chilli-blue);
+  --color-chilli-green: var(--chilli-green);
+  --color-chilli-purple: var(--chilli-purple);
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-mono: monospace;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Chilli Beans Brand Styles */
+.chilli-gradient {
+  background: linear-gradient(45deg, var(--chilli-red) 30%, #FF3333 90%);
+}
+
+.chilli-text-gradient {
+  background: linear-gradient(45deg, var(--chilli-red), var(--chilli-orange));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.chilli-shadow {
+  box-shadow: 0 4px 20px rgba(255, 0, 0, 0.2);
+}
+
+.chilli-button {
+  background: linear-gradient(45deg, var(--chilli-red) 30%, #FF3333 90%);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 8px;
+  padding: 12px 24px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.chilli-button:hover {
+  background: linear-gradient(45deg, #CC0000 30%, var(--chilli-red) 90%);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(255, 0, 0, 0.3);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
