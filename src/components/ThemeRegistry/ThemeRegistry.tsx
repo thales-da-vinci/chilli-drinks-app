@@ -30,59 +30,34 @@ interface ThemeRegistryProps {
 }
 
 /**
- * ThemeRegistry: Implementação completa para SSR no Next.js App Router.
- * Coleta estilos no servidor (useServerInsertedHTML) e os injeta no <head>.
+ * ThemeRegistry: Implementação simplificada para SSR no Next.js App Router.
+ * Foca na estabilidade de hydration em vez de otimização de estilos.
  */
 export function ThemeRegistry({ children }: ThemeRegistryProps) {
-  const emotionCacheRef = React.useRef<EmotionCache | undefined>(undefined);
+  const [isClient, setIsClient] = React.useState(false);
 
-  if (!emotionCacheRef.current) {
-    if (isBrowser) {
-        // Usa o cache single-instance no cliente
-        emotionCacheRef.current = clientSideEmotionCache;
-    } else {
-        // Cria um NOVO cache por requisição no servidor para evitar vazamento de estilos
-        emotionCacheRef.current = createEmotionCache();
-    }
+  React.useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  // No servidor, renderiza sem cache para evitar mismatch
+  if (!isClient) {
+    return (
+      <ThemeProvider theme={chilliDrinksTheme}>
+        <CssBaseline />
+        {children}
+      </ThemeProvider>
+    );
   }
-  const emotionCache = emotionCacheRef.current!;
 
-
-  // Hook do Next.js para injetar conteúdo no <head> no servidor.
-  useServerInsertedHTML(() => {
-    // CORREÇÃO: Iteramos sobre as CHAVES do objeto emotionCache.inserted no servidor.
-    const styles = Object.keys(emotionCache.inserted).reduce((array, name) => {
-      // O valor (selector) do cache.inserted pode ser a string CSS ou 'true'. 
-      const selector = emotionCache.inserted[name];
-
-      // Verificamos se é uma string (o estilo CSS) para injetar
-      if (typeof selector === 'string') {
-        array.push(
-          <style
-            data-emotion={`${emotionCache.key} ${name}`}
-            key={name}
-            // Adiciona os estilos coletados ao HTML renderizado
-            dangerouslySetInnerHTML={{ __html: selector }}
-          />,
-        );
-      }
-      return array;
-    }, [] as React.JSX.Element[]);
-
-    // Limpeza: No SSR, limpamos o objeto definindo-o como vazio.
-    emotionCache.inserted = {}; 
-    
-    return <>{styles}</>;
-  });
-
+  // No cliente, usa cache completo
+  const emotionCache = clientSideEmotionCache || createEmotionCache();
 
   return (
     <CacheProvider value={emotionCache}>
       <ThemeProvider theme={chilliDrinksTheme}>
         <CssBaseline />
-        <div suppressHydrationWarning>
-          {children}
-        </div>
+        {children}
       </ThemeProvider>
     </CacheProvider>
   );
