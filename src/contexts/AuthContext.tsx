@@ -39,7 +39,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
           // Redefine cookie se usuário existe no localStorage
           if (typeof window !== 'undefined') {
             // @ts-ignore
-            document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
+            window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
           }
         } catch (e) {
           console.error('Erro ao analisar usuário do localStorage:', e);
@@ -65,7 +65,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
         // Define cookie para o middleware
         if (typeof window !== 'undefined') {
           // @ts-ignore
-          document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
+          window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
         }
       }
       setUser(mockUser);
@@ -84,7 +84,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       // Remove cookie
       if (typeof window !== 'undefined') {
         // @ts-ignore
-        document.cookie = 'chilli_drinks_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+        window.document.cookie = 'chilli_drinks_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
       }
     }
     setUser(null);
