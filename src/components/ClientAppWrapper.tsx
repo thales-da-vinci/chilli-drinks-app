@@ -1,18 +1,25 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 
-export default function ClientAppWrapper({ children }: { children: React.ReactNode }) {
+interface ClientAppWrapperProps {
+  children: ReactNode;
+}
+
+function ClientAppWrapper({ children }: ClientAppWrapperProps) {
   const [hasMounted, setHasMounted] = useState(false);
   const [mswReady, setMswReady] = useState(false);
 
-  // Este useEffect roda apenas no cliente após a montagem.
   useEffect(() => {
     const initMSW = async () => {
       if (process.env.NODE_ENV === 'development') {
-        const { enableMocking } = await import('@/mocks');
-        await enableMocking();
-        console.log('MSW iniciado com sucesso');
+        try {
+          const { enableMocking } = await import('@/mocks');
+          await enableMocking();
+          console.log('MSW iniciado com sucesso');
+        } catch (error) {
+          console.warn('MSW não pôde ser iniciado:', error);
+        }
       }
       setMswReady(true);
       setHasMounted(true);
@@ -21,7 +28,6 @@ export default function ClientAppWrapper({ children }: { children: React.ReactNo
     initMSW();
   }, []);
 
-  // Hydration Fix: Renderização condicional simples sem estilos MUI conflitantes
   if (!hasMounted || !mswReady) {
     return (
       <div 
@@ -38,6 +44,8 @@ export default function ClientAppWrapper({ children }: { children: React.ReactNo
     );
   }
 
-  // Após montar no cliente, renderizamos o conteúdo completo sem wrapper adicional
   return <div suppressHydrationWarning>{children}</div>;
 }
+
+export default ClientAppWrapper;
+export { ClientAppWrapper };
