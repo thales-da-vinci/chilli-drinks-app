@@ -24,11 +24,8 @@ export default function ChilliBrandHeader() {
         >
             <Container>
                 <Toolbar sx={{ justifyContent: 'space-between', py: 2 }}>
-                    {/* Espaço vazio (replicando estrutura do site oficial) */}
-                    <Box className="space" sx={{ flex: 1 }} />
-                    
-                    {/* Logo + Texto CHILLI DRINKS */}
-                    <Box className="logo-w" sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
+                    {/* Logo */}
+                    <Box className="logo-w" sx={{ display: 'flex', alignItems: 'center' }}>
                         <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                             <Image 
                                 src="/assets/logo-chilli-drinks.png" 
@@ -41,13 +38,11 @@ export default function ChilliBrandHeader() {
                         </Link>
                     </Box>
 
-                    {/* Menu Direita (replicando menu-w do site oficial) */}
+                    {/* Menu Direita */}
                     <Box className="menu-w" sx={{ 
                         display: 'flex', 
                         alignItems: 'center', 
-                        gap: 2,
-                        flex: 1,
-                        justifyContent: 'flex-end'
+                        gap: 2
                     }}>
                         <Box className="menu" sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             {/* Loja Oficial (replicando loja-top-link) */}

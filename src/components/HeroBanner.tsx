@@ -61,19 +61,6 @@ export function HeroBanner() {
                             CHILLI DRINKS TABS
                         </Typography>
                         
-                        {/* Pimenta/Eye Central */}
-                        <Box sx={{ mb: 4 }}>
-                            <Image
-                                src="/assets/chilli-figurativa.png"
-                                alt="Pimenta Chilli"
-                                width={80}
-                                height={80}
-                                style={{
-                                    filter: 'drop-shadow(0 4px 8px rgba(255, 215, 0, 0.5))'
-                                }}
-                            />
-                        </Box>
-                        
                         {/* Subtítulo */}
                         <Typography variant="h5" sx={{
                             color: 'white',
@@ -149,26 +136,6 @@ export function HeroBanner() {
                         </Box>
                     </Box>
                 </Container>
-            </Box>
-
-            {/* Barra Divisória com Pimenta (replicando exatamente .barra do site oficial) */}
-            <Box className="barra" sx={{
-                bgcolor: 'primary.main',
-                py: 3,
-                position: 'relative',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            }}>
-                <Image
-                    src="/assets/chilli-figurativa.png"
-                    alt="Pimenta Chilli"
-                    width={60}
-                    height={60}
-                    style={{
-                        filter: 'brightness(0) invert(1)'
-                    }}
-                />
             </Box>
         </>
     );
