@@ -12,14 +12,12 @@ function ClientAppWrapper({ children }: ClientAppWrapperProps) {
 
   useEffect(() => {
     const initMSW = async () => {
-      if (process.env.NODE_ENV === 'development') {
-        try {
-          const { enableMocking } = await import('@/mocks');
-          await enableMocking();
-          console.log('MSW iniciado com sucesso');
-        } catch (error) {
-          console.warn('MSW não pôde ser iniciado:', error);
-        }
+      try {
+        const { enableMocking } = await import('@/mocks');
+        await enableMocking();
+        console.log('MSW iniciado com sucesso');
+      } catch (error) {
+        console.warn('MSW não pôde ser iniciado:', error);
       }
       setMswReady(true);
       setHasMounted(true);
