@@ -1,9 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/auth/useAuth'; 
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
+import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
 import { 
     Container, 
     Box, 
@@ -19,19 +20,17 @@ import { CodeRegistrationForm } from '@/components/dashboard/CodeRegistrationFor
 import { BonusProgress } from '@/components/dashboard/BonusProgress';
 import { WaitingCodeList } from '@/components/dashboard/WaitingCodeList';
 
-// Interface de Códigos em Espera
-interface WaitingCode {
-  id: string;
-  value: number;
-}
-
 export default function DashboardPage() {
     const router = useRouter();
     const { user, isAuthenticated, isLoading: isAuthLoading } = useAuth();
     const { openModal, updateBalance } = useGiftCardModal();
+    const { data: userCodes = [], isLoading: isCodesLoading } = useUserCodesQuery();
     
-    // Estado dos códigos em espera (FASE 4.2)
-    const [waitingCodes, setWaitingCodes] = useState<WaitingCode[]>([]);
+    // Mapeia os códigos do MSW para o formato do Dashboard
+    const waitingCodes = userCodes.map(code => ({
+        id: code.id.toString(),
+        value: code.value
+    }));
 
     useEffect(() => {
         if (!isAuthLoading && !isAuthenticated) {
@@ -47,7 +46,7 @@ export default function DashboardPage() {
         updateBalance(accumulatedBalance);
     }, [updateBalance, accumulatedBalance]);
 
-    if (isAuthLoading || !isAuthenticated) {
+    if (isAuthLoading || !isAuthenticated || isCodesLoading) {
         return (
             <Box display="flex" justifyContent="center" alignItems="center" height="100vh">
                 <CircularProgress color="primary" />
@@ -57,16 +56,8 @@ export default function DashboardPage() {
 
     // Função para remover um código da lista
     const handleRemoveCode = (id: string) => {
-        setWaitingCodes(prev => prev.filter(code => code.id !== id));
-    };
-
-    // Função para adicionar um novo código (será conectada ao CodeRegistrationForm)
-    const handleAddCode = (newCode: string) => {
-        const newCodeObj: WaitingCode = {
-            id: newCode,
-            value: 1.00
-        };
-        setWaitingCodes(prev => [...prev, newCodeObj]);
+        // Implementar delete via API
+        console.log('Remover código:', id);
     };
 
     return (
