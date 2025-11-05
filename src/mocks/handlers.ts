@@ -162,7 +162,7 @@ export const handlers = [
         { status: 500 }
       );
     }
-  })
+  }),
 
   // Delete code - remove do estado persistente
   http.delete(`${API_BASE_URL}/codes/:id`, ({ params }) => {
