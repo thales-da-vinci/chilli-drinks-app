@@ -107,45 +107,62 @@ export const handlers = [
 
   // Register new code - adiciona ao estado persistente
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
-    const body = await request.json() as { code: string };
-    const submittedCode = body.code?.trim().toUpperCase();
-    const normalizedValidUIDs = validUIDs.map(uid => uid.trim().toUpperCase());
-    
-    console.log('MSW: Tentando registrar código:', submittedCode);
-    console.log('MSW: UIDs válidas normalizadas:', normalizedValidUIDs);
-    console.log('MSW: Inclui na lista?', normalizedValidUIDs.includes(submittedCode));
-    
-    if (submittedCode && normalizedValidUIDs.includes(submittedCode)) {
-      const newCode = {
-        id: nextId++,
-        code: submittedCode,
-        value: 1500, // R$ 15,00 padrão
-        redeemedAt: null,
-        createdAt: new Date().toISOString()
-      };
+    try {
+      const body = await request.json() as { code: string };
+      const submittedCode = body?.code?.trim().toUpperCase();
+      const normalizedValidUIDs = validUIDs.map(uid => uid.trim().toUpperCase());
       
-      // Adiciona ao estado persistente
-      tabsState.push(newCode);
+      console.log('MSW POST /codes: Body recebido:', body);
+      console.log('MSW POST /codes: Código submetido:', submittedCode);
+      console.log('MSW POST /codes: UIDs válidas:', normalizedValidUIDs);
       
-      // Salva no localStorage com nova chave
-      if (typeof window !== 'undefined') {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tabsState));
+      if (!submittedCode) {
+        console.log('MSW POST /codes: Código vazio');
+        return HttpResponse.json(
+          { message: 'Código é obrigatório' },
+          { status: 400 }
+        );
       }
       
-      console.log('MSW: Código adicionado, novo estado:', tabsState);
+      if (normalizedValidUIDs.includes(submittedCode)) {
+        const newCode = {
+          id: nextId++,
+          code: submittedCode,
+          value: 15.00, // R$ 15,00
+          redeemedAt: null,
+          createdAt: new Date().toISOString()
+        };
+        
+        tabsState.push(newCode);
+        
+        if (typeof window !== 'undefined') {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(tabsState));
+        }
+        
+        console.log('MSW POST /codes: Sucesso! Novo estado:', tabsState);
+        
+        return HttpResponse.json({
+          message: 'Código registrado com sucesso!',
+          newCode: {
+            code: newCode.code,
+            value: newCode.value
+          }
+        }, { status: 201 });
+      }
       
-      return HttpResponse.json({
-        ...newCode,
-        message: 'Código registrado com sucesso!'
-      }, { status: 201 });
+      console.log('MSW POST /codes: Código inválido');
+      return HttpResponse.json(
+        { message: 'Código inválido ou não encontrado' },
+        { status: 400 }
+      );
+    } catch (error) {
+      console.error('MSW POST /codes: Erro ao processar:', error);
+      return HttpResponse.json(
+        { message: 'Erro ao processar requisição' },
+        { status: 500 }
+      );
     }
-    
-    console.log('MSW: Código rejeitado - não está na lista de UIDs válidas');
-    return HttpResponse.json(
-      { message: 'Código inválido ou não encontrado' },
-      { status: 400 }
-    );
-  }),
+  })
 
   // Delete code - remove do estado persistente
   http.delete(`${API_BASE_URL}/codes/:id`, ({ params }) => {
