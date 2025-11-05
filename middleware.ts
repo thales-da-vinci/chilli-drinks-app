@@ -4,22 +4,18 @@ import type { NextRequest } from 'next/server'
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
   
-  // Verifica se o usuário está autenticado (simplificado para demo)
-  const isAuthenticated = request.cookies.get('auth-token')?.value
+  // Verifica se o usuário está autenticado via cookie
+  const isAuthenticated = request.cookies.get('chilli_drinks_auth')?.value
 
-  // Se não autenticado e tentando acessar área protegida, redireciona para Landing Page
+  // Se não autenticado e tentando acessar área protegida, redireciona para login
   if (!isAuthenticated && pathname.startsWith('/dashboard')) {
-    return NextResponse.redirect(new URL('/', request.url))
+    return NextResponse.redirect(new URL('/login', request.url))
   }
 
-  // Se autenticado e acessando raiz, redireciona para dashboard
-  if (isAuthenticated && pathname === '/') {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
-
+  // Permite acesso livre à landing page, login e register
   return NextResponse.next()
 }
 
 export const config = {
-  matcher: ['/', '/dashboard/:path*']
+  matcher: ['/dashboard/:path*']
 }
