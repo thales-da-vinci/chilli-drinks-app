@@ -60,7 +60,6 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
   
   const handleTabsHistoryClick = () => {
     setIsTabsHistoryModalOpen(true);
-    onClose();
   };
   
   const handleLogoutClick = () => {
