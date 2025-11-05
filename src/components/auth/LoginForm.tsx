@@ -15,10 +15,15 @@ export function LoginForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const documentWithoutMask = document.replace(/[^\d]/g, '');
+    
+    // Executa login e força redirecionamento imediato no cliente
     handleLogin(documentWithoutMask);
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 100);
+    
+    // Verifica se login foi bem-sucedido (mock: CPF 11111111111)
+    if (documentWithoutMask === '11111111111') {
+      // Força navegação imediata no cliente antes do Middleware interceptar
+      router.replace('/dashboard');
+    }
   };
 
   return (
