@@ -13,6 +13,7 @@ import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useAuth } from '@/hooks/auth/useAuth';
 import { TabsHistoryModal } from '@/components/TabsHistoryModal';
+import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
 import { useState } from 'react'; 
 
 interface AppDrawerProps {
@@ -23,16 +24,18 @@ interface AppDrawerProps {
 export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const { user, isLoading, handleLogout } = useAuth();
   const { openModal } = useGiftCardModal();
+  const { data: userCodes = [] } = useUserCodesQuery();
   const isAuthenticated = !!user;
   const [isTabsHistoryModalOpen, setIsTabsHistoryModalOpen] = useState(false);
   
-  // Mock data para o histórico (em produção viria de uma API)
-  const mockTabsHistory = [
-    { id: 1, code: 'UUID-9f4a-4d2b-a7e8', value: 1.00, date: '2025-10-28', status: 'Resgatado' },
-    { id: 2, code: 'UUID-c8e1-5e9c-b1f4', value: 1.00, date: '2025-10-29', status: 'Resgatado' },
-    { id: 3, code: 'UUID-6a5d-2b7e-c9f0', value: 1.00, date: '2025-10-29', status: 'Resgatado' },
-    { id: 4, code: 'UUID-f3b2-1a4c-d5e6', value: 12.00, date: '2025-10-30', status: 'Resgatado (C/ Bônus)' }
-  ];
+  // Mapeia os códigos do MSW para o formato do modal
+  const tabsHistory = userCodes.map(code => ({
+    id: code.id,
+    code: code.code,
+    value: code.value,
+    date: code.createdAt,
+    status: code.redeemedAt ? 'Resgatado' : 'Em Espera'
+  }));
 
   // Se estiver carregando, renderiza um estado de loading
   if (isLoading) {
@@ -188,7 +191,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
       <TabsHistoryModal 
         open={isTabsHistoryModalOpen}
         onClose={() => setIsTabsHistoryModalOpen(false)}
-        tabsHistory={mockTabsHistory}
+        tabsHistory={tabsHistory}
       />
     </Drawer>
   );
