@@ -2,15 +2,20 @@
 
 'use client';
 
-import { Box, TextField, Button } from '@mui/material';
+import { Box, TextField, Button, Dialog, DialogTitle, DialogContent, DialogActions, Typography } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useState } from 'react';
 import { useCouponMutation, CouponSchema } from '@/hooks/codes/useCouponMutation';
 
 type CodeFormInputs = { code: string };
 
 export function CodeRegistrationForm() {
+  const [openModal, setOpenModal] = useState(false);
+  const [successCode, setSuccessCode] = useState('');
+  
   const {
     register,
     handleSubmit,
@@ -25,7 +30,8 @@ export function CodeRegistrationForm() {
   const onSubmit: SubmitHandler<CodeFormInputs> = (data) => {
     registerCode(data, {
       onSuccess: () => {
-        alert(`Código TAB ${data.code} adicionado com sucesso!`);
+        setSuccessCode(data.code);
+        setOpenModal(true);
         reset();
       },
       onError: () => {
@@ -59,6 +65,23 @@ export function CodeRegistrationForm() {
       >
         {isPending ? 'Adicionando...' : 'ADICIONAR'}
       </Button>
+      
+      <Dialog open={openModal} onClose={() => setOpenModal(false)}>
+        <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          <CheckCircleIcon color="success" />
+          Sucesso!
+        </DialogTitle>
+        <DialogContent>
+          <Typography>
+            Código TAB <strong>{successCode}</strong> adicionado com sucesso!
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setOpenModal(false)} variant="contained">
+            OK
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Box>
   );
 }

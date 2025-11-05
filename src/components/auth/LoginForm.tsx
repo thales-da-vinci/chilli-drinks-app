@@ -16,13 +16,17 @@ export function LoginForm() {
     e.preventDefault();
     const documentWithoutMask = document.replace(/[^\d]/g, '');
     
-    // Executa login e força redirecionamento imediato no cliente
+    // Executa login
     handleLogin(documentWithoutMask);
     
     // Verifica se login foi bem-sucedido (mock: CPF 11111111111)
     if (documentWithoutMask === '11111111111') {
       // Limpa qualquer cache de tabs antes do redirecionamento
       localStorage.removeItem('chilli_tabs_mock');
+      // Reset form state
+      setDocument('');
+      setPassword('');
+      // Força redirecionamento
       router.replace('/dashboard');
     }
   };

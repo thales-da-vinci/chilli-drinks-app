@@ -84,7 +84,8 @@ export const handlers = [
   // User codes - usando estado persistente
   http.get(`${API_BASE_URL}/codes`, () => {
     console.log('MSW: Retornando tabs:', tabsState);
-    return HttpResponse.json(tabsState);
+    // Garante que sempre retorna um array, mesmo se tabsState for undefined
+    return HttpResponse.json(tabsState || []);
   }),
 
   // Register new code - adiciona ao estado persistente
