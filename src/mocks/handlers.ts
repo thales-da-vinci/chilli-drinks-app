@@ -12,7 +12,10 @@ interface TabCode {
   createdAt: string;
 }
 
-// Estado persistente para as tabs/códigos (singleton) - LIMPO PARA TESTE
+// UIDs válidas para teste
+const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6', 'Z7A8B9C1D2E3'];
+
+// Estado persistente para as tabs/códigos (singleton) - LIMPO
 let tabsState: TabCode[] = [];
 
 let nextId = 1; // Próximo ID para novos códigos
@@ -82,7 +85,7 @@ export const handlers = [
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
     const body = await request.json() as { code: string };
     
-    if (body.code) {
+    if (body.code && validUIDs.includes(body.code)) {
       const newCode = {
         id: nextId++,
         code: body.code,
@@ -101,7 +104,7 @@ export const handlers = [
     }
     
     return HttpResponse.json(
-      { message: 'Código inválido' },
+      { message: 'Código inválido ou não encontrado' },
       { status: 400 }
     );
   }),

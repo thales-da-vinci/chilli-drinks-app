@@ -6,40 +6,32 @@ import { Box, TextField, Button } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
+import { useCouponMutation, CouponSchema } from '@/hooks/codes/useCouponMutation';
 
-// Definição do Schema para o Código TAB
-const codeSchema = z.object({
-  code: z.string().min(10, "O Código TAB deve ter pelo menos 10 caracteres (UUID)."),
-});
-
-type CodeFormInputs = z.infer<typeof codeSchema>;
+type CodeFormInputs = { code: string };
 
 export function CodeRegistrationForm() {
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
     reset,
   } = useForm<CodeFormInputs>({
-    resolver: zodResolver(codeSchema),
+    resolver: zodResolver(CouponSchema),
   });
 
-  const onSubmit: SubmitHandler<CodeFormInputs> = async (data) => {
-    // Simulação da chamada de API (POST /api/register-code)
-    try {
-      console.log("Código TAB a ser enviado para o mock/backend:", data.code);
-      // Aqui seria a chamada real de useRegisterCodeMutation().mutate(data.code);
-      
-      // Simulação de sucesso
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      alert(`Código TAB ${data.code} adicionado com sucesso à lista de espera!`);
-      reset();
+  const { mutate: registerCode, isPending } = useCouponMutation();
 
-    } catch (error) {
-      console.error("Erro ao registrar código:", error);
-      alert('Erro ao adicionar o Código TAB. Tente novamente.');
-    }
+  const onSubmit: SubmitHandler<CodeFormInputs> = (data) => {
+    registerCode(data, {
+      onSuccess: () => {
+        alert(`Código TAB ${data.code} adicionado com sucesso!`);
+        reset();
+      },
+      onError: () => {
+        alert('Erro ao adicionar o Código TAB. Verifique se o código é válido.');
+      }
+    });
   };
 
   return (
@@ -53,19 +45,19 @@ export function CodeRegistrationForm() {
         label="Insira o Código TAB (UUID)"
         fullWidth
         error={!!errors.code}
-        helperText={errors.code ? errors.code.message : 'Exemplo: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx'}
+        helperText={errors.code ? errors.code.message : 'UIDs válidas: A1B2C3D4E5F6, G7H8I9J1K2L3, M4N5P6Q7R8S9, T1U2V3W4X5Y6, Z7A8B9C1D2E3'}
         variant="outlined"
-        disabled={isSubmitting}
+        disabled={isPending}
       />
       <Button 
         type="submit" 
         variant="contained" 
         color="primary" 
         endIcon={<SendIcon />}
-        disabled={isSubmitting}
+        disabled={isPending}
         sx={{ minWidth: 150, py: 1.5 }}
       >
-        {isSubmitting ? 'Adicionando...' : 'ADICIONAR'}
+        {isPending ? 'Adicionando...' : 'ADICIONAR'}
       </Button>
     </Box>
   );
