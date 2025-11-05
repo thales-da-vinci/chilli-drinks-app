@@ -28,14 +28,16 @@ export function CodeRegistrationForm() {
   const { mutate: registerCode, isPending } = useCouponMutation();
 
   const onSubmit: SubmitHandler<CodeFormInputs> = (data) => {
+    console.log('Form submit:', data);
     registerCode(data, {
-      onSuccess: () => {
+      onSuccess: (response) => {
+        console.log('Sucesso ao registrar:', response);
         setSuccessCode(data.code);
         setOpenModal(true);
         reset();
       },
-      onError: () => {
-        // Erro será tratado pelo hook
+      onError: (error) => {
+        console.error('Erro ao registrar:', error);
       }
     });
   };
