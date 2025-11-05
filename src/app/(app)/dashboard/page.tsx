@@ -19,19 +19,11 @@ import { CodeRegistrationForm } from '@/components/dashboard/CodeRegistrationFor
 import { BonusProgress } from '@/components/dashboard/BonusProgress';
 import { WaitingCodeList } from '@/components/dashboard/WaitingCodeList';
 
-// Mock de Códigos em Espera para a FASE 4.2
+// Interface de Códigos em Espera
 interface WaitingCode {
   id: string;
   value: number;
 }
-
-const INITIAL_WAITING_CODES: WaitingCode[] = [
-  { id: 'uuid-1111-2222-3333-444444444444', value: 1.00 },
-  { id: 'uuid-5555-6666-7777-888888888888', value: 1.00 },
-  { id: 'uuid-9999-aaaa-bbbb-cccccccccccc', value: 1.00 },
-  { id: 'uuid-dddd-eeee-ffff-000000000000', value: 1.00 },
-  { id: 'uuid-1234-5678-9abc-def000000000', value: 1.00 },
-];
 
 export default function DashboardPage() {
     const router = useRouter();
@@ -39,7 +31,7 @@ export default function DashboardPage() {
     const { openModal, updateBalance } = useGiftCardModal();
     
     // Estado dos códigos em espera (FASE 4.2)
-    const [waitingCodes, setWaitingCodes] = useState<WaitingCode[]>(INITIAL_WAITING_CODES);
+    const [waitingCodes, setWaitingCodes] = useState<WaitingCode[]>([]);
 
     useEffect(() => {
         if (!isAuthLoading && !isAuthenticated) {

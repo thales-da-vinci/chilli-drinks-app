@@ -35,7 +35,7 @@ export function CodeRegistrationForm() {
         reset();
       },
       onError: () => {
-        alert('Erro ao adicionar o Código TAB. Verifique se o código é válido.');
+        // Erro será tratado pelo hook
       }
     });
   };
