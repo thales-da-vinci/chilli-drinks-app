@@ -29,24 +29,15 @@ export default function ChilliBrandHeader() {
                     
                     {/* Logo + Texto CHILLI DRINKS */}
                     <Box className="logo-w" sx={{ display: 'flex', alignItems: 'center', gap: 2, flex: 1 }}>
-                        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Link href="/" style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
                             <Image 
-                                src="/assets/chilli-figurativa.png" 
-                                alt="Chilli Beans" 
+                                src="/assets/logo-chilli-drinks.png" 
+                                alt="Chilli Drinks" 
                                 className="logo img-fluid"
-                                width={50} 
-                                height={50}
+                                width={180} 
+                                height={60}
                                 style={{ objectFit: 'contain' }}
                             />
-                            <Typography variant="h6" sx={{
-                                color: 'primary.main',
-                                fontWeight: 900,
-                                fontSize: '1.2rem',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.1em'
-                            }}>
-                                CHILLI DRINKS
-                            </Typography>
                         </Link>
                     </Box>
 

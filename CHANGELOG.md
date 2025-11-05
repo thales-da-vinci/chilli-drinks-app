@@ -1,5 +1,12 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 4.18 - Ajustes Visuais (Logo e Banner) ✅ CONCLUÍDA
+- FEAT(Branding): Atualização do logo para Logo Chilli Drinks Padrão (fundo transparente)
+- FEAT(Banner): Adição de imagem de fundo (banner-bg.jpg) no HeroBanner da homepage
+- STYLE(Header): Remoção do texto "CHILLI DRINKS" ao lado do logo nos headers
+- STYLE(Banner): Overlay escuro (40%) para melhorar legibilidade do texto sobre a imagem
+- ASSETS(Copy): Cópia de logo-chilli-drinks.png e banner-bg.jpg para public/assets/
+
 ## FASE 4.16 - HOTFIX (Modal de Histórico UX) ✅ CONCLUÍDA
 - FIX(HistoryModal): Remoção do onClose() do handleTabsHistoryClick para manter drawer aberto ao abrir modal
 - FIX(UX): Correção do comportamento onde era necessário clicar duas vezes para abrir o modal

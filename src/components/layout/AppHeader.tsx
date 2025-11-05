@@ -32,23 +32,14 @@ export function AppHeader() {
       <AppBar position="static" elevation={1}>
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
-            <Link href="/" passHref style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 2 }}>
+            <Link href="/" passHref style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
               <Image 
-                src="/assets/chilli-figurativa.png" 
+                src="/assets/logo-chilli-drinks.png" 
                 alt="Chilli Drinks" 
-                width={40} 
-                height={40}
+                width={150} 
+                height={50}
                 style={{ objectFit: 'contain' }}
               />
-              <Typography variant="h6" sx={{
-                color: 'primary.main',
-                fontWeight: 900,
-                fontSize: '1.1rem',
-                textTransform: 'uppercase',
-                letterSpacing: '0.1em'
-              }}>
-                CHILLI DRINKS
-              </Typography>
             </Link>
           </Box>
 

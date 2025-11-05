@@ -13,7 +13,10 @@ export function HeroBanner() {
         <>
             {/* Hero Banner Full-Width com Fundo Impactante */}
             <Box id="top" sx={{
-                background: 'linear-gradient(135deg, #1a1a1a 0%, #E50000 100%)',
+                backgroundImage: 'url(/assets/banner-bg.jpg)',
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                backgroundRepeat: 'no-repeat',
                 py: { xs: 6, md: 10 },
                 minHeight: { xs: '70vh', md: '80vh' },
                 display: 'flex',
@@ -21,14 +24,14 @@ export function HeroBanner() {
                 position: 'relative',
                 overflow: 'hidden'
             }}>
-                {/* Textura de fundo sutil */}
+                {/* Overlay escuro para melhorar legibilidade */}
                 <Box sx={{
                     position: 'absolute',
                     top: 0,
                     left: 0,
                     right: 0,
                     bottom: 0,
-                    backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255, 215, 0, 0.1) 0%, transparent 50%)',
+                    bgcolor: 'rgba(0, 0, 0, 0.4)',
                     zIndex: 1
                 }} />
                 
