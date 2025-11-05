@@ -128,7 +128,7 @@ export const handlers = [
         const newCode = {
           id: nextId++,
           code: submittedCode,
-          value: 15.00, // R$ 15,00
+          value: 1.00, // R$ 1,00
           redeemedAt: null,
           createdAt: new Date().toISOString()
         };
