@@ -90,13 +90,16 @@ export const handlers = [
   // Register new code - adiciona ao estado persistente
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
     const body = await request.json() as { code: string };
-    console.log('MSW: Tentando registrar código:', body.code);
-    console.log('MSW: UIDs válidas:', validUIDs);
+    const submittedCode = body.code?.trim();
     
-    if (body.code && validUIDs.includes(body.code)) {
+    console.log('MSW: Tentando registrar código:', submittedCode);
+    console.log('MSW: UIDs válidas:', validUIDs);
+    console.log('MSW: Inclui na lista?', validUIDs.includes(submittedCode));
+    
+    if (submittedCode && validUIDs.includes(submittedCode)) {
       const newCode = {
         id: nextId++,
-        code: body.code,
+        code: submittedCode,
         value: 1500, // R$ 15,00 padrão
         redeemedAt: null,
         createdAt: new Date().toISOString()
@@ -112,7 +115,7 @@ export const handlers = [
       }, { status: 201 });
     }
     
-    console.log('MSW: Código rejeitado');
+    console.log('MSW: Código rejeitado - não está na lista de UIDs válidas');
     return HttpResponse.json(
       { message: 'Código inválido ou não encontrado' },
       { status: 400 }

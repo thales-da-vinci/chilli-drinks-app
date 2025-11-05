@@ -21,10 +21,9 @@ export function LoginForm() {
     
     // Verifica se login foi bem-sucedido (mock: CPF 11111111111)
     if (documentWithoutMask === '11111111111') {
-      // Aguarda o state update e cookie serem definidos antes de redirecionar
-      setTimeout(() => {
-        router.replace('/dashboard');
-      }, 50);
+      // Limpa qualquer cache de tabs antes do redirecionamento
+      localStorage.removeItem('chilli_tabs_mock');
+      router.replace('/dashboard');
     }
   };
 
