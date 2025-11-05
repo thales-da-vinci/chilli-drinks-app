@@ -140,3 +140,10 @@
 - STYLE(Dashboard): Refinamento Visual da Dashboard (Cards com Sombra Vermelha e Barra de Progresso Dourada)
 - FEAT(Branding): Implementação do Header da LP e Dashboard com Título e Links. FIX Crítico de Typography resolvido
 - FEAT(Base): Setup Inicial do Next.js, Material-UI, e Configuração do Tema CLARO
+
+## FASE 4.17 - HOTFIX (Display de Código Real e Persistência) ✅ CONCLUÍDA
+- FIX(Dashboard): Exibição do código TAB real (A1B2C3D4E5F6) em vez do ID numérico
+- FIX(WaitingCodeList): Atualização da interface para incluir campo code
+- FIX(MSW): Refatoração do carregamento do localStorage para garantir persistência ao reiniciar servidor
+- FIX(Persistence): Implementação de funções loadTabsState() e saveTabsState() para sincronização robusta
+- FIX(NextId): Cálculo automático do próximo ID baseado no estado carregado do localStorage

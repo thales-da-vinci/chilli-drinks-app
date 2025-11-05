@@ -18,29 +18,31 @@ const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6
 // Nova chave de localStorage para forçar reset do cache
 const STORAGE_KEY = 'CHILLI_TABS_V2';
 
-// Estado persistente para as tabs/códigos (singleton) - RESET FORÇADO
-let tabsState: TabCode[] = [];
-
-// Carrega estado do localStorage com nova chave
-if (typeof window !== 'undefined') {
-  // Remove chaves antigas
-  localStorage.removeItem('chilli_tabs_mock');
-  localStorage.removeItem('chilli_drinks_tabs');
+// Função para carregar estado do localStorage
+function loadTabsState(): TabCode[] {
+  if (typeof window === 'undefined') return [];
   
-  // Carrega da nova chave ou inicia vazio
   const stored = localStorage.getItem(STORAGE_KEY);
   if (stored) {
     try {
-      tabsState = JSON.parse(stored);
+      return JSON.parse(stored);
     } catch (e) {
-      tabsState = [];
+      return [];
     }
-  } else {
-    tabsState = [];
+  }
+  return [];
+}
+
+// Função para salvar estado no localStorage
+function saveTabsState(tabs: TabCode[]) {
+  if (typeof window !== 'undefined') {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(tabs));
   }
 }
 
-let nextId = 1; // Próximo ID para novos códigos
+// Estado persistente para as tabs/códigos (singleton)
+let tabsState: TabCode[] = loadTabsState();
+let nextId = tabsState.length > 0 ? Math.max(...tabsState.map(t => t.id)) + 1 : 1;
 
 export const handlers = [
   // Auth endpoints
@@ -100,8 +102,8 @@ export const handlers = [
 
   // User codes - usando estado persistente
   http.get(`${API_BASE_URL}/codes`, () => {
+    tabsState = loadTabsState();
     console.log('MSW: Retornando tabs:', tabsState);
-    // Garante que sempre retorna um array, mesmo se tabsState for undefined
     return HttpResponse.json(tabsState || []);
   }),
 
@@ -134,10 +136,7 @@ export const handlers = [
         };
         
         tabsState.push(newCode);
-        
-        if (typeof window !== 'undefined') {
-          localStorage.setItem(STORAGE_KEY, JSON.stringify(tabsState));
-        }
+        saveTabsState(tabsState);
         
         console.log('MSW POST /codes: Sucesso! Novo estado:', tabsState);
         
@@ -171,11 +170,7 @@ export const handlers = [
     
     if (index !== -1) {
       tabsState.splice(index, 1);
-      
-      // Salva no localStorage com nova chave
-      if (typeof window !== 'undefined') {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(tabsState));
-      }
+      saveTabsState(tabsState);
       
       return HttpResponse.json({ message: 'Código removido com sucesso!' });
     }

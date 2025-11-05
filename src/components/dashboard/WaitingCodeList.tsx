@@ -7,6 +7,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 interface WaitingCode {
   id: string;
+  code: string;
   value: number;
 }
 
@@ -43,7 +44,7 @@ export function WaitingCodeList({ codes, onRemoveCode }: WaitingCodeListProps) {
             }
           >
             <ListItemText
-              primary={`Código TAB: ${code.id.substring(0, 8)}...`}
+              primary={`Código TAB: ${code.code}`}
               secondary={`Valor acumulado: R$${code.value.toFixed(2).replace('.', ',')}`}
             />
           </ListItem>

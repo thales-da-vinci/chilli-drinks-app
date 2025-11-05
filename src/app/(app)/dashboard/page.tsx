@@ -29,6 +29,7 @@ export default function DashboardPage() {
     // Mapeia os códigos do MSW para o formato do Dashboard
     const waitingCodes = userCodes.map(code => ({
         id: code.id.toString(),
+        code: code.code,
         value: code.value
     }));
 
