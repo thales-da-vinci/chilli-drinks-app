@@ -1,7 +1,7 @@
 // src/mocks/handlers.ts
 import { http, HttpResponse } from 'msw';
 
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001';
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3001/api';
 
 // Interface para os códigos/tabs
 interface TabCode {
