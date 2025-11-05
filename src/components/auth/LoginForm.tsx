@@ -21,8 +21,10 @@ export function LoginForm() {
     
     // Verifica se login foi bem-sucedido (mock: CPF 11111111111)
     if (documentWithoutMask === '11111111111') {
-      // Força navegação imediata no cliente antes do Middleware interceptar
-      router.replace('/dashboard');
+      // Aguarda o state update e cookie serem definidos antes de redirecionar
+      setTimeout(() => {
+        router.replace('/dashboard');
+      }, 50);
     }
   };
 

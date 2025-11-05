@@ -15,8 +15,13 @@ interface TabCode {
 // UIDs válidas para teste
 const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6', 'Z7A8B9C1D2E3'];
 
-// Estado persistente para as tabs/códigos (singleton) - LIMPO
+// Estado persistente para as tabs/códigos (singleton) - FORÇAR LIMPEZA
 let tabsState: TabCode[] = [];
+
+// Força limpeza inicial
+if (typeof window !== 'undefined') {
+  localStorage.removeItem('chilli_tabs_mock');
+}
 
 let nextId = 1; // Próximo ID para novos códigos
 
@@ -78,12 +83,15 @@ export const handlers = [
 
   // User codes - usando estado persistente
   http.get(`${API_BASE_URL}/codes`, () => {
+    console.log('MSW: Retornando tabs:', tabsState);
     return HttpResponse.json(tabsState);
   }),
 
   // Register new code - adiciona ao estado persistente
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
     const body = await request.json() as { code: string };
+    console.log('MSW: Tentando registrar código:', body.code);
+    console.log('MSW: UIDs válidas:', validUIDs);
     
     if (body.code && validUIDs.includes(body.code)) {
       const newCode = {
@@ -96,6 +104,7 @@ export const handlers = [
       
       // Adiciona ao estado persistente
       tabsState.push(newCode);
+      console.log('MSW: Código adicionado, novo estado:', tabsState);
       
       return HttpResponse.json({
         ...newCode,
@@ -103,6 +112,7 @@ export const handlers = [
       }, { status: 201 });
     }
     
+    console.log('MSW: Código rejeitado');
     return HttpResponse.json(
       { message: 'Código inválido ou não encontrado' },
       { status: 400 }
