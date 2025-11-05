@@ -15,12 +15,14 @@ interface TabCode {
 // UIDs válidas para teste
 const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6', 'Z7A8B9C1D2E3'];
 
-// Estado persistente para as tabs/códigos (singleton) - FORÇAR LIMPEZA
-let tabsState: TabCode[] = [];
+// Estado persistente para as tabs/códigos (singleton) - RESET FORÇADO
+let tabsState: TabCode[] = []; // FORÇA ESTADO INICIAL VAZIO
 
-// Força limpeza inicial
+// Força limpeza inicial completa
 if (typeof window !== 'undefined') {
   localStorage.removeItem('chilli_tabs_mock');
+  // Reset explícito do estado
+  tabsState = [];
 }
 
 let nextId = 1; // Próximo ID para novos códigos
@@ -91,13 +93,14 @@ export const handlers = [
   // Register new code - adiciona ao estado persistente
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
     const body = await request.json() as { code: string };
-    const submittedCode = body.code?.trim();
+    const submittedCode = body.code?.trim().toUpperCase();
+    const normalizedValidUIDs = validUIDs.map(uid => uid.trim().toUpperCase());
     
     console.log('MSW: Tentando registrar código:', submittedCode);
-    console.log('MSW: UIDs válidas:', validUIDs);
-    console.log('MSW: Inclui na lista?', validUIDs.includes(submittedCode));
+    console.log('MSW: UIDs válidas normalizadas:', normalizedValidUIDs);
+    console.log('MSW: Inclui na lista?', normalizedValidUIDs.includes(submittedCode));
     
-    if (submittedCode && validUIDs.includes(submittedCode)) {
+    if (submittedCode && normalizedValidUIDs.includes(submittedCode)) {
       const newCode = {
         id: nextId++,
         code: submittedCode,
