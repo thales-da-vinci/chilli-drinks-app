@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useCouponMutation } from '@/hooks/codes/useCouponMutation';
 import { 
   Paper, 
   Typography, 
@@ -36,13 +37,24 @@ function TabPanel(props: TabPanelProps) {
 export default function RegisterTabsForm() {
   const [tabValue, setTabValue] = useState(0);
   const [manualCode, setManualCode] = useState('');
+  const { mutate: registerCode, isPending } = useCouponMutation();
 
   const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
     setTabValue(newValue);
   };
 
   const handleSubmitManual = () => {
-    console.log('Código manual:', manualCode);
+    if (!manualCode.trim()) return;
+    
+    registerCode({ code: manualCode }, {
+      onSuccess: () => {
+        alert('Código registrado com sucesso!');
+        setManualCode('');
+      },
+      onError: () => {
+        alert('Erro ao registrar código. Verifique se é válido.');
+      }
+    });
   };
 
   const handleActivateQR = () => {
@@ -81,10 +93,10 @@ export default function RegisterTabsForm() {
               color="primary"
               size="large"
               onClick={handleSubmitManual}
-              disabled={!manualCode.trim()}
+              disabled={!manualCode.trim() || isPending}
               sx={{ mt: 1 }}
             >
-              Cadastrar TAB
+              {isPending ? 'Cadastrando...' : 'Cadastrar TAB'}
             </Button>
           </Box>
         </TabPanel>
