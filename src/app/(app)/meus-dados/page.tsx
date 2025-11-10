@@ -9,6 +9,7 @@ export default function MeusDadosPage() {
     
     const [name, setName] = useState(user?.name || '');
     const [email, setEmail] = useState(user?.email || '');
+    const [currentPassword, setCurrentPassword] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [feedback, setFeedback] = useState<{ type: 'success' | 'error', message: string } | null>(null);
@@ -20,6 +21,13 @@ export default function MeusDadosPage() {
 
     const handleChangePassword = (e: React.FormEvent) => {
         e.preventDefault();
+        
+        // Valida senha atual (mock - compara com a senha do usuário logado)
+        if (user && currentPassword !== user.password) {
+            setFeedback({ type: 'error', message: 'Senha atual incorreta.' });
+            return;
+        }
+        
         if (password !== confirmPassword) {
             setFeedback({ type: 'error', message: 'As senhas não coincidem.' });
             return;
@@ -29,6 +37,7 @@ export default function MeusDadosPage() {
             return;
         }
         setFeedback({ type: 'success', message: 'Senha alterada com sucesso!' });
+        setCurrentPassword('');
         setPassword('');
         setConfirmPassword('');
     };
@@ -63,6 +72,7 @@ export default function MeusDadosPage() {
                     Alterar Senha
                 </Typography>
                 <Box component="form" onSubmit={handleChangePassword} sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <TextField label="Senha Atual" value={currentPassword} onChange={(e) => setCurrentPassword(e.target.value)} fullWidth required type="password" helperText="Digite sua senha atual para confirmar a alteração" />
                     <TextField label="Nova Senha" value={password} onChange={(e) => setPassword(e.target.value)} fullWidth required type="password" />
                     <TextField label="Confirmar Nova Senha" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} fullWidth required type="password" />
                     <Button type="submit" variant="contained" color="secondary" size="large" sx={{ mt: 1, fontWeight: 'bold' }}>

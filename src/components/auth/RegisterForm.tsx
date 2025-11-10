@@ -17,9 +17,15 @@ export function RegisterForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const documentWithoutMask = document.replace(/[^\d]/g, '');
-    handleRegister({ name, document: documentWithoutMask, email, password });
-    // Redireciona para página de confirmação de e-mail
-    router.push('/registro/confirmacao');
+    
+    const result = handleRegister({ name, document: documentWithoutMask, email, password });
+    
+    if (result.success) {
+      // Redireciona para página de confirmação de e-mail
+      router.push('/registro/confirmacao');
+    } else {
+      alert(result.message || 'Erro ao realizar cadastro');
+    }
   };
 
   return (

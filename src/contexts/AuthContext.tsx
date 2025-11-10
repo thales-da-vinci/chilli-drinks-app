@@ -19,7 +19,7 @@ interface AuthContextType {
   isLoading: boolean;
   handleLogin: (document: string, password: string) => boolean;
   handleLogout: () => void;
-  handleRegister: (data: any) => void;
+  handleRegister: (data: any) => { success: boolean; message?: string };
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -97,12 +97,28 @@ export function AuthProvider({ children }: AuthProviderProps) {
     setIsLoading(false);
   };
 
-  const handleRegister = (data: any) => {
+  const handleRegister = (data: any): { success: boolean; message?: string } => {
     setIsLoading(true);
     
     if (typeof window !== 'undefined') {
       const usersData = localStorage.getItem(CHILLI_USERS_MOCK_KEY);
       const users: User[] = usersData ? JSON.parse(usersData) : [];
+      
+      // Verifica duplicidade de CPF
+      const cpfExists = users.find(u => u.document === data.document);
+      if (cpfExists) {
+        console.log('❌ Registro falhou: CPF já cadastrado');
+        setIsLoading(false);
+        return { success: false, message: 'CPF já cadastrado' };
+      }
+      
+      // Verifica duplicidade de E-mail
+      const emailExists = users.find(u => u.email === data.email);
+      if (emailExists) {
+        console.log('❌ Registro falhou: E-mail já cadastrado');
+        setIsLoading(false);
+        return { success: false, message: 'E-mail já cadastrado' };
+      }
       
       const newUser: User = {
         id: `user_${Date.now()}`,
@@ -116,9 +132,12 @@ export function AuthProvider({ children }: AuthProviderProps) {
       localStorage.setItem(CHILLI_USERS_MOCK_KEY, JSON.stringify(users));
       
       console.log('✅ Registro concluído:', newUser.email);
+      setIsLoading(false);
+      return { success: true };
     }
     
     setIsLoading(false);
+    return { success: false, message: 'Erro ao processar registro' };
   };
 
   const contextValue = {
