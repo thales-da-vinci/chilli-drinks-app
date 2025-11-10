@@ -14,6 +14,8 @@ type CodeFormInputs = { code: string };
 
 export function CodeRegistrationForm() {
   const [openModal, setOpenModal] = useState(false);
+  const [modalType, setModalType] = useState<'success' | 'error'>('success');
+  const [modalMessage, setModalMessage] = useState('');
   const [successCode, setSuccessCode] = useState('');
   
   const {
@@ -33,11 +35,16 @@ export function CodeRegistrationForm() {
       onSuccess: (response) => {
         console.log('Sucesso ao registrar:', response);
         setSuccessCode(data.code);
+        setModalType('success');
+        setModalMessage(`Código TAB ${data.code} adicionado com sucesso!`);
         setOpenModal(true);
         reset();
       },
-      onError: (error) => {
+      onError: (error: any) => {
         console.error('Erro ao registrar:', error);
+        setModalType('error');
+        setModalMessage(error?.response?.data?.message || 'Erro ao adicionar o Código TAB. Verifique se o código é válido.');
+        setOpenModal(true);
       }
     });
   };
@@ -70,16 +77,29 @@ export function CodeRegistrationForm() {
       
       <Dialog open={openModal} onClose={() => setOpenModal(false)}>
         <DialogTitle sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-          <CheckCircleIcon color="success" />
-          Sucesso!
+          {modalType === 'success' ? (
+            <>
+              <CheckCircleIcon color="success" />
+              Sucesso!
+            </>
+          ) : (
+            <>
+              <CheckCircleIcon color="error" />
+              Erro
+            </>
+          )}
         </DialogTitle>
         <DialogContent>
           <Typography>
-            Código TAB <strong>{successCode}</strong> adicionado com sucesso!
+            {modalMessage}
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button onClick={() => setOpenModal(false)} variant="contained">
+          <Button 
+            onClick={() => setOpenModal(false)} 
+            variant="contained"
+            color={modalType === 'success' ? 'primary' : 'error'}
+          >
             OK
           </Button>
         </DialogActions>

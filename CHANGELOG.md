@@ -1,7 +1,17 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.5 - FIX(Layout/UX): Correção de Scroll-Lock e Contraste ✅ CONCLUÍDA
+## FASE 5.6 - FIX(Tabs/UX): Modal de Erro e Feedback Completo ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(Modal): Implementado Modal de Erro além do Modal de Sucesso
+- FEAT(Feedback): Estado modalType ('success' | 'error') para controlar tipo de modal
+- FEAT(Message): modalMessage dinâmica baseada na resposta da API
+- FIX(Error): Tratamento de erro com mensagem da API (error.response.data.message)
+- STYLE(Modal): Botão OK com cor dinâmica (primary para sucesso, error para erro)
+- FEAT(UX): Feedback visual completo para todos os cenários (sucesso, erro 404, erro 409)
+- MAINTAIN(Hook): useCouponMutation já estava conectado e invalidando cache
+
+## FASE 5.5 - FIX(Layout/UX): Correção de Scroll-Lock e Contraste ✅ CONCLUÍDA
+**Commit:** `194fab9`
 - FIX(Layout): Removido position: 'fixed' que causava scroll-lock
 - FIX(Layout): Simplificado estrutura CSS mantendo background pattern
 - FIX(Overlay): Overlay com position: 'fixed' para manter efeito visual
