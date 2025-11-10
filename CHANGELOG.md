@@ -1,5 +1,15 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 5 - STYLE(Dashboard/Branding): Polimento Visual Final ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Layout): Aplicação de background pattern com overlay escuro (85%) no layout da aplicação
+- STYLE(Dashboard): Cards com fundo escuro (grey.900) para destaque sobre o background
+- STYLE(Typography): Tipografia clara (white/grey.300) para contraste máximo
+- STYLE(Highlights): Nome do usuário em dourado (#FFD700) para destaque
+- STYLE(CTA): Botão de resgate alterado para color="secondary" (amarelo/dourado)
+- STYLE(Elevation): Aumento de elevation para 6 e box-shadow com rgba vermelha
+- FEAT(Branding): Alinhamento visual completo com identidade Chilli Drinks (dark theme)
+
 ## FASE 4.14 - FIX(Auth/Profile): Segurança e Validação ✅ CONCLUÍDA
 **Commit:** `a0e6f39`
 - FEAT(Docs): Criação do arquivo TABS_TESTE.md com documentação completa de 50 TABs mockadas
