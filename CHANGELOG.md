@@ -1,7 +1,17 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.6 - FIX(Tabs/UX): Modal de Erro e Feedback Completo ✅ CONCLUÍDA
+## FASE 5.7 - FIX(MSW/Data): Lista Estática de TABs ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(MSW): Removida geração aleatória de TABs (generateUID, initializeTabDatabase)
+- FEAT(Data): Implementada lista estática de 50 TABs do TABS_TESTE.md
+- FIX(Validation): TAB_DATABASE agora usa lista conhecida e testável
+- FEAT(Testing): 30 TABs DISPONÍVEIS + 10 RESGATADAS + 10 INVÁLIDAS
+- DOCS(TABS_TESTE.md): Adicionada nota "FONTE ÚNICA DA VERDADE"
+- FIX(Bug): K1L2M3N4P5Q6 agora é reconhecida como válida
+- MAINTAIN(Logic): Lógica de validação mantida (status checking)
+
+## FASE 5.6 - FIX(Tabs/UX): Modal de Erro e Feedback Completo ✅ CONCLUÍDA
+**Commit:** `ae6ed17`
 - FIX(Modal): Implementado Modal de Erro além do Modal de Sucesso
 - FEAT(Feedback): Estado modalType ('success' | 'error') para controlar tipo de modal
 - FEAT(Message): modalMessage dinâmica baseada na resposta da API

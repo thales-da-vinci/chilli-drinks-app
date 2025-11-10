@@ -12,16 +12,6 @@ interface TabCode {
   createdAt: string;
 }
 
-// Geração de UIDs aleatórias (12 dígitos alfanuméricos, sem 'O')
-function generateUID(): string {
-  const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'; // Sem 'O'
-  let uid = '';
-  for (let i = 0; i < 12; i++) {
-    uid += chars.charAt(Math.floor(Math.random() * chars.length));
-  }
-  return uid;
-}
-
 // Status possíveis para as TABs
 type TabStatus = 'DISPONIVEL' | 'RESGATADA' | 'INVALIDA';
 
@@ -31,42 +21,64 @@ interface TabDatabase {
   value: number;
 }
 
-// Base de dados mockada de 50 TABs
-function initializeTabDatabase(): TabDatabase[] {
-  const tabs: TabDatabase[] = [];
+// Base de dados estática de 50 TABs (fonte: TABS_TESTE.md)
+const TAB_DATABASE: TabDatabase[] = [
+  // 30 TABs DISPONÍVEIS (R$ 1,00 cada)
+  { uid: 'A1B2C3D4E5F6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'G7H8I9J1K2L3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'M4N5P6Q7R8S9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'T1U2V3W4X5Y6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'Z7A8B9C1D2E3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'P4Q5R6S7T8U9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'V1W2X3Y4Z5A6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'B7C8D9E1F2G3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'H4I5J6K7L8M9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'N1P2Q3R4S5T6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'U7V8W9X1Y2Z3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'A4B5C6D7E8F9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'G1H2I3J4K5L6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'M7N8P9Q1R2S3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'T4U5V6W7X8Y9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'Z1A2B3C4D5E6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'F7G8H9I1J2K3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'L4M5N6P7Q8R9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'S1T2U3V4W5X6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'Y7Z8A9B1C2D3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'E4F5G6H7I8J9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'K1L2M3N4P5Q6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'R7S8T9U1V2W3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'X4Y5Z6A7B8C9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'D1E2F3G4H5I6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'J7K8L9M1N2P3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'Q4R5S6T7U8V9', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'W1X2Y3Z4A5B6', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'C7D8E9F1G2H3', status: 'DISPONIVEL', value: 1.00 },
+  { uid: 'I4J5K6L7M8N9', status: 'DISPONIVEL', value: 1.00 },
   
-  // 30 TABs disponíveis
-  for (let i = 0; i < 30; i++) {
-    tabs.push({
-      uid: generateUID(),
-      status: 'DISPONIVEL',
-      value: 1.00
-    });
-  }
+  // 10 TABs JÁ RESGATADAS
+  { uid: 'P1Q2R3S4T5U6', status: 'RESGATADA', value: 1.00 },
+  { uid: 'V7W8X9Y1Z2A3', status: 'RESGATADA', value: 1.00 },
+  { uid: 'B4C5D6E7F8G9', status: 'RESGATADA', value: 1.00 },
+  { uid: 'H1I2J3K4L5M6', status: 'RESGATADA', value: 1.00 },
+  { uid: 'N7P8Q9R1S2T3', status: 'RESGATADA', value: 1.00 },
+  { uid: 'U4V5W6X7Y8Z9', status: 'RESGATADA', value: 1.00 },
+  { uid: 'A1B2C3D4E5F7', status: 'RESGATADA', value: 1.00 },
+  { uid: 'G8H9I1J2K3L4', status: 'RESGATADA', value: 1.00 },
+  { uid: 'M5N6P7Q8R9S1', status: 'RESGATADA', value: 1.00 },
+  { uid: 'T2U3V4W5X6Y7', status: 'RESGATADA', value: 1.00 },
   
-  // 10 TABs já resgatadas
-  for (let i = 0; i < 10; i++) {
-    tabs.push({
-      uid: generateUID(),
-      status: 'RESGATADA',
-      value: 1.00
-    });
-  }
-  
-  // 10 TABs inválidas
-  for (let i = 0; i < 10; i++) {
-    tabs.push({
-      uid: generateUID(),
-      status: 'INVALIDA',
-      value: 0
-    });
-  }
-  
-  return tabs;
-}
-
-// Base de dados global de TABs (inicializada uma vez)
-const TAB_DATABASE: TabDatabase[] = initializeTabDatabase();
+  // 10 TABs INVÁLIDAS (R$ 0,00)
+  { uid: 'Z8A9B1C2D3E4', status: 'INVALIDA', value: 0 },
+  { uid: 'F5G6H7I8J9K1', status: 'INVALIDA', value: 0 },
+  { uid: 'L2M3N4P5Q6R7', status: 'INVALIDA', value: 0 },
+  { uid: 'S8T9U1V2W3X4', status: 'INVALIDA', value: 0 },
+  { uid: 'Y5Z6A7B8C9D1', status: 'INVALIDA', value: 0 },
+  { uid: 'E2F3G4H5I6J7', status: 'INVALIDA', value: 0 },
+  { uid: 'K8L9M1N2P3Q4', status: 'INVALIDA', value: 0 },
+  { uid: 'R5S6T7U8V9W1', status: 'INVALIDA', value: 0 },
+  { uid: 'X2Y3Z4A5B6C7', status: 'INVALIDA', value: 0 },
+  { uid: 'D8E9F1G2H3I4', status: 'INVALIDA', value: 0 },
+];
 
 console.log('MSW: Base de dados de TABs inicializada com', TAB_DATABASE.length, 'entradas');
 console.log('MSW: TABs disponíveis:', TAB_DATABASE.filter(t => t.status === 'DISPONIVEL').map(t => t.uid));
