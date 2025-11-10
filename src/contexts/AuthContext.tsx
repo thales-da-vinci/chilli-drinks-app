@@ -114,14 +114,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       
       users.push(newUser);
       localStorage.setItem(CHILLI_USERS_MOCK_KEY, JSON.stringify(users));
-      localStorage.setItem(CHILLI_CURRENT_USER_KEY, JSON.stringify(newUser));
       
-      if (typeof window !== 'undefined') {
-        // @ts-ignore
-        window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
-      }
-      
-      setUser(newUser);
+      console.log('✅ Registro concluído:', newUser.email);
     }
     
     setIsLoading(false);

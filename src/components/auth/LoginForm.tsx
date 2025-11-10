@@ -12,8 +12,12 @@ export function LoginForm() {
   const [document, setDocument] = useState('');
   const [password, setPassword] = useState('');
 
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true);
+    
     const documentWithoutMask = document.replace(/[^\d]/g, '');
     
     // Executa login com CPF e senha
@@ -27,6 +31,7 @@ export function LoginForm() {
       router.replace('/dashboard');
     } else {
       alert('CPF ou senha inválidos');
+      setIsSubmitting(false);
     }
   };
 
@@ -67,9 +72,9 @@ export function LoginForm() {
         fullWidth
         variant="contained"
         sx={{ mt: 3, mb: 2 }}
-        disabled={isLoading}
+        disabled={isLoading || isSubmitting}
       >
-        {isLoading ? <CircularProgress size={24} /> : 'Entrar'}
+        {(isLoading || isSubmitting) ? <CircularProgress size={24} /> : 'Entrar'}
       </Button>
       <Box display="flex" justifyContent="flex-end">
         <Link href="/register" passHref style={{ textDecoration: 'none' }}>

@@ -18,9 +18,8 @@ export function RegisterForm() {
     e.preventDefault();
     const documentWithoutMask = document.replace(/[^\d]/g, '');
     handleRegister({ name, document: documentWithoutMask, email, password });
-    setTimeout(() => {
-      router.push('/dashboard');
-    }, 100);
+    // Redireciona para página de confirmação de e-mail
+    router.push('/registro/confirmacao');
   };
 
   return (
