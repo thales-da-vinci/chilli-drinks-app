@@ -1,7 +1,16 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5 - STYLE(Dashboard/Branding): Polimento Visual Final ✅ CONCLUÍDA
+## FASE 5.2 - STYLE(Dashboard/Hotfix): Correção de Background e Cards ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(Layout): Background pattern agora cobre 100% da viewport com position: fixed
+- FIX(AppHeader): Bgcolor alterado para primary.dark para integração com tema escuro
+- FIX(TextField): Estilização do input para tema escuro com rgba transparente
+- FIX(Scroll): Adição de overflowY: auto para permitir scroll do conteúdo
+- FIX(IconButton): Cor do menu icon alterada para white
+- STYLE(Consistency): Alinhamento visual completo entre header e conteúdo
+
+## FASE 5 - STYLE(Dashboard/Branding): Polimento Visual Final ✅ CONCLUÍDA
+**Commit:** `1b61355`
 - STYLE(Layout): Aplicação de background pattern com overlay escuro (85%) no layout da aplicação
 - STYLE(Dashboard): Cards com fundo escuro (grey.900) para destaque sobre o background
 - STYLE(Typography): Tipografia clara (white/grey.300) para contraste máximo
