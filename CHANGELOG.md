@@ -1,7 +1,21 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.3 - FIX(Branding/UX): Design Híbrido (Externo Escuro + Conteúdo Claro) ✅ CONCLUÍDA
+## FASE 5.4 - FIX(Branding/UX): Re-implementação do Design Híbrido ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(Layout): Restaurado background pattern escuro com overlay (commit 30eb7b4)
+- FIX(AppHeader): Restaurado bgcolor: 'primary.dark' (fundo escuro)
+- FIX(Logo): Alterado de logo-chilli-branco.png para logo-chilli-padrao.png (vermelha)
+- FIX(Typography): Título "CHILLI DRINKS" em branco mantido para contraste
+- FIX(IconButton): MenuIcon em branco para visibilidade
+- MAINTAIN(Dashboard): Cards brancos mantidos (legibilidade 100%)
+- FEAT(Hybrid): Design híbrido final: fundo escuro + header escuro + conteúdo branco
+
+## FASE 5.3 - FIX(Branding/UX): Tentativa de Design Híbrido (FALHOU) ❌
+**Commit:** `842877d` (Corrigido na FASE 5.4)
+- ERRO: Reverteu layout para grey.100 (deveria manter pattern escuro)
+- ERRO: Reverteu AppHeader para background.paper (deveria manter primary.dark)
+- ERRO: Logo branca em fundo branco (invisível)
+- SUCESSO: Dashboard com cards brancos (mantido na 5.4)
 - FEAT(AppHeader): Logo branco + título "CHILLI DRINKS" adicionados ao header escuro
 - FIX(Dashboard): Paper com bgcolor: 'background.paper' (branco) para legibilidade
 - FIX(Typography): Cores escuras (text.primary/primary.main) para contraste

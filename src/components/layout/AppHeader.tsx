@@ -29,12 +29,12 @@ export function AppHeader() {
 
   return (
     <>
-      <AppBar position="static" elevation={1} sx={{ bgcolor: 'background.paper' }}>
+      <AppBar position="static" elevation={1} sx={{ bgcolor: 'primary.dark' }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
             <Link href="/" passHref style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: 1 }}>
               <Image 
-                src="/assets/logo-chilli-branco.png" 
+                src="/assets/logo-chilli-padrao.png" 
                 alt="Chilli Drinks" 
                 width={150} 
                 height={50}
@@ -90,7 +90,7 @@ export function AppHeader() {
             <IconButton
               size="large"
               edge="end"
-              sx={{ color: 'text.primary' }}
+              sx={{ color: 'white' }}
               aria-label="menu"
               onClick={toggleDrawer(true)}
             >
