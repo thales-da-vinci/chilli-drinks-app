@@ -12,8 +12,64 @@ interface TabCode {
   createdAt: string;
 }
 
-// UIDs válidas para teste
-const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6', 'Z7A8B9C1D2E3'];
+// Geração de UIDs aleatórias (12 dígitos alfanuméricos, sem 'O')
+function generateUID(): string {
+  const chars = 'ABCDEFGHIJKLMNPQRSTUVWXYZ123456789'; // Sem 'O'
+  let uid = '';
+  for (let i = 0; i < 12; i++) {
+    uid += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return uid;
+}
+
+// Status possíveis para as TABs
+type TabStatus = 'DISPONIVEL' | 'RESGATADA' | 'INVALIDA';
+
+interface TabDatabase {
+  uid: string;
+  status: TabStatus;
+  value: number;
+}
+
+// Base de dados mockada de 50 TABs
+function initializeTabDatabase(): TabDatabase[] {
+  const tabs: TabDatabase[] = [];
+  
+  // 30 TABs disponíveis
+  for (let i = 0; i < 30; i++) {
+    tabs.push({
+      uid: generateUID(),
+      status: 'DISPONIVEL',
+      value: 1.00
+    });
+  }
+  
+  // 10 TABs já resgatadas
+  for (let i = 0; i < 10; i++) {
+    tabs.push({
+      uid: generateUID(),
+      status: 'RESGATADA',
+      value: 1.00
+    });
+  }
+  
+  // 10 TABs inválidas
+  for (let i = 0; i < 10; i++) {
+    tabs.push({
+      uid: generateUID(),
+      status: 'INVALIDA',
+      value: 0
+    });
+  }
+  
+  return tabs;
+}
+
+// Base de dados global de TABs (inicializada uma vez)
+const TAB_DATABASE: TabDatabase[] = initializeTabDatabase();
+
+console.log('MSW: Base de dados de TABs inicializada com', TAB_DATABASE.length, 'entradas');
+console.log('MSW: TABs disponíveis:', TAB_DATABASE.filter(t => t.status === 'DISPONIVEL').map(t => t.uid));
 
 const CHILLI_CURRENT_USER_KEY = 'chilli_current_user';
 
@@ -139,7 +195,6 @@ export const handlers = [
       
       const body = await request.json() as { code: string };
       const submittedCode = body?.code?.trim().toUpperCase();
-      const normalizedValidUIDs = validUIDs.map(uid => uid.trim().toUpperCase());
       
       console.log(`MSW POST /codes: Usuário ${currentUser.document}`);
       console.log('MSW POST /codes: Código submetido:', submittedCode);
@@ -151,37 +206,72 @@ export const handlers = [
         );
       }
       
-      if (normalizedValidUIDs.includes(submittedCode)) {
-        const userTabs = loadUserTabs(currentUser.document);
-        const nextId = userTabs.length > 0 ? Math.max(...userTabs.map(t => t.id)) + 1 : 1;
-        
-        const newCode = {
-          id: nextId,
-          code: submittedCode,
-          value: 1.00,
-          redeemedAt: null,
-          createdAt: new Date().toISOString()
-        };
-        
-        userTabs.push(newCode);
-        saveUserTabs(currentUser.document, userTabs);
-        
-        console.log(`MSW POST /codes: Sucesso! Tabs do usuário ${currentUser.document}:`, userTabs);
-        
-        return HttpResponse.json({
-          message: 'Código registrado com sucesso!',
-          newCode: {
-            code: newCode.code,
-            value: newCode.value
-          }
-        }, { status: 201 });
+      // Busca a TAB na base de dados
+      const tabInDatabase = TAB_DATABASE.find(t => t.uid === submittedCode);
+      
+      if (!tabInDatabase) {
+        console.log('MSW POST /codes: TAB não encontrada na base de dados');
+        return HttpResponse.json(
+          { message: 'Código TAB inválido ou não encontrado' },
+          { status: 404 }
+        );
       }
       
-      console.log('MSW POST /codes: Código inválido');
-      return HttpResponse.json(
-        { message: 'Código inválido ou não encontrado' },
-        { status: 400 }
-      );
+      // Validação de status
+      if (tabInDatabase.status === 'INVALIDA') {
+        console.log('MSW POST /codes: TAB inválida');
+        return HttpResponse.json(
+          { message: 'Código TAB inválido' },
+          { status: 404 }
+        );
+      }
+      
+      if (tabInDatabase.status === 'RESGATADA') {
+        console.log('MSW POST /codes: TAB já resgatada');
+        return HttpResponse.json(
+          { message: 'Este código TAB já foi utilizado' },
+          { status: 409 }
+        );
+      }
+      
+      // Verifica se o usuário já resgatou esta TAB
+      const userTabs = loadUserTabs(currentUser.document);
+      const alreadyRedeemed = userTabs.find(t => t.code === submittedCode);
+      
+      if (alreadyRedeemed) {
+        console.log('MSW POST /codes: Usuário já resgatou esta TAB');
+        return HttpResponse.json(
+          { message: 'Você já resgatou este código TAB' },
+          { status: 409 }
+        );
+      }
+      
+      // TAB disponível - adiciona à lista do usuário
+      const nextId = userTabs.length > 0 ? Math.max(...userTabs.map(t => t.id)) + 1 : 1;
+      
+      const newCode = {
+        id: nextId,
+        code: submittedCode,
+        value: tabInDatabase.value,
+        redeemedAt: null,
+        createdAt: new Date().toISOString()
+      };
+      
+      userTabs.push(newCode);
+      saveUserTabs(currentUser.document, userTabs);
+      
+      // Marca a TAB como resgatada na base de dados
+      tabInDatabase.status = 'RESGATADA';
+      
+      console.log(`MSW POST /codes: Sucesso! Tabs do usuário ${currentUser.document}:`, userTabs);
+      
+      return HttpResponse.json({
+        message: 'Código registrado com sucesso!',
+        newCode: {
+          code: newCode.code,
+          value: newCode.value
+        }
+      }, { status: 201 });
     } catch (error) {
       console.error('MSW POST /codes: Erro ao processar:', error);
       return HttpResponse.json(
