@@ -1,5 +1,111 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 4.14 - FIX(Auth/Profile): Segurança e Validação ✅ CONCLUÍDA
+**Commit:** `a0e6f39`
+- FEAT(Docs): Criação do arquivo TABS_TESTE.md com documentação completa de 50 TABs mockadas
+- FIX(Auth): Implementação de verificação de duplicidade no registro (CPF e E-mail)
+- FIX(Security): Adição de campo "Senha Atual" com validação na página Meus Dados
+- FIX(Validation): handleRegister agora retorna objeto com success e message
+- FIX(UX): Tratamento de erro no RegisterForm com feedback específico
+- FEAT(Inspection): Instruções de como inspecionar TABs e usuários no localStorage
+
+## FASE 4.13 - FEAT(MSW): Expansão e Validação Avançada ✅ CONCLUÍDA
+**Commit:** `8097f42`
+- FEAT(MSW): Geração automática de 50 TABs com UIDs aleatórias (12 dígitos, sem 'O')
+- FEAT(Database): Distribuição de status: 30 Disponíveis, 10 Resgatadas, 10 Inválidas
+- FEAT(Validation): Implementação de validação avançada com códigos HTTP específicos
+- FIX(Status): Retorno 404 para TABs inválidas ou não encontradas
+- FIX(Status): Retorno 409 para TABs já resgatadas (global ou por usuário)
+- FEAT(State): TABs mudam status para RESGATADA após uso bem-sucedido
+- DEBUG(Logs): Logs detalhados de inicialização e validação de TABs
+
+## FASE 4.12 - FIX(AuthUX): Melhorias de UX no Fluxo de Autenticação ✅ CONCLUÍDA
+**Commit:** `39688b2`
+- FIX(Login): Implementação de feedback de loading com isSubmitting e CircularProgress
+- FIX(Register): Remoção de auto-login após registro para simular confirmação de e-mail
+- FEAT(Page): Criação da página /registro/confirmacao com design profissional
+- FIX(Flow): Redirecionamento para página de confirmação após registro bem-sucedido
+- STYLE(Modal): Design com Paper, ícone CheckCircleOutline e botão de retorno ao login
+
+## FASE 4.11 - FIX(Auth/MSW): Persistência Multiusuário ✅ CONCLUÍDA
+**Commit:** `4b457e1`
+- REFACTOR(Auth): Implementação de sistema multiusuário no AuthContext
+- FEAT(Storage): Chaves separadas: CHILLI_USERS_MOCK_KEY e CHILLI_CURRENT_USER_KEY
+- FIX(Login): handleLogin agora valida CPF e senha contra lista de usuários
+- FIX(Register): handleRegister adiciona usuário à lista sem fazer login automático
+- REFACTOR(MSW): Persistência de TABs por usuário com chave dinâmica CHILLI_TABS_[CPF]
+- FIX(Isolation): Cada usuário tem sua própria lista de TABs isolada
+- FIX(Handlers): GET/POST/DELETE de códigos agora baseados no usuário logado
+
+## FASE 4.6 - FIX(Layout_Final): Correção de Import/Export ✅ CONCLUÍDA
+**Commit:** `9de8d94`
+- FIX(ClientAppWrapper): Export duplo (default e named) para compatibilidade
+- FIX(Interface): Adição de ClientAppWrapperProps com tipagem explícita
+- FIX(ErrorHandling): Try-catch na inicialização do MSW
+- FIX(Layout): Reorganização da ordem de imports para evitar conflitos
+
+## FASE 4.5 - FIX(Layout_MSW): Inicialização e Runtime ✅ CONCLUÍDA
+**Commit:** `249d5b5`
+- FIX(MSW): Inicialização automática do MSW no ClientAppWrapper
+- FIX(Loading): Estado mswReady para aguardar inicialização antes de renderizar
+- FIX(Layout): Simplificação da estrutura do layout.tsx
+- DEBUG(Logs): Console log de confirmação de inicialização do MSW
+
+## FASE 4.4 - FEAT(UX_FIX): Modal e Correções de Login ✅ CONCLUÍDA
+**Commit:** `caac978`
+- FIX(Login): Reset de campos document e password antes do redirecionamento
+- FEAT(Modal): Substituição de alert() por Dialog do MUI no CodeRegistrationForm
+- STYLE(Modal): Design com CheckCircleIcon e mensagem personalizada
+- FIX(Handlers): Fallback seguro (tabsState || []) no GET /codes
+
+## FASE 4.3 - FIX(Final_MSW): Limpeza Forçada ✅ CONCLUÍDA
+**Commit:** `c09eb02`
+- FIX(Login): Limpeza forçada de localStorage.removeItem('chilli_tabs_mock') antes do redirecionamento
+- FIX(Validation): Adição de .trim() no código submetido para validação robusta
+- DEBUG(Logs): Logs detalhados mostrando se código está na lista de UIDs válidas
+
+## FASE 4.2 - FIX(Redir_MSW): Timing e Validação ✅ CONCLUÍDA
+**Commit:** `e1bbc39`
+- FIX(MSW): Remoção forçada de localStorage na inicialização
+- DEBUG(Logs): Adição de logs de debug para rastrear estado das tabs
+- FIX(Login): Adição de setTimeout(50ms) para timing de redirecionamento
+
+## FASE 4.1 - FIX(MSW): Persistência e Atualização ✅ CONCLUÍDA
+**Commit:** `905c761`
+- FIX(MSW): Limpeza do estado inicial (tabsState = [])
+- FEAT(Validation): Definição de 5 UIDs válidas para teste
+- FIX(Form): Integração do CodeRegistrationForm com useCouponMutation
+- FIX(Cache): Invalidação automática de queries após sucesso
+- STYLE(Helper): Helper text mostrando UIDs válidas no formulário
+
+## FASE 3.4 - FIX(TypeScript): Supressão de Erro ✅ CONCLUÍDA
+**Commit:** `fc80f64`
+- FIX(TypeScript): Adição de @ts-ignore antes de document.cookie
+- FIX(Build): Supressão de erro de tipagem teimoso do compilador
+
+## FASE 3.3 - FIX(TypeScript): Verificação de Window ✅ CONCLUÍDA
+**Commit:** `a626632`
+- FIX(TypeScript): Adição de verificação typeof window !== 'undefined' ao redor de document.cookie
+- FIX(Build): Isolamento de código client-side para resolver erro de tipagem
+
+## FASE 3.2 - FIX(Redirection): Client-side Forçado ✅ CONCLUÍDA
+**Commit:** `4fbefd1`
+- FIX(Login): Redirecionamento forçado com router.replace('/dashboard') após login
+- FIX(Validation): Verificação client-side do CPF antes de redirecionar
+- FIX(Middleware): Contorno de latência do Middleware com navegação imediata
+
+## FASE 3.1 - FIX(Hydration): ThemeRegistry Robusto ✅ CONCLUÍDA
+**Commit:** `3b4bc8c`
+- FIX(ThemeRegistry): Reimplementação com useServerInsertedHTML
+- FEAT(SSR): Criação de Emotion Cache com injeção de estilos no head
+- FIX(Hydration): Sistema de flush para coleta e injeção de estilos CSS-in-JS
+
+## FASE 3.0 - FIX(Middleware): Cookies e Autenticação ✅ CONCLUÍDA
+**Commit:** `dbe81fd`
+- FIX(Middleware): Implementação de verificação de cookie chilli_drinks_auth
+- FIX(AuthContext): Definição de cookie após login bem-sucedido
+- FIX(Auth): Remoção de cookie no logout
+
 ## FASE 4.18 - Ajustes Visuais (Logo e Banner) ✅ CONCLUÍDA
 - FEAT(Branding): Atualização do logo para Logo Chilli Drinks Padrão (fundo transparente)
 - FEAT(Banner): Adição de imagem de fundo (banner-bg.jpg) no HeroBanner da homepage
