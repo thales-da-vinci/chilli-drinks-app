@@ -62,7 +62,7 @@ export default function DashboardPage() {
     };
 
     return (
-        <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', py: 4 }}>
+        <Box sx={{ minHeight: '100vh', py: 4 }}>
             <Container maxWidth="md">
                 {/* LAYOUT DE BLOCO ÚNICO - FASE 4.2 */}
                 <Paper elevation={3} sx={{ 
@@ -142,7 +142,7 @@ export default function DashboardPage() {
                         
                         <Button 
                             variant="contained" 
-                            color="primary" 
+                            color="success" 
                             size="large" 
                             startIcon={<CardGiftcardIcon />}
                             onClick={openModal}

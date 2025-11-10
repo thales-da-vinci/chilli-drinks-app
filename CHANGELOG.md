@@ -1,27 +1,26 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.3 - FIX(Branding/UX): Reversão para Tema Claro ✅ CONCLUÍDA
+## FASE 5.3 - FIX(Branding/UX): Design Híbrido (Externo Escuro + Conteúdo Claro) ✅ CONCLUÍDA
 **Commit:** `[pending]`
-- FIX(Layout): Reversão completa para tema claro com bgcolor: 'grey.100'
-- FIX(AppHeader): Restaurado bgcolor: 'background.paper' (branco)
-- FIX(Dashboard): Cards revertidos para fundo branco com texto escuro
-- FIX(Typography): Todas as cores restauradas para text.primary/text.secondary
-- FIX(TextField): Removidas customizações de tema escuro
-- FIX(Button): CTA alterado de secondary para primary (vermelho Chilli)
-- FEAT(Legibility): Legibilidade completa restaurada
-- DOCS(Directive): Nova diretriz: Polimento Simples aguardando designer UI/UX
+- FEAT(AppHeader): Logo branco + título "CHILLI DRINKS" adicionados ao header escuro
+- FIX(Dashboard): Paper com bgcolor: 'background.paper' (branco) para legibilidade
+- FIX(Typography): Cores escuras (text.primary/primary.main) para contraste
+- FIX(Button): CTA alterado para color="success" (verde)
+- MAINTAIN(Layout): Background pattern escuro mantido (commit 30eb7b4)
+- MAINTAIN(Header): AppHeader escuro mantido com melhorias visuais
+- FEAT(Hybrid): Design híbrido: fundo externo escuro + bloco dash branco
+- DOCS(Directive): Diretriz final: Layout escuro + conteúdo claro para legibilidade
 
-## FASE 5.2 - STYLE(Dashboard/Hotfix): Correção de Background e Cards ✅ CONCLUÍDA
-**Commit:** `30eb7b4`
-- FIX(Layout): Background pattern agora cobre 100% da viewport com position: fixed
-- FIX(AppHeader): Bgcolor alterado para primary.dark para integração com tema escuro
-- FIX(TextField): Estilização do input para tema escuro com rgba transparente
-- FIX(Scroll): Adição de overflowY: auto para permitir scroll do conteúdo
-- FIX(IconButton): Cor do menu icon alterada para white
-- STYLE(Consistency): Alinhamento visual completo entre header e conteúdo
+## FASE 5.2 - STYLE(Dashboard/Hotfix): Background Full-Page (PARCIALMENTE REVERTIDO) ❌
+**Commit:** `30eb7b4` (Revertido parcialmente na FASE 5.3)
+- FIX(Layout): Background pattern com position: fixed (MANTIDO)
+- FIX(AppHeader): Bgcolor primary.dark (MANTIDO + MELHORADO na 5.3)
+- FIX(Cards): Tema escuro nos cards (REVERTIDO na FASE 5.3)
+- NOTA: Esta fase causou ilegibilidade, corrigida na FASE 5.3
 
-## FASE 5 - STYLE(Dashboard/Branding): Polimento Visual Final ✅ CONCLUÍDA
-**Commit:** `1b61355`
+## FASE 5 - STYLE(Dashboard/Branding): Polimento Visual (REVERTIDO) ❌
+**Commit:** `1b61355` (Revertido na FASE 5.2)
+- NOTA: Tentativa inicial de branding escuro, substituída por abordagem híbrida
 - STYLE(Layout): Aplicação de background pattern com overlay escuro (85%) no layout da aplicação
 - STYLE(Dashboard): Cards com fundo escuro (grey.900) para destaque sobre o background
 - STYLE(Typography): Tipografia clara (white/grey.300) para contraste máximo
@@ -29,6 +28,10 @@
 - STYLE(CTA): Botão de resgate alterado para color="secondary" (amarelo/dourado)
 - STYLE(Elevation): Aumento de elevation para 6 e box-shadow com rgba vermelha
 - FEAT(Branding): Alinhamento visual completo com identidade Chilli Drinks (dark theme)
+
+## FASE 5.1 - DOCS: Atualização do CHANGELOG ✅ CONCLUÍDA
+**Commit:** `fdf559a`
+- DOCS: Documentação completa das fases 3.0 a 4.14
 
 ## FASE 4.14 - FIX(Auth/Profile): Segurança e Validação ✅ CONCLUÍDA
 **Commit:** `a0e6f39`
