@@ -62,38 +62,36 @@ export default function DashboardPage() {
     };
 
     return (
-        <Box sx={{ minHeight: '100vh', py: 4 }}>
+        <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', py: 4 }}>
             <Container maxWidth="md">
                 {/* LAYOUT DE BLOCO ÚNICO - FASE 4.2 */}
-                <Paper elevation={6} sx={{ 
+                <Paper elevation={3} sx={{ 
                     p: { xs: 3, md: 5 }, 
                     borderRadius: 3,
-                    bgcolor: 'grey.900',
                     border: '2px solid',
                     borderColor: 'primary.main',
-                    boxShadow: '0 8px 32px rgba(229, 0, 0, 0.4)'
+                    boxShadow: '0 8px 32px rgba(229, 0, 0, 0.1)'
                 }}>
                     {/* Cabeçalho do Dashboard */}
                     <Typography variant="h4" component="h1" gutterBottom sx={{ 
-                        color: 'white', 
+                        color: 'primary.main', 
                         fontWeight: 'bold',
                         textAlign: 'center',
                         mb: 2
                     }}>
                         Dashboard de Recompensas
                     </Typography>
-                    <Typography variant="body1" sx={{ 
-                        color: 'grey.300',
+                    <Typography variant="body1" color="text.secondary" sx={{ 
                         textAlign: 'center',
                         mb: 4 
                     }}>
-                        Olá, <strong style={{ color: '#FFD700' }}>{user?.name?.split(' ')[0] || 'Cliente'}</strong>! Gerencie seus Códigos TAGs e resgate seu Gift Card.
+                        Olá, <strong>{user?.name?.split(' ')[0] || 'Cliente'}</strong>! Gerencie seus Códigos TAGs e resgate seu Gift Card.
                     </Typography>
 
                     {/* 1. ÁREA DE CADASTRO */}
                     <Box sx={{ mb: 4 }}>
                         <Typography variant="h5" component="h2" gutterBottom sx={{ 
-                            color: 'white', 
+                            color: 'primary.dark', 
                             fontWeight: 'medium',
                             mb: 3
                         }}>
@@ -114,7 +112,7 @@ export default function DashboardPage() {
                         borderColor: 'divider' 
                     }}>
                         <Typography variant="h5" component="h2" gutterBottom sx={{ 
-                            color: 'white', 
+                            color: 'primary.dark', 
                             fontWeight: 'medium',
                             mb: 3
                         }}>
@@ -135,16 +133,16 @@ export default function DashboardPage() {
                         borderColor: 'primary.main',
                         textAlign: 'center'
                     }}>
-                        <Typography variant="h6" gutterBottom sx={{ color: 'white' }}>
+                        <Typography variant="h6" gutterBottom>
                             Saldo Acumulado para Resgate:
                         </Typography>
-                        <Typography variant="h3" fontWeight="bold" sx={{ mb: 3, color: 'secondary.main' }}>
+                        <Typography variant="h3" color="primary.main" fontWeight="bold" sx={{ mb: 3 }}>
                             R$ {accumulatedBalance.toFixed(2).replace('.', ',')}
                         </Typography>
                         
                         <Button 
                             variant="contained" 
-                            color="secondary" 
+                            color="primary" 
                             size="large" 
                             startIcon={<CardGiftcardIcon />}
                             onClick={openModal}
@@ -162,7 +160,7 @@ export default function DashboardPage() {
                         >
                             RESGATAR SALDO AGORA
                         </Button>
-                        <Typography variant="caption" display="block" sx={{ mt: 1, color: 'grey.400' }}>
+                        <Typography variant="caption" display="block" sx={{ mt: 1, color: 'text.secondary' }}>
                             Mínimo de R$1,00 para resgate. Use o botão "Resgatar" no menu para acessar o Gift Card.
                         </Typography>
                     </Box>

@@ -1,7 +1,18 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.2 - STYLE(Dashboard/Hotfix): Correção de Background e Cards ✅ CONCLUÍDA
+## FASE 5.3 - FIX(Branding/UX): Reversão para Tema Claro ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(Layout): Reversão completa para tema claro com bgcolor: 'grey.100'
+- FIX(AppHeader): Restaurado bgcolor: 'background.paper' (branco)
+- FIX(Dashboard): Cards revertidos para fundo branco com texto escuro
+- FIX(Typography): Todas as cores restauradas para text.primary/text.secondary
+- FIX(TextField): Removidas customizações de tema escuro
+- FIX(Button): CTA alterado de secondary para primary (vermelho Chilli)
+- FEAT(Legibility): Legibilidade completa restaurada
+- DOCS(Directive): Nova diretriz: Polimento Simples aguardando designer UI/UX
+
+## FASE 5.2 - STYLE(Dashboard/Hotfix): Correção de Background e Cards ✅ CONCLUÍDA
+**Commit:** `30eb7b4`
 - FIX(Layout): Background pattern agora cobre 100% da viewport com position: fixed
 - FIX(AppHeader): Bgcolor alterado para primary.dark para integração com tema escuro
 - FIX(TextField): Estilização do input para tema escuro com rgba transparente

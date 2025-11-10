@@ -56,26 +56,6 @@ export function CodeRegistrationForm() {
         helperText={errors.code ? errors.code.message : 'UIDs válidas: A1B2C3D4E5F6, G7H8I9J1K2L3, M4N5P6Q7R8S9, T1U2V3W4X5Y6, Z7A8B9C1D2E3'}
         variant="outlined"
         disabled={isPending}
-        sx={{
-          '& .MuiOutlinedInput-root': {
-            bgcolor: 'rgba(255, 255, 255, 0.05)',
-            '& fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.23)',
-            },
-            '&:hover fieldset': {
-              borderColor: 'rgba(255, 255, 255, 0.4)',
-            },
-          },
-          '& .MuiInputLabel-root': {
-            color: 'rgba(255, 255, 255, 0.7)',
-          },
-          '& .MuiInputBase-input': {
-            color: 'white',
-          },
-          '& .MuiFormHelperText-root': {
-            color: 'rgba(255, 255, 255, 0.6)',
-          },
-        }}
       />
       <Button 
         type="submit" 

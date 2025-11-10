@@ -29,7 +29,7 @@ export function AppHeader() {
 
   return (
     <>
-      <AppBar position="static" elevation={1} sx={{ bgcolor: 'primary.dark' }}>
+      <AppBar position="static" elevation={1} sx={{ bgcolor: 'background.paper' }}>
         <Toolbar>
           <Box sx={{ flexGrow: 1, display: 'flex', alignItems: 'center', gap: 2 }}>
             <Link href="/" passHref style={{ textDecoration: 'none', display: 'flex', alignItems: 'center' }}>
@@ -87,7 +87,7 @@ export function AppHeader() {
             <IconButton
               size="large"
               edge="end"
-              sx={{ color: 'white' }}
+              sx={{ color: 'text.primary' }}
               aria-label="menu"
               onClick={toggleDrawer(true)}
             >
