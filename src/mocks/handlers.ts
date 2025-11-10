@@ -15,14 +15,27 @@ interface TabCode {
 // UIDs válidas para teste
 const validUIDs = ['A1B2C3D4E5F6', 'G7H8I9J1K2L3', 'M4N5P6Q7R8S9', 'T1U2V3W4X5Y6', 'Z7A8B9C1D2E3'];
 
-// Nova chave de localStorage para forçar reset do cache
-const STORAGE_KEY = 'CHILLI_TABS_V2';
+const CHILLI_CURRENT_USER_KEY = 'chilli_current_user';
 
-// Função para carregar estado do localStorage
-function loadTabsState(): TabCode[] {
+// Função para obter usuário logado
+function getCurrentUser() {
+  if (typeof window === 'undefined') return null;
+  const userData = localStorage.getItem(CHILLI_CURRENT_USER_KEY);
+  return userData ? JSON.parse(userData) : null;
+}
+
+// Função para obter chave de tabs por usuário
+function getUserTabsKey(userDocument: string): string {
+  return `CHILLI_TABS_${userDocument}`;
+}
+
+// Função para carregar tabs do usuário
+function loadUserTabs(userDocument: string): TabCode[] {
   if (typeof window === 'undefined') return [];
   
-  const stored = localStorage.getItem(STORAGE_KEY);
+  const key = getUserTabsKey(userDocument);
+  const stored = localStorage.getItem(key);
+  
   if (stored) {
     try {
       return JSON.parse(stored);
@@ -33,16 +46,13 @@ function loadTabsState(): TabCode[] {
   return [];
 }
 
-// Função para salvar estado no localStorage
-function saveTabsState(tabs: TabCode[]) {
+// Função para salvar tabs do usuário
+function saveUserTabs(userDocument: string, tabs: TabCode[]) {
   if (typeof window !== 'undefined') {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(tabs));
+    const key = getUserTabsKey(userDocument);
+    localStorage.setItem(key, JSON.stringify(tabs));
   }
 }
-
-// Estado persistente para as tabs/códigos (singleton)
-let tabsState: TabCode[] = loadTabsState();
-let nextId = tabsState.length > 0 ? Math.max(...tabsState.map(t => t.id)) + 1 : 1;
 
 export const handlers = [
   // Auth endpoints
@@ -100,26 +110,41 @@ export const handlers = [
     });
   }),
 
-  // User codes - usando estado persistente
+  // User codes - usando estado persistente por usuário
   http.get(`${API_BASE_URL}/codes`, () => {
-    tabsState = loadTabsState();
-    console.log('MSW: Retornando tabs:', tabsState);
-    return HttpResponse.json(tabsState || []);
+    const currentUser = getCurrentUser();
+    
+    if (!currentUser) {
+      console.log('MSW GET /codes: Nenhum usuário logado');
+      return HttpResponse.json([]);
+    }
+    
+    const userTabs = loadUserTabs(currentUser.document);
+    console.log(`MSW GET /codes: Retornando tabs do usuário ${currentUser.document}:`, userTabs);
+    return HttpResponse.json(userTabs || []);
   }),
 
-  // Register new code - adiciona ao estado persistente
+  // Register new code - adiciona ao estado persistente por usuário
   http.post(`${API_BASE_URL}/codes`, async ({ request }) => {
     try {
+      const currentUser = getCurrentUser();
+      
+      if (!currentUser) {
+        console.log('MSW POST /codes: Nenhum usuário logado');
+        return HttpResponse.json(
+          { message: 'Usuário não autenticado' },
+          { status: 401 }
+        );
+      }
+      
       const body = await request.json() as { code: string };
       const submittedCode = body?.code?.trim().toUpperCase();
       const normalizedValidUIDs = validUIDs.map(uid => uid.trim().toUpperCase());
       
-      console.log('MSW POST /codes: Body recebido:', body);
+      console.log(`MSW POST /codes: Usuário ${currentUser.document}`);
       console.log('MSW POST /codes: Código submetido:', submittedCode);
-      console.log('MSW POST /codes: UIDs válidas:', normalizedValidUIDs);
       
       if (!submittedCode) {
-        console.log('MSW POST /codes: Código vazio');
         return HttpResponse.json(
           { message: 'Código é obrigatório' },
           { status: 400 }
@@ -127,18 +152,21 @@ export const handlers = [
       }
       
       if (normalizedValidUIDs.includes(submittedCode)) {
+        const userTabs = loadUserTabs(currentUser.document);
+        const nextId = userTabs.length > 0 ? Math.max(...userTabs.map(t => t.id)) + 1 : 1;
+        
         const newCode = {
-          id: nextId++,
+          id: nextId,
           code: submittedCode,
-          value: 1.00, // R$ 1,00
+          value: 1.00,
           redeemedAt: null,
           createdAt: new Date().toISOString()
         };
         
-        tabsState.push(newCode);
-        saveTabsState(tabsState);
+        userTabs.push(newCode);
+        saveUserTabs(currentUser.document, userTabs);
         
-        console.log('MSW POST /codes: Sucesso! Novo estado:', tabsState);
+        console.log(`MSW POST /codes: Sucesso! Tabs do usuário ${currentUser.document}:`, userTabs);
         
         return HttpResponse.json({
           message: 'Código registrado com sucesso!',
@@ -163,14 +191,24 @@ export const handlers = [
     }
   }),
 
-  // Delete code - remove do estado persistente
+  // Delete code - remove do estado persistente por usuário
   http.delete(`${API_BASE_URL}/codes/:id`, ({ params }) => {
+    const currentUser = getCurrentUser();
+    
+    if (!currentUser) {
+      return HttpResponse.json(
+        { message: 'Usuário não autenticado' },
+        { status: 401 }
+      );
+    }
+    
     const id = parseInt(params.id as string);
-    const index = tabsState.findIndex(tab => tab.id === id);
+    const userTabs = loadUserTabs(currentUser.document);
+    const index = userTabs.findIndex(tab => tab.id === id);
     
     if (index !== -1) {
-      tabsState.splice(index, 1);
-      saveTabsState(tabsState);
+      userTabs.splice(index, 1);
+      saveUserTabs(currentUser.document, userTabs);
       
       return HttpResponse.json({ message: 'Código removido com sucesso!' });
     }

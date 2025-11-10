@@ -16,18 +16,17 @@ export function LoginForm() {
     e.preventDefault();
     const documentWithoutMask = document.replace(/[^\d]/g, '');
     
-    // Executa login
-    handleLogin(documentWithoutMask);
+    // Executa login com CPF e senha
+    const success = handleLogin(documentWithoutMask, password);
     
-    // Verifica se login foi bem-sucedido (mock: CPF 11111111111)
-    if (documentWithoutMask === '11111111111') {
-      // Limpa qualquer cache de tabs antes do redirecionamento
-      localStorage.removeItem('chilli_tabs_mock');
+    if (success) {
       // Reset form state
       setDocument('');
       setPassword('');
       // Força redirecionamento
       router.replace('/dashboard');
+    } else {
+      alert('CPF ou senha inválidos');
     }
   };
 

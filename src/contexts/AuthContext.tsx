@@ -2,18 +2,22 @@
 
 import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
+const CHILLI_USERS_MOCK_KEY = 'chilli_users_mock';
+const CHILLI_CURRENT_USER_KEY = 'chilli_current_user';
+
 interface User {
   id: string;
   name: string;
   email: string;
   document: string;
+  password: string;
 }
 
 interface AuthContextType {
   user: User | null;
   isAuthenticated: boolean;
   isLoading: boolean;
-  handleLogin: (document: string) => void;
+  handleLogin: (document: string, password: string) => boolean;
   handleLogout: () => void;
   handleRegister: (data: any) => void;
 }
@@ -26,62 +30,64 @@ interface AuthProviderProps {
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const [user, setUser] = useState<User | null>(null);
-  const [isLoading, setIsLoading] = useState(true); // INICIA COMO TRUE para forçar espera no CSR
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Garantir que o código só execute no ambiente do navegador
     if (typeof window !== 'undefined') {
-      const storedUser = localStorage.getItem('chilli_drinks_user_mock');
+      const storedUser = localStorage.getItem(CHILLI_CURRENT_USER_KEY);
       if (storedUser) {
         try {
           const userData = JSON.parse(storedUser);
           setUser(userData);
-          // Redefine cookie se usuário existe no localStorage
           if (typeof window !== 'undefined') {
             // @ts-ignore
             window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
           }
         } catch (e) {
           console.error('Erro ao analisar usuário do localStorage:', e);
-          localStorage.removeItem('chilli_drinks_user_mock'); // Limpar dados corrompidos
+          localStorage.removeItem(CHILLI_CURRENT_USER_KEY);
         }
       }
     }
-    setIsLoading(false); // SÓ MUDA PARA FALSE APÓS A TENTATIVA DE CARREGAR A SESSÃO
+    setIsLoading(false);
   }, []);
 
-  const handleLogin = (document: string) => {
+  const handleLogin = (document: string, password: string): boolean => {
     console.log('🔐 Login tentativa:', document);
     setIsLoading(true);
-    if (document === '11111111111') {
-      const mockUser: User = { 
-        id: 'user_1', 
-        name: 'Fulano da Silva', 
-        email: 'fulano@email.com',
-        document: document 
-      };
-      if (typeof window !== 'undefined') {
-        localStorage.setItem('chilli_drinks_user_mock', JSON.stringify(mockUser));
-        // Define cookie para o middleware
+    
+    if (typeof window !== 'undefined') {
+      const usersData = localStorage.getItem(CHILLI_USERS_MOCK_KEY);
+      const users: User[] = usersData ? JSON.parse(usersData) : [];
+      
+      const foundUser = users.find(u => u.document === document && u.password === password);
+      
+      if (foundUser) {
+        localStorage.setItem(CHILLI_CURRENT_USER_KEY, JSON.stringify(foundUser));
         if (typeof window !== 'undefined') {
           // @ts-ignore
           window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
         }
+        setUser(foundUser);
+        console.log('✅ Login sucesso:', foundUser);
+        setIsLoading(false);
+        return true;
+      } else {
+        setUser(null);
+        console.log('❌ Login falhou: CPF ou senha inválidos');
+        setIsLoading(false);
+        return false;
       }
-      setUser(mockUser);
-      console.log('✅ Login sucesso:', mockUser);
-    } else {
-      setUser(null);
-      console.log('❌ Login falhou');
     }
+    
     setIsLoading(false);
+    return false;
   };
 
   const handleLogout = () => {
     setIsLoading(true);
     if (typeof window !== 'undefined') {
-      localStorage.removeItem('chilli_drinks_user_mock');
-      // Remove cookie
+      localStorage.removeItem(CHILLI_CURRENT_USER_KEY);
       if (typeof window !== 'undefined') {
         // @ts-ignore
         window.document.cookie = 'chilli_drinks_auth=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
@@ -93,16 +99,31 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   const handleRegister = (data: any) => {
     setIsLoading(true);
-    const mockUser: User = { 
-      id: 'user_new', 
-      name: data.name, 
-      email: data.email,
-      document: data.document 
-    };
+    
     if (typeof window !== 'undefined') {
-      localStorage.setItem('chilli_drinks_user_mock', JSON.stringify(mockUser));
+      const usersData = localStorage.getItem(CHILLI_USERS_MOCK_KEY);
+      const users: User[] = usersData ? JSON.parse(usersData) : [];
+      
+      const newUser: User = {
+        id: `user_${Date.now()}`,
+        name: data.name,
+        email: data.email,
+        document: data.document,
+        password: data.password
+      };
+      
+      users.push(newUser);
+      localStorage.setItem(CHILLI_USERS_MOCK_KEY, JSON.stringify(users));
+      localStorage.setItem(CHILLI_CURRENT_USER_KEY, JSON.stringify(newUser));
+      
+      if (typeof window !== 'undefined') {
+        // @ts-ignore
+        window.document.cookie = 'chilli_drinks_auth=true; path=/; max-age=86400';
+      }
+      
+      setUser(newUser);
     }
-    setUser(mockUser);
+    
     setIsLoading(false);
   };
 
