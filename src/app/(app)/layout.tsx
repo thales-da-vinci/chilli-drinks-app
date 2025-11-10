@@ -12,19 +12,16 @@ export default function AppLayout({ children }: AppLayoutProps) {
     <AuthGuard>
       <Box sx={{ 
         minHeight: '100vh',
-        width: '100%',
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
+        display: 'flex',
+        flexDirection: 'column',
         backgroundImage: 'url(/assets/background-pattern.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundAttachment: 'fixed',
+        position: 'relative',
         '&::before': {
           content: '""',
-          position: 'absolute',
+          position: 'fixed',
           top: 0,
           left: 0,
           right: 0,
@@ -33,22 +30,17 @@ export default function AppLayout({ children }: AppLayoutProps) {
           zIndex: 0,
         }
       }}>
-        <Box sx={{ 
-          position: 'relative', 
-          zIndex: 1, 
-          display: 'flex', 
-          flexDirection: 'column', 
-          minHeight: '100vh',
-          overflowY: 'auto'
-        }}>
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
           <AppHeader />
-          <Box component="main" sx={{ 
-            flexGrow: 1, 
-            pt: 4,
-            pb: 4
-          }}>
-            {children}
-          </Box>
+        </Box>
+        <Box component="main" sx={{ 
+          flexGrow: 1,
+          position: 'relative',
+          zIndex: 1,
+          pt: 4,
+          pb: 4
+        }}>
+          {children}
         </Box>
       </Box>
     </AuthGuard>

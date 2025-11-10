@@ -55,13 +55,14 @@ export function AppHeader() {
               href="/dashboard"
               startIcon={<AddIcon />}
               sx={{
-                borderColor: 'primary.main',
-                color: 'primary.main',
+                borderColor: 'white',
+                color: 'white',
                 fontWeight: 700,
                 fontSize: '0.8rem',
                 '&:hover': {
-                  bgcolor: 'primary.main',
-                  color: 'white'
+                  bgcolor: 'rgba(255, 255, 255, 0.1)',
+                  borderColor: 'secondary.main',
+                  color: 'secondary.main'
                 }
               }}
             >

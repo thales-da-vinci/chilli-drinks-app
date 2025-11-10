@@ -1,7 +1,18 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 5.4 - FIX(Branding/UX): Re-implementação do Design Híbrido ✅ CONCLUÍDA
+## FASE 5.5 - FIX(Layout/UX): Correção de Scroll-Lock e Contraste ✅ CONCLUÍDA
 **Commit:** `[pending]`
+- FIX(Layout): Removido position: 'fixed' que causava scroll-lock
+- FIX(Layout): Simplificado estrutura CSS mantendo background pattern
+- FIX(Overlay): Overlay com position: 'fixed' para manter efeito visual
+- FIX(Scroll): Rolagem funcional restaurada no Dashboard
+- FIX(Button): Botão "CADASTRAR TAB" alterado para branco (borderColor + color)
+- FIX(Hover): Hover com secondary.main (amarelo) para feedback visual
+- MAINTAIN(Background): Pattern escuro mantido com backgroundAttachment: 'fixed'
+- MAINTAIN(Header): AppHeader escuro mantido com logo vermelha
+
+## FASE 5.4 - FIX(Branding/UX): Re-implementação do Design Híbrido ✅ CONCLUÍDA
+**Commit:** `ccf38e6`
 - FIX(Layout): Restaurado background pattern escuro com overlay (commit 30eb7b4)
 - FIX(AppHeader): Restaurado bgcolor: 'primary.dark' (fundo escuro)
 - FIX(Logo): Alterado de logo-chilli-branco.png para logo-chilli-padrao.png (vermelha)
