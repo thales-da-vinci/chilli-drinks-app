@@ -1,5 +1,16 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.1 - STYLE(Homepage/Header): Redesign Completo do Header (LP) ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Header): Redesign completo baseado em chilli-drinks-app-design-homepage-v1.jpg
+- FEAT(Layout): Estrutura Logo (esquerda) → Navegação (centro) → CTAs (direita)
+- FEAT(Logo): Implementação do logo circular vermelho (chilli-drinks-app-logo-circulo-vermelho.png)
+- FEAT(Navigation): Links de âncora em cinza #6B6B6B (BEBIDAS & COQUETÉIS, COMO FUNCIONA, REGULAMENTO, PERGUNTAS FREQUENTES, COMEÇAR)
+- FEAT(CTAs): Botão "CADASTRAR TABS" (amarelo #FFE100) + "LOJA OFICIAL" (vermelho #D40B28) + ícone Instagram
+- FEAT(Responsive): Menu hambúrguer com Drawer para mobile
+- STYLE(Theme): Tema claro com AppBar branco (background.paper) e elevation={1}
+- REFACTOR(Clean): Remoção de lógica de autenticação do Header da LP (simplificação)
+
 ## FASE 5.7 - FIX(MSW/Data): Lista Estática de TABs ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - FIX(MSW): Removida geração aleatória de TABs (generateUID, initializeTabDatabase)
