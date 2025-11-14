@@ -46,7 +46,7 @@ export default function ChilliBrandHeader() {
 
                     {/* Navegação (Centro) - Desktop */}
                     {!isMobile && (
-                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
                             {navLinks.map((link) => (
                                 <Link 
                                     key={link.href} 
@@ -54,7 +54,7 @@ export default function ChilliBrandHeader() {
                                     style={{ 
                                         textDecoration: 'none',
                                         color: '#6B6B6B',
-                                        fontSize: '0.9rem',
+                                        fontSize: '0.8rem',
                                         fontWeight: 600,
                                         transition: 'color 0.2s'
                                     }}
@@ -79,10 +79,13 @@ export default function ChilliBrandHeader() {
                                     fontSize: '0.85rem',
                                     px: 2.5,
                                     py: 1,
-                                    borderRadius: '8px',
+                                    borderRadius: '1000px',
                                     textTransform: 'uppercase',
+                                    border: 'none',
+                                    boxShadow: 'none',
                                     '&:hover': {
-                                        bgcolor: '#E5CA00'
+                                        bgcolor: '#E5CA00',
+                                        boxShadow: 'none'
                                     }
                                 }}
                             >
@@ -99,10 +102,13 @@ export default function ChilliBrandHeader() {
                                     fontSize: '0.85rem',
                                     px: 2.5,
                                     py: 1,
-                                    borderRadius: '8px',
+                                    borderRadius: '1000px',
                                     textTransform: 'uppercase',
+                                    border: 'none',
+                                    boxShadow: 'none',
                                     '&:hover': {
-                                        bgcolor: '#B00920'
+                                        bgcolor: '#B00920',
+                                        boxShadow: 'none'
                                     }
                                 }}
                             >
@@ -170,7 +176,10 @@ export default function ChilliBrandHeader() {
                                 bgcolor: '#FFE100',
                                 color: '#000',
                                 fontWeight: 700,
-                                '&:hover': { bgcolor: '#E5CA00' }
+                                borderRadius: '1000px',
+                                border: 'none',
+                                boxShadow: 'none',
+                                '&:hover': { bgcolor: '#E5CA00', boxShadow: 'none' }
                             }}
                         >
                             CADASTRAR TABS
@@ -184,7 +193,10 @@ export default function ChilliBrandHeader() {
                                 bgcolor: '#D40B28',
                                 color: '#FFF',
                                 fontWeight: 700,
-                                '&:hover': { bgcolor: '#B00920' }
+                                borderRadius: '1000px',
+                                border: 'none',
+                                boxShadow: 'none',
+                                '&:hover': { bgcolor: '#B00920', boxShadow: 'none' }
                             }}
                         >
                             LOJA OFICIAL

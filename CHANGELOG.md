@@ -1,5 +1,14 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.2 - STYLE(Homepage/Header): Polimento Fino de CSS ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Buttons): borderRadius alterado de '8px' para '1000px' (formato pílula)
+- FIX(Buttons): Remoção de border e boxShadow indesejados (borda preta)
+- STYLE(Navigation): fontSize reduzido de '0.9rem' para '0.8rem'
+- STYLE(Navigation): gap reduzido de 3 para 2 (espaçamento mais compacto)
+- STYLE(Mobile): Aplicação consistente de borderRadius '1000px' nos botões do Drawer
+- FIX(Hover): boxShadow: 'none' mantido no hover para evitar bordas
+
 ## FASE 6.1 - STYLE(Homepage/Header): Redesign Completo do Header (LP) ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - STYLE(Header): Redesign completo baseado em chilli-drinks-app-design-homepage-v1.jpg
