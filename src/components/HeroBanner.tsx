@@ -1,9 +1,20 @@
 'use client';
 
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, keyframes } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/auth/useAuth';
+
+const zoomPulse = keyframes`
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+`;
+
+const shakeEffect = keyframes`
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+`;
 
 export function HeroBanner() {
     const { user } = useAuth();
@@ -73,7 +84,7 @@ export function HeroBanner() {
                                     color: '#FFFFFF',
                                     fontWeight: 900,
                                     fontStyle: 'italic',
-                                    fontSize: { xs: '2.5rem', md: '4rem' },
+                                    fontSize: { xs: '3rem', md: '6rem' },
                                     textTransform: 'uppercase',
                                     lineHeight: 1,
                                     mb: 1
@@ -163,7 +174,11 @@ export function HeroBanner() {
                         position: 'relative',
                         width: '100%',
                         maxWidth: 500,
-                        height: { xs: 300, md: 400 }
+                        height: { xs: 300, md: 400 },
+                        animation: `${zoomPulse} 3s ease-in-out infinite`,
+                        '&:hover': {
+                            animation: `${shakeEffect} 0.5s ease-in-out`
+                        }
                     }}>
                         <Image 
                             src="/assets/chilli-drinks-app-homepage-hero-produtos-chilli.png" 

@@ -1,5 +1,15 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.11 - STYLE(Hero/Animation): Polimento Fino com Animações ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Typography): "TABS" fontSize aumentado de 4rem para 6rem (desktop)
+- FEAT(Animation): Zoom Pulse contínuo na imagem (3s ease-in-out infinite)
+- FEAT(Animation): Shake Effect no hover da imagem (0.5s ease-in-out)
+- FEAT(Keyframes): zoomPulse (scale 1 → 1.05 → 1)
+- FEAT(Keyframes): shakeEffect (translateX 0 → -5px → 5px → 0)
+- STYLE(Branding): Animações de alto impacto para engajamento visual
+- FIX(Proportion): Texto "TABS" agora visualmente maior que linha decorativa
+
 ## FASE 6.10 - FIX(Hero/Style): Correção 1:1 de Cores e Estilos de Fonte ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - FIX(Color): "CHILLI DRINKS" alterado de #FFFFFF para #000000 (preto)
