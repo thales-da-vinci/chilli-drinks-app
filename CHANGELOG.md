@@ -1,5 +1,15 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.6 - STYLE(Hero): Fidelidade 1:1 ao Design com Cores Mistas ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Layout): flexDirection: 'column' explícito na coluna esquerda para empilhamento vertical
+- STYLE(Typography): Cores mistas no subtítulo usando <span> aninhados
+- STYLE(Colors): "Cadastre seus códigos TAB..." em #FFB959 (laranja/pêssego)
+- STYLE(Colors): "Cada TAB = R$1,00" em #FFB959 (laranja/pêssego)
+- STYLE(Colors): "+ Bônus Especiais" em #FFFFFF (branco)
+- STYLE(Alignment): alignItems: 'flex-start' para alinhamento à esquerda
+- FEAT(Fidelity): Replicação exata do design chilli-drinks-app-design-homepage-v1.jpg
+
 ## FASE 6.5 - FIX(Build): Substituição de Grid por Flexbox no HeroBanner ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - FIX(HeroBanner): Substituição completa de Grid por Box com Flexbox

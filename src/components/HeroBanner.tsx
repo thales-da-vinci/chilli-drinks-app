@@ -28,7 +28,12 @@ export function HeroBanner() {
                     gap: 4
                 }}>
                     {/* Coluna Esquerda - Textos e CTAs */}
-                    <Box sx={{ flex: 1 }}>
+                    <Box sx={{ 
+                        flex: 1,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'flex-start'
+                    }}>
                         <Typography variant="h1" component="h1" sx={{
                             color: '#FFFFFF',
                             fontWeight: 900,
@@ -44,15 +49,17 @@ export function HeroBanner() {
                             mb: 4,
                             fontWeight: 600,
                             fontSize: { xs: '1.1rem', md: '1.3rem' },
-                            lineHeight: 1.5
+                            lineHeight: 1.5,
+                            color: '#FFB959'
                         }}>
-                            Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!{' '}
+                            <Box component="span" sx={{ color: '#FFB959' }}>
+                                Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!{' '}
+                            </Box>
                             <Box component="span" sx={{ color: '#FFB959', fontWeight: 700 }}>
                                 Cada TAB = R$1,00
                             </Box>
-                            {' '}
                             <Box component="span" sx={{ color: '#FFFFFF' }}>
-                                + Bônus Especiais
+                                {' '}+ Bônus Especiais
                             </Box>
                         </Typography>
                         
