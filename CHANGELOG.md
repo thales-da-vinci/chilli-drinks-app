@@ -1,6 +1,16 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 6.8 - STYLE(Hero): Reorganização dos Textos 1:1 com Design Figma ✅ CONCLUÍDA
+## FASE 6.9 - STYLE(Hero): Estrutura de Texto 1:1 com Layout 1x2 ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Typography): Título 1 "PROMOÇÃO" (branco #FFFFFF, itálico, 5rem)
+- STYLE(Typography): Título 2 "CHILLI DRINKS" (branco #FFFFFF, 4rem)
+- FEAT(Layout): Layout 1x2 com Flexbox row para TABS + Subtítulo lado a lado
+- STYLE(Typography): "TABS" em branco #FFFFFF (4rem) + linha decorativa laranja
+- STYLE(Typography): Subtítulo com cores mistas (#FFB959 / #FFFFFF), maxWidth 250px
+- FIX(Structure): Adaptação correta do position absolute do Figma para Flexbox responsivo
+- STYLE(Responsive): Layout 1x2 em desktop, stack vertical em mobile
+
+## FASE 6.8 - STYLE(Hero): Reorganização dos Textos 1:1 com Design Figma ❌ REVERTIDA
 **Commit:** `[pending]`
 - STYLE(Typography): "PROMOÇÃO" (branco #FFFFFF, itálico, 5rem)
 - STYLE(Typography): "CHILLI DRINKS TABS" (preto #000000, 4rem)

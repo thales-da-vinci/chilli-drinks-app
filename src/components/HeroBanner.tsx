@@ -34,7 +34,7 @@ export function HeroBanner() {
                         flexDirection: 'column',
                         alignItems: 'flex-start'
                     }}>
-                        {/* PROMOÇÃO (branco, itálico) */}
+                        {/* Título 1: PROMOÇÃO (branco, itálico) */}
                         <Typography sx={{
                             color: '#FFFFFF',
                             fontWeight: 900,
@@ -47,38 +47,61 @@ export function HeroBanner() {
                             PROMOÇÃO
                         </Typography>
                         
-                        {/* CHILLI DRINKS TABS (preto) */}
+                        {/* Título 2: CHILLI DRINKS (branco) */}
                         <Typography sx={{
-                            color: '#000000',
+                            color: '#FFFFFF',
                             fontWeight: 700,
                             fontSize: { xs: '2.5rem', md: '4rem' },
                             textTransform: 'uppercase',
                             lineHeight: 1.1,
                             mb: 2
                         }}>
-                            CHILLI DRINKS TABS
+                            CHILLI DRINKS
                         </Typography>
                         
-                        {/* Subtítulo (laranja) */}
-                        <Typography sx={{
-                            color: '#FFB959',
-                            fontWeight: 900,
-                            fontSize: { xs: '1rem', md: '1.5rem' },
-                            textTransform: 'uppercase',
-                            lineHeight: 1.3,
-                            mb: 2,
-                            maxWidth: 250
-                        }}>
-                            Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!
-                        </Typography>
-                        
-                        {/* Linha decorativa */}
-                        <Box sx={{
-                            width: 294,
-                            height: 5,
-                            bgcolor: '#FFB959',
+                        {/* Layout 1x2: TABS + Subtítulo */}
+                        <Box sx={{ 
+                            display: 'flex', 
+                            flexDirection: { xs: 'column', md: 'row' },
+                            alignItems: 'flex-start',
+                            gap: 4,
                             mb: 3
-                        }} />
+                        }}>
+                            {/* Coluna A: TABS + Linha */}
+                            <Box>
+                                <Typography sx={{
+                                    color: '#FFFFFF',
+                                    fontWeight: 700,
+                                    fontSize: { xs: '2.5rem', md: '4rem' },
+                                    textTransform: 'uppercase',
+                                    lineHeight: 1,
+                                    mb: 1
+                                }}>
+                                    TABS
+                                </Typography>
+                                <Box sx={{
+                                    width: 294,
+                                    height: 5,
+                                    bgcolor: '#FFB959'
+                                }} />
+                            </Box>
+                            
+                            {/* Coluna B: Subtítulo (cores mistas) */}
+                            <Typography sx={{
+                                fontWeight: 900,
+                                fontSize: { xs: '1rem', md: '1.5rem' },
+                                textTransform: 'uppercase',
+                                lineHeight: 1.3,
+                                maxWidth: 250
+                            }}>
+                                <span style={{ color: '#FFB959' }}>
+                                    Cadastre seus códigos TAB e acumule saldo
+                                </span>
+                                <span style={{ color: '#FFFFFF' }}>
+                                    {' '}no seu Gift Card VTX!
+                                </span>
+                            </Typography>
+                        </Box>
                         
                         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                             <Button
