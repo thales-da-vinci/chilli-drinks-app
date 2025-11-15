@@ -49,18 +49,17 @@ export function HeroBanner() {
                             mb: 4,
                             fontWeight: 600,
                             fontSize: { xs: '1.1rem', md: '1.3rem' },
-                            lineHeight: 1.5,
-                            color: '#FFB959'
+                            lineHeight: 1.5
                         }}>
-                            <Box component="span" sx={{ color: '#FFB959' }}>
+                            <span style={{ color: '#FFB959' }}>
                                 Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!{' '}
-                            </Box>
-                            <Box component="span" sx={{ color: '#FFB959', fontWeight: 700 }}>
+                            </span>
+                            <span style={{ color: '#FFB959', fontWeight: 700 }}>
                                 Cada TAB = R$1,00
-                            </Box>
-                            <Box component="span" sx={{ color: '#FFFFFF' }}>
+                            </span>
+                            <span style={{ color: '#FFFFFF' }}>
                                 {' '}+ Bônus Especiais
-                            </Box>
+                            </span>
                         </Typography>
                         
                         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
@@ -70,19 +69,19 @@ export function HeroBanner() {
                                 component={Link}
                                 href={isAuthenticated ? "/dashboard" : "/login"}
                                 sx={{
-                                    bgcolor: '#000000',
-                                    color: '#FFFFFF',
+                                    bgcolor: '#000000 !important',
+                                    color: '#FFFFFF !important',
                                     fontWeight: 700,
                                     px: 4,
                                     py: 1.5,
                                     fontSize: '1rem',
                                     borderRadius: '1000px',
                                     textTransform: 'uppercase',
-                                    border: 'none',
-                                    boxShadow: 'none',
+                                    border: 'none !important',
+                                    boxShadow: 'none !important',
                                     '&:hover': {
-                                        bgcolor: '#333333',
-                                        boxShadow: 'none'
+                                        bgcolor: '#333333 !important',
+                                        boxShadow: 'none !important'
                                     }
                                 }}
                             >
@@ -95,19 +94,19 @@ export function HeroBanner() {
                                 component={Link}
                                 href="/regulamento-completo"
                                 sx={{
-                                    bgcolor: '#FFB959',
-                                    color: '#000000',
+                                    bgcolor: '#FFB959 !important',
+                                    color: '#000000 !important',
                                     fontWeight: 700,
                                     px: 4,
                                     py: 1.5,
                                     fontSize: '1rem',
                                     borderRadius: '1000px',
                                     textTransform: 'uppercase',
-                                    border: 'none',
-                                    boxShadow: 'none',
+                                    border: 'none !important',
+                                    boxShadow: 'none !important',
                                     '&:hover': {
-                                        bgcolor: '#FFA940',
-                                        boxShadow: 'none'
+                                        bgcolor: '#FFA940 !important',
+                                        boxShadow: 'none !important'
                                     }
                                 }}
                             >

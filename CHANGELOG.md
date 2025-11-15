@@ -1,5 +1,14 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.7 - FIX(Hero): Forçar Cores Customizadas com !important ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- FIX(Buttons): Adição de !important em bgcolor e color para sobrescrever tema MUI
+- FIX(Buttons): "CADASTRAR TABS" com bgcolor: '#000000 !important'
+- FIX(Buttons): "VER REGULAMENTO" com bgcolor: '#FFB959 !important'
+- FIX(Typography): Substituição de <Box component="span"> por <span> nativo
+- FIX(Colors): Aplicação direta de cores inline style para evitar sobrescrita do tema
+- FIX(Theme): Remoção de herança de cores do tema MUI nos botões
+
 ## FASE 6.6 - STYLE(Hero): Fidelidade 1:1 ao Design com Cores Mistas ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - STYLE(Layout): flexDirection: 'column' explícito na coluna esquerda para empilhamento vertical
