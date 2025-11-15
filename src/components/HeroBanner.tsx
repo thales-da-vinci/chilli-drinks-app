@@ -23,7 +23,7 @@ export function HeroBanner() {
             <Container maxWidth="lg">
                 <Grid container spacing={4} alignItems="center">
                     {/* Coluna Esquerda - Textos e CTAs */}
-                    <Grid item xs={12} md={6}>
+                    <Grid item component="div" xs={12} md={6}>
                         <Typography variant="h1" component="h1" sx={{
                             color: '#FFFFFF',
                             fontWeight: 900,
@@ -105,7 +105,7 @@ export function HeroBanner() {
                     </Grid>
                     
                     {/* Coluna Direita - Imagem de Produtos */}
-                    <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Grid item component="div" xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
                         <Box sx={{ position: 'relative', width: '100%', maxWidth: 500, height: { xs: 300, md: 400 } }}>
                             <Image 
                                 src="/assets/chilli-drinks-app-homepage-hero-produtos-chilli.png" 

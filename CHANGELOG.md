@@ -1,5 +1,12 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.4 - FIX(Build): Correção de Erros de TypeScript e Next.js Config ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- FIX(HeroBanner): Adição de component="div" aos Grid items (resolve erro de tipagem TypeScript)
+- FIX(NextConfig): Remoção de experimental.turbo (configuração inválida)
+- FIX(Vercel): Correção de erros que causaram falha no deploy (commit a7b9f2c)
+- BUILD(TypeScript): Resolve "Property 'component' is missing in type" error
+
 ## FASE 6.3 - STYLE(Homepage/Hero): Hero Banner com Branding Fiel ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - REFACTOR(Layout): Reimplementação completa com Grid 2 colunas (texto esquerda, imagem direita)
