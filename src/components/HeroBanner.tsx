@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, Grid } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/auth/useAuth';
@@ -10,133 +10,114 @@ export function HeroBanner() {
     const isAuthenticated = !!user;
 
     return (
-        <>
-            {/* Hero Banner Full-Width com Fundo Impactante */}
-            <Box id="top" sx={{
-                backgroundImage: 'url(/assets/banner-bg.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                py: { xs: 6, md: 10 },
-                minHeight: { xs: '70vh', md: '80vh' },
-                display: 'flex',
-                alignItems: 'center',
-                position: 'relative',
-                overflow: 'hidden'
-            }}>
-                {/* Overlay escuro para melhorar legibilidade */}
-                <Box sx={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    bgcolor: 'rgba(0, 0, 0, 0.4)',
-                    zIndex: 1
-                }} />
-                
-                <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 2 }}>
-                    <Box sx={{ textAlign: 'center' }}>
-                        {/* Título Principal Impactante */}
+        <Box id="top" sx={{
+            backgroundImage: 'url(/assets/chilli-drinks-app-homepage-hero-banner-bg.png)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            py: { xs: 6, md: 8 },
+            minHeight: { xs: '70vh', md: '80vh' },
+            display: 'flex',
+            alignItems: 'center'
+        }}>
+            <Container maxWidth="lg">
+                <Grid container spacing={4} alignItems="center">
+                    {/* Coluna Esquerda - Textos e CTAs */}
+                    <Grid item xs={12} md={6}>
                         <Typography variant="h1" component="h1" sx={{
-                            color: 'white',
+                            color: '#FFFFFF',
                             fontWeight: 900,
                             mb: 2,
-                            fontSize: { xs: '3rem', md: '4.5rem', lg: '5.5rem' },
-                            letterSpacing: '0.02em',
+                            fontSize: { xs: '2.5rem', md: '3.5rem' },
                             textTransform: 'uppercase',
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
+                            lineHeight: 1.2
                         }}>
-                            PROMOÇÃO
+                            PROMOÇÃO CHILLI DRINKS
                         </Typography>
                         
-                        <Typography variant="h2" component="h2" sx={{
-                            color: 'secondary.main',
-                            fontWeight: 900,
-                            mb: 3,
-                            fontSize: { xs: '2rem', md: '3rem', lg: '4rem' },
-                            textTransform: 'uppercase',
-                            textShadow: '2px 2px 4px rgba(0,0,0,0.5)'
-                        }}>
-                            CHILLI DRINKS TABS
-                        </Typography>
-                        
-                        {/* Subtítulo */}
                         <Typography variant="h5" sx={{
-                            color: 'white',
-                            mb: 6,
+                            mb: 4,
                             fontWeight: 600,
-                            fontSize: { xs: '1.2rem', md: '1.5rem' },
-                            lineHeight: 1.4,
-                            textShadow: '1px 1px 2px rgba(0,0,0,0.5)'
+                            fontSize: { xs: '1.1rem', md: '1.3rem' },
+                            lineHeight: 1.5
                         }}>
-                            Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!<br/>
-                            <Box component="span" sx={{ color: 'secondary.main', fontWeight: 900 }}>
-                                Cada TAB = R$1,00 + Bônus Especiais
+                            Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!{' '}
+                            <Box component="span" sx={{ color: '#FFB959', fontWeight: 700 }}>
+                                Cada TAB = R$1,00
+                            </Box>
+                            {' '}
+                            <Box component="span" sx={{ color: '#FFFFFF' }}>
+                                + Bônus Especiais
                             </Box>
                         </Typography>
                         
-                        {/* CTAs Impactantes */}
-                        <Box sx={{ 
-                            display: 'flex', 
-                            gap: 3, 
-                            justifyContent: 'center',
-                            flexWrap: 'wrap'
-                        }}>
+                        <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                             <Button
                                 variant="contained"
                                 size="large"
                                 component={Link}
                                 href={isAuthenticated ? "/dashboard" : "/login"}
                                 sx={{
-                                    bgcolor: 'secondary.main',
-                                    color: 'black',
-                                    fontWeight: 900,
-                                    px: 6,
-                                    py: 2,
-                                    fontSize: '1.3rem',
-                                    borderRadius: '30px',
-                                    boxShadow: '0 6px 20px rgba(255, 215, 0, 0.4)',
+                                    bgcolor: '#000000',
+                                    color: '#FFFFFF',
+                                    fontWeight: 700,
+                                    px: 4,
+                                    py: 1.5,
+                                    fontSize: '1rem',
+                                    borderRadius: '1000px',
+                                    textTransform: 'uppercase',
+                                    border: 'none',
+                                    boxShadow: 'none',
                                     '&:hover': {
-                                        bgcolor: 'secondary.dark',
-                                        transform: 'translateY(-3px)',
-                                        boxShadow: '0 8px 25px rgba(255, 215, 0, 0.6)'
-                                    },
-                                    transition: 'all 0.3s ease'
+                                        bgcolor: '#333333',
+                                        boxShadow: 'none'
+                                    }
                                 }}
                             >
                                 CADASTRAR TABS
                             </Button>
                             
                             <Button
-                                variant="outlined"
+                                variant="contained"
                                 size="large"
                                 component={Link}
                                 href="/regulamento-completo"
                                 sx={{
-                                    borderColor: 'white',
-                                    color: 'white',
-                                    fontWeight: 900,
-                                    px: 6,
-                                    py: 2,
-                                    fontSize: '1.3rem',
-                                    borderRadius: '30px',
-                                    borderWidth: '2px',
+                                    bgcolor: '#FFB959',
+                                    color: '#000000',
+                                    fontWeight: 700,
+                                    px: 4,
+                                    py: 1.5,
+                                    fontSize: '1rem',
+                                    borderRadius: '1000px',
+                                    textTransform: 'uppercase',
+                                    border: 'none',
+                                    boxShadow: 'none',
                                     '&:hover': {
-                                        bgcolor: 'white',
-                                        color: 'primary.main',
-                                        transform: 'translateY(-3px)',
-                                        boxShadow: '0 8px 25px rgba(255, 255, 255, 0.3)'
-                                    },
-                                    transition: 'all 0.3s ease'
+                                        bgcolor: '#FFA940',
+                                        boxShadow: 'none'
+                                    }
                                 }}
                             >
                                 VER REGULAMENTO
                             </Button>
                         </Box>
-                    </Box>
-                </Container>
-            </Box>
-        </>
+                    </Grid>
+                    
+                    {/* Coluna Direita - Imagem de Produtos */}
+                    <Grid item xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
+                        <Box sx={{ position: 'relative', width: '100%', maxWidth: 500, height: { xs: 300, md: 400 } }}>
+                            <Image 
+                                src="/assets/chilli-drinks-app-homepage-hero-produtos-chilli.png" 
+                                alt="Produtos Chilli Drinks" 
+                                fill
+                                style={{ objectFit: 'contain' }}
+                                priority
+                            />
+                        </Box>
+                    </Grid>
+                </Grid>
+            </Container>
+        </Box>
     );
 }

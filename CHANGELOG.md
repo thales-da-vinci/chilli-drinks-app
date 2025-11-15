@@ -1,5 +1,17 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.3 - STYLE(Homepage/Hero): Hero Banner com Branding Fiel ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- REFACTOR(Layout): Reimplementação completa com Grid 2 colunas (texto esquerda, imagem direita)
+- FEAT(Background): Novo asset chilli-drinks-app-homepage-hero-banner-bg.png
+- FEAT(Image): Novo asset chilli-drinks-app-homepage-hero-produtos-chilli.png (coluna direita)
+- STYLE(Buttons): Botão "CADASTRAR TABS" com bgcolor #000000 (preto)
+- STYLE(Buttons): Botão "VER REGULAMENTO" com bgcolor #FFB959 (laranja/pêssego)
+- STYLE(Typography): Subtítulo com cores #FFB959 e #FFFFFF conforme branding
+- STYLE(Consistency): borderRadius 1000px nos botões (consistente com Header)
+- FIX(SEO): Next.js Image com priority para otimização
+- STYLE(Responsive): Stack vertical em mobile, 2 colunas em desktop
+
 ## FASE 6.2 - STYLE(Homepage/Header): Polimento Fino de CSS ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - STYLE(Buttons): borderRadius alterado de '8px' para '1000px' (formato pílula)
