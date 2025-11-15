@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Typography, Button, Container, Grid } from '@mui/material';
+import { Box, Typography, Button, Container } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/auth/useAuth';
@@ -21,9 +21,14 @@ export function HeroBanner() {
             alignItems: 'center'
         }}>
             <Container maxWidth="lg">
-                <Grid container spacing={4} alignItems="center">
+                <Box sx={{ 
+                    display: 'flex', 
+                    flexDirection: { xs: 'column', md: 'row' },
+                    alignItems: 'center',
+                    gap: 4
+                }}>
                     {/* Coluna Esquerda - Textos e CTAs */}
-                    <Grid item component="div" xs={12} md={6}>
+                    <Box sx={{ flex: 1 }}>
                         <Typography variant="h1" component="h1" sx={{
                             color: '#FFFFFF',
                             fontWeight: 900,
@@ -102,21 +107,27 @@ export function HeroBanner() {
                                 VER REGULAMENTO
                             </Button>
                         </Box>
-                    </Grid>
+                    </Box>
                     
                     {/* Coluna Direita - Imagem de Produtos */}
-                    <Grid item component="div" xs={12} md={6} sx={{ display: 'flex', justifyContent: 'center' }}>
-                        <Box sx={{ position: 'relative', width: '100%', maxWidth: 500, height: { xs: 300, md: 400 } }}>
-                            <Image 
-                                src="/assets/chilli-drinks-app-homepage-hero-produtos-chilli.png" 
-                                alt="Produtos Chilli Drinks" 
-                                fill
-                                style={{ objectFit: 'contain' }}
-                                priority
-                            />
-                        </Box>
-                    </Grid>
-                </Grid>
+                    <Box sx={{ 
+                        flex: 1,
+                        display: 'flex', 
+                        justifyContent: 'center',
+                        position: 'relative',
+                        width: '100%',
+                        maxWidth: 500,
+                        height: { xs: 300, md: 400 }
+                    }}>
+                        <Image 
+                            src="/assets/chilli-drinks-app-homepage-hero-produtos-chilli.png" 
+                            alt="Produtos Chilli Drinks" 
+                            fill
+                            style={{ objectFit: 'contain' }}
+                            priority
+                        />
+                    </Box>
+                </Box>
             </Container>
         </Box>
     );

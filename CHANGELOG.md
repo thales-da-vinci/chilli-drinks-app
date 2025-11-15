@@ -1,11 +1,17 @@
 # CHANGELOG - Chilli Drinks App
 
-## FASE 6.4 - FIX(Build): Correção de Erros de TypeScript e Next.js Config ✅ CONCLUÍDA
+## FASE 6.5 - FIX(Build): Substituição de Grid por Flexbox no HeroBanner ✅ CONCLUÍDA
 **Commit:** `[pending]`
-- FIX(HeroBanner): Adição de component="div" aos Grid items (resolve erro de tipagem TypeScript)
-- FIX(NextConfig): Remoção de experimental.turbo (configuração inválida)
-- FIX(Vercel): Correção de erros que causaram falha no deploy (commit a7b9f2c)
-- BUILD(TypeScript): Resolve "Property 'component' is missing in type" error
+- FIX(HeroBanner): Substituição completa de Grid por Box com Flexbox
+- FIX(TypeScript): Resolve erro "Property 'item' does not exist on type" definitivamente
+- REFACTOR(Layout): Adaptação do design Figma (position absolute) para Next.js/MUI (Flexbox responsivo)
+- STYLE(Responsive): flexDirection column (mobile) / row (desktop)
+- FIX(Build): Correção definitiva do erro de deploy (commit 91b1659)
+
+## FASE 6.4 - FIX(Build): Correção de Erros de TypeScript e Next.js Config ❌ REVERTIDA
+**Commit:** `[revertido]`
+- NOTA: Tentativa de adicionar component="div" não resolveu o erro de tipagem
+- FIX(NextConfig): Remoção de experimental.turbo (mantida)
 
 ## FASE 6.3 - STYLE(Homepage/Hero): Hero Banner com Branding Fiel ✅ CONCLUÍDA
 **Commit:** `[pending]`
