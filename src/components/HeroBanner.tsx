@@ -34,33 +34,51 @@ export function HeroBanner() {
                         flexDirection: 'column',
                         alignItems: 'flex-start'
                     }}>
-                        <Typography variant="h1" component="h1" sx={{
+                        {/* PROMOÇÃO (branco, itálico) */}
+                        <Typography sx={{
                             color: '#FFFFFF',
                             fontWeight: 900,
-                            mb: 2,
-                            fontSize: { xs: '2.5rem', md: '3.5rem' },
+                            fontStyle: 'italic',
+                            fontSize: { xs: '3rem', md: '5rem' },
                             textTransform: 'uppercase',
-                            lineHeight: 1.2
+                            lineHeight: 1,
+                            mb: 1
                         }}>
-                            PROMOÇÃO CHILLI DRINKS
+                            PROMOÇÃO
                         </Typography>
                         
-                        <Typography variant="h5" sx={{
-                            mb: 4,
-                            fontWeight: 600,
-                            fontSize: { xs: '1.1rem', md: '1.3rem' },
-                            lineHeight: 1.5
+                        {/* CHILLI DRINKS TABS (preto) */}
+                        <Typography sx={{
+                            color: '#000000',
+                            fontWeight: 700,
+                            fontSize: { xs: '2.5rem', md: '4rem' },
+                            textTransform: 'uppercase',
+                            lineHeight: 1.1,
+                            mb: 2
                         }}>
-                            <span style={{ color: '#FFB959' }}>
-                                Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!{' '}
-                            </span>
-                            <span style={{ color: '#FFB959', fontWeight: 700 }}>
-                                Cada TAB = R$1,00
-                            </span>
-                            <span style={{ color: '#FFFFFF' }}>
-                                {' '}+ Bônus Especiais
-                            </span>
+                            CHILLI DRINKS TABS
                         </Typography>
+                        
+                        {/* Subtítulo (laranja) */}
+                        <Typography sx={{
+                            color: '#FFB959',
+                            fontWeight: 900,
+                            fontSize: { xs: '1rem', md: '1.5rem' },
+                            textTransform: 'uppercase',
+                            lineHeight: 1.3,
+                            mb: 2,
+                            maxWidth: 250
+                        }}>
+                            Cadastre seus códigos TAB e acumule saldo no seu Gift Card VTX!
+                        </Typography>
+                        
+                        {/* Linha decorativa */}
+                        <Box sx={{
+                            width: 294,
+                            height: 5,
+                            bgcolor: '#FFB959',
+                            mb: 3
+                        }} />
                         
                         <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
                             <Button

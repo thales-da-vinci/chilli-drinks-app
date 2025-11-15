@@ -1,5 +1,14 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.8 - STYLE(Hero): Reorganização dos Textos 1:1 com Design Figma ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- STYLE(Typography): "PROMOÇÃO" (branco #FFFFFF, itálico, 5rem)
+- STYLE(Typography): "CHILLI DRINKS TABS" (preto #000000, 4rem)
+- STYLE(Typography): Subtítulo em laranja #FFB959 (uppercase, maxWidth 250px)
+- FEAT(Decorative): Linha decorativa laranja (294px x 5px) conforme Figma
+- FIX(Layout): Organização vertical fiel ao design oficial
+- REFACTOR(Text): Remoção de cores mistas no subtítulo (simplificação conforme Figma)
+
 ## FASE 6.7 - FIX(Hero): Forçar Cores Customizadas com !important ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - FIX(Buttons): Adição de !important em bgcolor e color para sobrescrever tema MUI
