@@ -1,5 +1,16 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 6.10 - FIX(Hero/Style): Correção 1:1 de Cores e Estilos de Fonte ✅ CONCLUÍDA
+**Commit:** `[pending]`
+- FIX(Color): "CHILLI DRINKS" alterado de #FFFFFF para #000000 (preto)
+- FIX(Style): "TABS" com fontStyle: 'italic' e fontWeight: 900
+- FIX(Colors): Subtítulo com cores mistas corretas:
+  - "Cadastre seus" → #FFB959 (laranja)
+  - "códigos TAB" → #FFFFFF (branco)
+  - "e acumule" → #FFB959 (laranja)
+  - "saldo no seu Gift Card VTX!" → #FFFFFF (branco)
+- FEAT(Fidelity): Pixel-perfect com design Figma
+
 ## FASE 6.9 - STYLE(Hero): Estrutura de Texto 1:1 com Layout 1x2 ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - STYLE(Typography): Título 1 "PROMOÇÃO" (branco #FFFFFF, itálico, 5rem)

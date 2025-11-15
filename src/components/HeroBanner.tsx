@@ -47,9 +47,9 @@ export function HeroBanner() {
                             PROMOÇÃO
                         </Typography>
                         
-                        {/* Título 2: CHILLI DRINKS (branco) */}
+                        {/* Título 2: CHILLI DRINKS (preto) */}
                         <Typography sx={{
-                            color: '#FFFFFF',
+                            color: '#000000',
                             fontWeight: 700,
                             fontSize: { xs: '2.5rem', md: '4rem' },
                             textTransform: 'uppercase',
@@ -71,7 +71,8 @@ export function HeroBanner() {
                             <Box>
                                 <Typography sx={{
                                     color: '#FFFFFF',
-                                    fontWeight: 700,
+                                    fontWeight: 900,
+                                    fontStyle: 'italic',
                                     fontSize: { xs: '2.5rem', md: '4rem' },
                                     textTransform: 'uppercase',
                                     lineHeight: 1,
@@ -94,12 +95,10 @@ export function HeroBanner() {
                                 lineHeight: 1.3,
                                 maxWidth: 250
                             }}>
-                                <span style={{ color: '#FFB959' }}>
-                                    Cadastre seus códigos TAB e acumule saldo
-                                </span>
-                                <span style={{ color: '#FFFFFF' }}>
-                                    {' '}no seu Gift Card VTX!
-                                </span>
+                                <span style={{ color: '#FFB959' }}>Cadastre seus</span>
+                                <span style={{ color: '#FFFFFF' }}> códigos TAB </span>
+                                <span style={{ color: '#FFB959' }}>e acumule</span>
+                                <span style={{ color: '#FFFFFF' }}> saldo no seu Gift Card VTX!</span>
                             </Typography>
                         </Box>
                         
