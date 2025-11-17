@@ -32,7 +32,7 @@ const DrinksSection: React.FC = () => {
         <Typography
           sx={{
             fontFamily: 'Raleway, sans-serif',
-            fontWeight: 700,
+            fontWeight: 900,
             fontSize: { xs: '2rem', md: '3.5rem' },
             textTransform: 'uppercase',
             textAlign: 'center',
@@ -73,7 +73,7 @@ const DrinksSection: React.FC = () => {
               <Typography
                 sx={{
                   fontFamily: 'Raleway, sans-serif',
-                  fontWeight: 700,
+                  fontWeight: 900,
                   fontSize: '2rem',
                   marginTop: 2,
                 }}
@@ -90,7 +90,7 @@ const DrinksSection: React.FC = () => {
           variant="h2"
           sx={{
             fontFamily: 'Raleway, sans-serif',
-            fontWeight: 700,
+            fontWeight: 900,
             fontSize: { xs: '1.5rem', md: '2.5rem' },
             textTransform: 'uppercase',
             textAlign: 'center',
