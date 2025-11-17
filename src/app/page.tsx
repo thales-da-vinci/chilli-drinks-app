@@ -12,6 +12,7 @@ import ShoppingBagIcon from '@mui/icons-material/ShoppingBag';
 import ChilliBrandFooter from '@/components/ChilliBrand/ChilliBrandFooter';
 import ChilliBrandHeader from '@/components/ChilliBrand/ChilliBrandHeader';
 import { HeroBanner } from '@/components/HeroBanner';
+import DrinksSection from '@/components/DrinksSection';
 
 // Conteúdo do Regulamento e FAQ
 const REGULAMENTO_TEXTO = [
@@ -108,71 +109,7 @@ export default function LandingPage() {
         <ChilliBrandHeader />
         <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
             <HeroBanner />
-        <Container maxWidth="lg" sx={{ py: 6 }}>
-
-            {/* SEÇÃO 2: PRODUTOS EM DESTAQUE */}
-            <Box sx={{ 
-                mb: 8,
-                py: 6,
-                bgcolor: 'background.paper',
-                borderRadius: 3,
-                textAlign: 'center',
-                position: 'relative',
-                overflow: 'hidden',
-                border: '2px solid',
-                borderColor: 'primary.main',
-                boxShadow: '0 8px 32px rgba(229, 0, 0, 0.1)'
-            }}>
-                <Typography variant="h3" sx={{ mb: 4, color: 'primary.main', textAlign: 'center' }}>
-                    BEBIDAS FUNCIONAIS & COQUETÉIS
-                </Typography>
-                
-                <Box sx={{ 
-                    display: 'grid',
-                    gridTemplateColumns: { xs: 'repeat(2, 1fr)', md: 'repeat(6, 1fr)' },
-                    gap: 2,
-                    mb: 4
-                }}>
-                    {[
-                        { name: '+ENERGIA', color: '#E50000' },
-                        { name: '+BELEZA', color: '#E50000' },
-                        { name: '+FOCO', color: '#0066FF' },
-                        { name: '+RELAX', color: '#00CC66' },
-                        { name: '+DEFESA', color: '#8B00FF' },
-                        { name: '+SALVAÇÃO', color: '#8B00FF' }
-                    ].map((product, index) => (
-                        <Box key={index} sx={{
-                            p: 3,
-                            bgcolor: product.color,
-                            color: 'white',
-                            borderRadius: 2,
-                            fontWeight: 900,
-                            fontSize: '0.9rem',
-                            textAlign: 'center',
-                            transform: 'rotate(-2deg)',
-                            '&:nth-of-type(even)': {
-                                transform: 'rotate(2deg)'
-                            },
-                            '&:hover': {
-                                transform: 'rotate(0deg) scale(1.05)',
-                                transition: 'all 0.3s ease'
-                            }
-                        }}>
-                            {product.name}
-                        </Box>
-                    ))}
-                </Box>
-                
-                <Typography variant="body1" sx={{ 
-                    fontStyle: 'italic',
-                    color: 'primary.main',
-                    fontSize: '1.2rem',
-                    fontWeight: 700,
-                    textAlign: 'center'
-                }}>
-                    "Se não provoca, não é Chilli Beans"
-                </Typography>
-            </Box>
+            <DrinksSection />
 
             <Divider sx={{ my: 4 }} />
 
