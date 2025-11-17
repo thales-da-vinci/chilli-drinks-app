@@ -87,6 +87,7 @@ const DrinksSection: React.FC = () => {
         </Box>
         {/* Tagline */}
         <Typography
+          variant="h2"
           sx={{
             fontFamily: 'Raleway, sans-serif',
             fontWeight: 700,

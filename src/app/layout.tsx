@@ -12,13 +12,13 @@ export const metadata: Metadata = {
   description: 'Cadastre seus códigos TAG e troque por saldo no seu Gift Card VTX!',
 };
 
-export default function RootLayout({ children }: { children: ReactNode }) {
-  const raleway = Raleway({
-    subsets: ['latin'],
-    weight: ['400', '700', '900'],
-    variable: '--font-raleway',
-  });
+const raleway = Raleway({
+  subsets: ['latin'],
+  weight: ['400', '700', '900'],
+  variable: '--font-raleway',
+});
 
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <body className={raleway.className} suppressHydrationWarning>
