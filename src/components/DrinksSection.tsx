@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Container, Grid, Typography } from '@mui/material';
-import { keyframes } from '@mui/system';
+import { keyframes } from '@mui/material/styles';
 import Image from 'next/image';
 
 // --- GIP TEHKNÉ MASTER INSTRUCTION: FASE 7.1 (Seção Bebidas) ---
