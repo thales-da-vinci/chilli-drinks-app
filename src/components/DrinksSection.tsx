@@ -31,7 +31,7 @@ const DrinksSection: React.FC = () => {
       <Container maxWidth="xl">
         <Typography
           sx={{
-            fontFamily: 'Raleway',
+            fontFamily: 'Raleway, sans-serif',
             fontWeight: 700,
             fontSize: { xs: '2rem', md: '3.5rem' },
             textTransform: 'uppercase',
@@ -72,7 +72,7 @@ const DrinksSection: React.FC = () => {
               </Box>
               <Typography
                 sx={{
-                  fontFamily: 'Raleway',
+                  fontFamily: 'Raleway, sans-serif',
                   fontWeight: 700,
                   fontSize: '2rem',
                   marginTop: 2,
@@ -88,17 +88,20 @@ const DrinksSection: React.FC = () => {
         {/* Tagline */}
         <Typography
           sx={{
-            fontFamily: 'Raleway',
+            fontFamily: 'Raleway, sans-serif',
             fontWeight: 700,
             fontSize: { xs: '1.5rem', md: '2.5rem' },
             textTransform: 'uppercase',
             textAlign: 'center',
             mt: 8,
             px: 2,
+            lineHeight: 1.2,
           }}
         >
-          <Box component="span" sx={{ color: '#000000' }}>Se não provoca, não é </Box>
-          <Box component="span" sx={{ color: '#D40B28' }}>Chilli Beans</Box>
+          <span style={{ color: '#000000' }}>Se não provoca,</span>
+          <br />
+          <span style={{ color: '#000000' }}>não é </span>
+          <span style={{ color: '#D40B28' }}>Chilli Beans</span>
         </Typography>
       </Container>
     </Box>

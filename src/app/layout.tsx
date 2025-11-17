@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { ReactNode } from 'react';
+import { Raleway } from 'next/font/google';
 import { ThemeRegistry } from '@/components/ThemeRegistry/ThemeRegistry';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { GiftCardModalProvider } from '@/contexts/GiftCardModalContext';
@@ -12,9 +13,15 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+  const raleway = Raleway({
+    subsets: ['latin'],
+    weight: ['400', '700', '900'],
+    variable: '--font-raleway',
+  });
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
-      <body suppressHydrationWarning>
+      <body className={raleway.className} suppressHydrationWarning>
         <ThemeRegistry>
           <AuthProvider>
             <GiftCardModalProvider>
