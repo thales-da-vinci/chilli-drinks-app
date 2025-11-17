@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Container, Grid, Typography } from '@mui/material';
+import { Box, Container, Typography } from '@mui/material';
 import { keyframes } from '@mui/material/styles';
 import Image from 'next/image';
 
@@ -42,45 +42,48 @@ const DrinksSection: React.FC = () => {
         >
           BEBIDAS FUNCIONAIS & COQUETÉIS
         </Typography>
-        <Grid container spacing={4} justifyContent="center">
+        <Box
+          display="grid"
+          gridTemplateColumns={{ xs: '1fr', sm: 'repeat(2, 1fr)', md: 'repeat(3, 1fr)' }}
+          gap={4}
+        >
           {drinks.map((drink, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Box
+            <Box
+              key={index}
+              sx={{
+                border: '1px solid #D40B28',
+                borderRadius: '12px',
+                padding: '32px',
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                transition: 'all 0.3s ease',
+                '&:hover': {
+                  transform: 'translateY(-5px)',
+                  boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
+                },
+                '&:hover .drink-image': {
+                  animation: `${shake} 0.5s ease-in-out`,
+                },
+              }}
+            >
+              <Box className="drink-image" sx={{ mb: 2 }}>
+                <Image src={drink.img} alt={drink.title} width={250} height={250} style={{ objectFit: 'contain' }} />
+              </Box>
+              <Typography
                 sx={{
-                  border: '1px solid #D40B28',
-                  borderRadius: '12px',
-                  padding: '32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
-                  transition: 'all 0.3s ease',
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.1)',
-                  },
-                  '&:hover .drink-image': {
-                    animation: `${shake} 0.5s ease-in-out`,
-                  },
+                  fontFamily: 'Raleway',
+                  fontWeight: 700,
+                  fontSize: '2rem',
+                  color: '#000000',
+                  marginTop: 2,
                 }}
               >
-                <Box className="drink-image" sx={{ mb: 2 }}>
-                  <Image src={drink.img} alt={drink.title} width={250} height={250} style={{ objectFit: 'contain' }} />
-                </Box>
-                <Typography
-                  sx={{
-                    fontFamily: 'Raleway',
-                    fontWeight: 700,
-                    fontSize: '2rem',
-                    color: '#000000',
-                    marginTop: 2,
-                  }}
-                >
-                  {drink.title}
-                </Typography>
-              </Box>
-            </Grid>
+                {drink.title}
+              </Typography>
+            </Box>
           ))}
-        </Grid>
+        </Box>
       </Container>
     </Box>
   );
