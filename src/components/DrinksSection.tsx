@@ -34,13 +34,13 @@ const DrinksSection: React.FC = () => {
             fontFamily: 'Raleway',
             fontWeight: 700,
             fontSize: { xs: '2rem', md: '3.5rem' },
-            color: '#000000',
             textTransform: 'uppercase',
             textAlign: 'center',
             mb: 6,
           }}
         >
-          BEBIDAS FUNCIONAIS & COQUETÉIS
+          <Box component="span" sx={{ color: '#000000' }}>BEBIDAS FUNCIONAIS </Box>
+          <Box component="span" sx={{ color: '#D40B28' }}>&amp; COQUETÉIS</Box>
         </Typography>
         <Box
           display="grid"
@@ -75,15 +75,31 @@ const DrinksSection: React.FC = () => {
                   fontFamily: 'Raleway',
                   fontWeight: 700,
                   fontSize: '2rem',
-                  color: '#000000',
                   marginTop: 2,
                 }}
               >
-                {drink.title}
+                {/* Split '+' and the rest to apply different colors */}
+                <Box component="span" sx={{ color: '#000000' }}>{drink.title.charAt(0)}</Box>
+                <Box component="span" sx={{ color: '#D40B28' }}>{drink.title.slice(1)}</Box>
               </Typography>
             </Box>
           ))}
         </Box>
+        {/* Tagline */}
+        <Typography
+          sx={{
+            fontFamily: 'Raleway',
+            fontWeight: 700,
+            fontSize: { xs: '1.5rem', md: '2.5rem' },
+            textTransform: 'uppercase',
+            textAlign: 'center',
+            mt: 8,
+            px: 2,
+          }}
+        >
+          <Box component="span" sx={{ color: '#000000' }}>Se não provoca, não é </Box>
+          <Box component="span" sx={{ color: '#D40B28' }}>Chilli Beans</Box>
+        </Typography>
       </Container>
     </Box>
   );
