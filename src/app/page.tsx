@@ -13,6 +13,7 @@ import ChilliBrandFooter from '@/components/ChilliBrand/ChilliBrandFooter';
 import ChilliBrandHeader from '@/components/ChilliBrand/ChilliBrandHeader';
 import { HeroBanner } from '@/components/HeroBanner';
 import DrinksSection from '@/components/DrinksSection';
+import HowItWorksSection from '@/components/HowItWorksSection';
 
 // Conteúdo do Regulamento e FAQ
 const REGULAMENTO_TEXTO = [
@@ -111,6 +112,7 @@ export default function LandingPage() {
             <HeroBanner />
             <Container maxWidth="xl">
             <DrinksSection />
+            <HowItWorksSection />
 
             <Divider sx={{ my: 4 }} />
 
