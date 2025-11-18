@@ -106,16 +106,78 @@ export default function DashboardPage() {
                     </Box>
 
                     {/* Saldo e Resgate */}
-                    <Box sx={{ mt: 4, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 3 }}>
-                        <Box>
-                            <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: 20, color: '#000000' }}>Saldo Acumulado para Resgate:</Typography>
-                            <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: 48, color: '#D40B28' }}>R$ {accumulatedBalance.toFixed(2).replace('.', ',')}</Typography>
-                        </Box>
-
-                        <Box>
-                            <Button onClick={openModal} disabled={accumulatedBalance === 0} sx={{ border: '1px solid #FFB959', borderRadius: '1000px', color: '#000000', fontWeight: 700, px: 4, py: 1 }}>RESGATAR</Button>
-                            <Typography variant="caption" display="block" sx={{ mt: 1, color: '#6B6B6B' }}>Mínimo de R$1,00 para resgate.</Typography>
-                        </Box>
+                    <Box sx={{ 
+                        mt: 4, 
+                        pt: 3,
+                        display: 'flex', 
+                        flexDirection: 'column', 
+                        alignItems: 'center', 
+                        justifyContent: 'center',
+                        textAlign: 'center', 
+                        gap: 2,
+                        width: '100%',
+                        maxWidth: '500px',
+                        mx: 'auto',
+                        px: 2
+                    }}>
+                        <Typography sx={{ 
+                            fontFamily: 'Raleway, sans-serif', 
+                            fontWeight: 700, 
+                            fontSize: '20px', 
+                            color: '#000000',
+                            lineHeight: 1.2
+                        }}>
+                            Saldo Acumulado para Resgate:
+                        </Typography>
+                        
+                        <Typography sx={{ 
+                            fontFamily: 'Raleway, sans-serif', 
+                            fontWeight: 900, 
+                            fontSize: { xs: '36px', sm: '48px' }, 
+                            color: '#D40B28',
+                            lineHeight: 1.1,
+                            wordBreak: 'break-word'
+                        }}>
+                            R$ {accumulatedBalance.toFixed(2).replace('.', ',')}
+                        </Typography>
+                        
+                        <Button 
+                            onClick={openModal} 
+                            disabled={accumulatedBalance < 1} 
+                            variant="contained" 
+                            sx={{ 
+                                bgcolor: '#FFB959', 
+                                color: '#000', 
+                                borderRadius: '1000px', 
+                                fontWeight: 700, 
+                                boxShadow: 'none', 
+                                px: 4, 
+                                py: 1.5, 
+                                textTransform: 'uppercase', 
+                                '&:hover': { 
+                                    bgcolor: '#FFCC66',
+                                    boxShadow: 'none'
+                                },
+                                '&.Mui-disabled': {
+                                    bgcolor: '#E0E0E0',
+                                    color: '#9E9E9E'
+                                }
+                            }}
+                        >
+                            RESGATAR
+                        </Button>
+                        
+                        <Typography 
+                            variant="caption" 
+                            display="block" 
+                            sx={{ 
+                                color: '#6B6B6B',
+                                fontSize: '14px',
+                                mt: -0.5
+                            }}
+                        >
+                            Mínimo de R$1,00 para resgate.
+                        </Typography>
                     </Box>
                 </Box>
             </>
