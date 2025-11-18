@@ -51,6 +51,13 @@
 - CHORE(Commit): Commit criado: `feat(dashboard): centered card layout (FASE 13.1)`.
  - FIX(Assets): Apontado background da página Dashboard para `/assets/chilli-drinks-app-dashboard-banner-bg.jpg`.
 
+## FASE 13.2 - FEAT(Dashboard): Background Global & Header Exclusivo - 2025-11-18
+- FIX(UI): Removido background local do `dashboard/page.tsx` e aplicado background global condicional via `src/app/(app)/layout.tsx` para a rota `/dashboard`.
+- FEAT(Header): Criado componente `src/components/DashboardHeader.tsx` com AppBar vermelho, seta amarela, logo texto branco, botões "CADASTRAR TAB" (borda branca) e "MEU GIFTCARD" (fundo amarelo), menu hambúrguer branco para mobile.
+- CHORE(Layout): Removido `AppHeader` do layout global para a rota `/dashboard`.
+- CHORE(Integration): Integrado `DashboardHeader` no topo do `dashboard/page.tsx` e ajustado o card principal para não ser sobreposto pelo header (`marginTop`).
+- CHORE(Commit): Commit sugerido: `feat(dashboard): FASE 13.2 - background global e header exclusivo`.
+
 
 ## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18
 - FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`background-pattern.png`) e botão "Voltar" amarelo no canto superior esquerdo.
