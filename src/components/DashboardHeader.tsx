@@ -171,7 +171,6 @@ export function DashboardHeader() {
       <AppDrawer 
         open={mobileOpen} 
         onClose={handleDrawerToggle}
-        navLinks={navLinks}
       />
     </>
   );
