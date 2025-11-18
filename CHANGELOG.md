@@ -1,5 +1,14 @@
 # CHANGELOG - Chilli Drinks App
 
+## UNRELEASED - FASES 7 → 9 (Implementação Homepage & Regulamento) - 2025-11-17
+- FEAT(RegulationSection): Adicionada seção "Regulamento" (`src/components/RegulationSection.tsx`) com faixa colorida, imagem decorativa e grid de regras.
+- FEAT(DrinksSection): Grid responsivo de bebidas com cartões e animação; refatorado para CSS Grid por compatibilidade com MUI v6.
+- FEAT(HowItWorksSection): Nova seção "Como Funciona" com cards (Cadastrar → Acumular → Resgatar) e ajustes de layout.
+- CHORE(Layout): Hero ajustado para full-width; seções receberam paddings laterais responsivos (~10-12% em desktop) para alinhamento com Figma.
+- FIX(Build): Corrigido import de `keyframes` (usar `@mui/material/styles`) e removida dependência problemática; substituição do `Grid` do MUI por `Box` + CSS Grid para resolver typing/compatibilidade.
+- STYLE(Font): Fonte `Raleway` adicionada via `next/font/google` e aplicada globalmente em `layout.tsx`.
+- CHORE(Commits): Commits locais em PT-BR; preparar push para acionar deploy na Vercel após validação local.
+
 ## FASE 6.11 - STYLE(Hero/Animation): Polimento Fino com Animações ✅ CONCLUÍDA
 **Commit:** `[pending]`
 - STYLE(Typography): "TABS" fontSize aumentado de 4rem para 6rem (desktop)
