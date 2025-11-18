@@ -20,7 +20,7 @@ export default function ChilliBrandFooter() {
         </Box>
 
         {/* Coluna 2 - Links */}
-        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 2, pl: { xs: 4, md: 0 } }}>
           <Button href="#bebidas" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>BEBIDAS & COQUETÉIS</Button>
           <Button href="#como-funciona" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMO FUNCIONA</Button>
           <Button href="/regulamento" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>REGULAMENTO</Button>

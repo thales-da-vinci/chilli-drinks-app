@@ -39,6 +39,12 @@
 - CHORE(Commit): Commit realizado: `fix(build): replace Grid with Flexbox in Footer`.
 
 
+## FASE 12.3 - FIX(UI): Ajuste Final CTA e Footer - 2025-11-17
+- FIX(UI): `src/components/ReadyToStartSection.tsx` — Redução da imagem do app para `maxWidth: 380px` e ajuste do botão de CTA para evitar quebra de linha (`whiteSpace: 'nowrap'`, `fontSize: '1.25rem'`, `width: 'fit-content'`, `boxShadow: 'none'`).
+- FIX(UI): `src/components/ChilliBrand/ChilliBrandFooter.tsx` — Coluna de links alinhada à esquerda (`alignItems: 'flex-start'`) com `pl: { xs: 4, md: 0 }` para espaçamento em mobile.
+- CHORE(Commit): Commit realizado: `fix(ui): ajuste tamanho imagem cta e alinhamento footer`.
+
+
 
 
 
