@@ -17,28 +17,28 @@ const RegulationSection: React.FC = () => {
 
   return (
     <Box component="section" sx={{ position: 'relative', bgcolor: '#FFFFFF', pb: 10, overflow: 'hidden', width: '100%' }}>
-      {/* Faixa colorida */}
-      <Box sx={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', height: 180, background: 'linear-gradient(180deg, #E6EAEE 50%, #FFFFFF 50%)' }}>
-        <Box sx={{ display: 'flex', width: '100%', maxWidth: '1200px', position: 'relative', alignItems: 'center' }}>
-          <Box sx={{ flex: '1 1 0', display: 'flex', height: 16 }}>
-            <Box sx={{ width: '16.66%', bgcolor: '#BE0822', height: '100%' }} />
-            <Box sx={{ width: '16.66%', bgcolor: '#FF6895', height: '100%' }} />
-            <Box sx={{ width: '16.66%', bgcolor: '#E6EAEE', height: '100%' }} />
-            <Box sx={{ width: '16.66%', bgcolor: '#071218', height: '100%' }} />
-            <Box sx={{ width: '16.66%', bgcolor: '#00AAA0', height: '100%' }} />
-            <Box sx={{ width: '16.66%', bgcolor: '#FFB959', height: '100%' }} />
+      {/* Header com gradiente e faixa colorida centralizada */}
+      <Box sx={{ width: '100%', position: 'relative', height: 180, background: 'linear-gradient(180deg, #E6EAEE 50%, #FFFFFF 50%)' }}>
+        {/* Faixa colorida centralizada verticalmente */}
+        <Box sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)', width: '100%', display: 'flex', justifyContent: 'center' }}>
+          <Box sx={{ display: 'flex', width: '100%', maxWidth: 1200, height: 16 }}>
+            <Box sx={{ flex: 4, bgcolor: '#BE0822', height: '100%' }} />
+            <Box sx={{ flex: 1, bgcolor: '#FF6895', height: '100%' }} />
+            <Box sx={{ flex: 1, bgcolor: '#E6EAEE', height: '100%' }} />
+            <Box sx={{ flex: 1, bgcolor: '#071218', height: '100%' }} />
+            <Box sx={{ flex: 1, bgcolor: '#00AAA0', height: '100%' }} />
+            <Box sx={{ flex: 1, bgcolor: '#FFB959', height: '100%' }} />
           </Box>
         </Box>
 
-        {/* Pimenta posicionada sobre a faixa, à esquerda */}
-        <Box sx={{ position: 'absolute', left: 24, top: 40 }}>
-          {/* se a imagem existir, renderiza */}
-          <Image src={chilliImg} alt="pimenta" width={140} height={140} />
+        {/* Pimenta (eye) sobreposta */}
+        <Box sx={{ position: 'absolute', top: '50%', left: { xs: '5%', md: '15%' }, transform: 'translateY(-50%)', zIndex: 10 }}>
+          <Image src={chilliImg} alt="pimenta" width={186} height={186} style={{ objectFit: 'contain' }} />
         </Box>
       </Box>
 
       {/* Conteúdo */}
-      <Container maxWidth="xl" sx={{ px: { xs: 4, md: '10%' }, mt: 8 }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 4, md: '10%' }, mt: 10 }}>
         <Box display="grid" gridTemplateColumns={{ xs: '1fr', md: 'repeat(3, 1fr)' }} gap={4}>
           {/* Título na primeira célula */}
           <Box>
