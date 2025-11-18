@@ -5,14 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/hooks/auth/useAuth'; 
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
-import { 
-    Container, 
-    Box, 
-    Typography, 
-    Button, 
-    CircularProgress,
-    Paper
-} from '@mui/material';
+import { Box, Typography, Button, CircularProgress } from '@mui/material';
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 
 // Novos componentes da FASE 4.2
@@ -57,115 +50,77 @@ export default function DashboardPage() {
 
     // Função para remover um código da lista
     const handleRemoveCode = (id: string) => {
-        // Implementar delete via API
         console.log('Remover código:', id);
     };
 
+    // Cálculo do progresso do bônus (ex: 10 códigos = 100%)
+    const percent = Math.min(100, (waitingCodes.length % 10) * 10);
+
     return (
-        <Box sx={{ minHeight: '100vh', py: 4 }}>
-            <Container maxWidth="md">
-                {/* LAYOUT DE BLOCO ÚNICO - FASE 4.2 */}
-                <Paper elevation={3} sx={{ 
-                    p: { xs: 3, md: 5 }, 
-                    borderRadius: 3,
-                    border: '2px solid',
-                    borderColor: 'primary.main',
-                    boxShadow: '0 8px 32px rgba(229, 0, 0, 0.1)'
-                }}>
-                    {/* Cabeçalho do Dashboard */}
-                    <Typography variant="h4" component="h1" gutterBottom sx={{ 
-                        color: 'primary.main', 
-                        fontWeight: 'bold',
-                        textAlign: 'center',
-                        mb: 2
-                    }}>
+        <Box sx={{ minHeight: '100vh', width: '100%', position: 'relative', bgcolor: '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center', py: 4 }}>
+            {/* Background texture overlay */}
+            <Box sx={{ position: 'absolute', inset: 0, backgroundImage: 'url(/assets/background-pattern.png)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.12 }} />
+            <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.9)' }} />
+
+            {/* Card Principal */}
+            <Box sx={{ width: '100%', maxWidth: '761px', bgcolor: '#F6F7F7', borderRadius: '12px', p: { xs: 3, md: 4 }, position: 'relative', zIndex: 2 }}>
+                {/* Cabeçalho */}
+                <Box sx={{ textAlign: 'center', mb: 3 }}>
+                    <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 700, fontSize: '32px', color: '#D40B28' }}>
                         Dashboard de Recompensas
                     </Typography>
-                    <Typography variant="body1" color="text.secondary" sx={{ 
-                        textAlign: 'center',
-                        mb: 4 
-                    }}>
-                        Olá, <strong>{user?.name?.split(' ')[0] || 'Cliente'}</strong>! Gerencie seus Códigos TAGs e resgate seu Gift Card.
+                    <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 400, fontSize: '16px', color: '#2B2B2B' }}>
+                        Olá, <strong>{user?.name?.split(' ')[0] || 'Cliente'}</strong>! Gerencie seus códigos e resgate seu Gift Card.
+                    </Typography>
+                </Box>
+
+                {/* 01. Adicionar Códigos (Form Inline) */}
+                <Box sx={{ mt: 2 }}>
+                    <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, mb: 2 }}>
+                        <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>01.</Box>
+                        <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>Adicionar Códigos TAB</Box>
                     </Typography>
 
-                    {/* 1. ÁREA DE CADASTRO */}
-                    <Box sx={{ mb: 4 }}>
-                        <Typography variant="h5" component="h2" gutterBottom sx={{ 
-                            color: 'primary.dark', 
-                            fontWeight: 'medium',
-                            mb: 3
-                        }}>
-                            1. Adicionar Códigos TAB
-                        </Typography>
-                        
-                        <CodeRegistrationForm />
-                        
-                        {/* 2. BARRA DE PROGRESSO DO BÔNUS */}
-                        <BonusProgress codesCount={waitingCodes.length} />
+                    <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
+                        {/* Mantemos o CodeRegistrationForm, mas envolvido para estilo inline */}
+                        <Box sx={{ flex: 1, minWidth: 240 }}>
+                            <CodeRegistrationForm />
+                        </Box>
                     </Box>
 
-                    {/* 3. LISTA DE CÓDIGOS EM ESPERA */}
-                    <Box sx={{ 
-                        mt: 4, 
-                        pt: 3, 
-                        borderTop: '1px solid', 
-                        borderColor: 'divider' 
-                    }}>
-                        <Typography variant="h5" component="h2" gutterBottom sx={{ 
-                            color: 'primary.dark', 
-                            fontWeight: 'medium',
-                            mb: 3
-                        }}>
-                            2. Códigos TAB em Espera ({waitingCodes.length})
-                        </Typography>
-                        
-                        <WaitingCodeList 
-                            codes={waitingCodes} 
-                            onRemoveCode={handleRemoveCode} 
-                        />
+                    {/* Bônus Progresso */}
+                    <Box sx={{ bgcolor: '#FFFFFF', borderRadius: '12px', p: 3, mt: 3 }}>
+                        <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 700, mb: 1 }}>Progresso do Bônus</Typography>
+                        <Box sx={{ width: '100%', height: 12, bgcolor: '#FFB959', borderRadius: '100px', overflow: 'hidden' }}>
+                            <Box sx={{ height: '100%', bgcolor: '#D40B28', width: `${percent}%`, borderRadius: '100px' }} />
+                        </Box>
+                        <Typography variant="caption" sx={{ display: 'block', mt: 1 }}>{percent === 100 ? 'Bônus disponível!' : `Faltam ${10 - (waitingCodes.length % 10)} códigos para o bônus`}</Typography>
+                    </Box>
+                </Box>
+
+                {/* 02. Códigos em Espera */}
+                <Box sx={{ mt: 4, pt: 3, borderBottom: '2px solid #E6EAEE' }}>
+                    <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, mb: 2 }}>
+                        <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>02.</Box>
+                        <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>Códigos TAB em Espera ({waitingCodes.length})</Box>
+                    </Typography>
+
+                    <WaitingCodeList codes={waitingCodes} onRemoveCode={handleRemoveCode} />
+                </Box>
+
+                {/* Saldo e Resgate */}
+                <Box sx={{ mt: 4, display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 3 }}>
+                    <Box>
+                        <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: 20, color: '#000000' }}>Saldo Acumulado para Resgate:</Typography>
+                        <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: 48, color: '#D40B28' }}>R$ {accumulatedBalance.toFixed(2).replace('.', ',')}</Typography>
                     </Box>
 
-                    {/* 4. RODAPÉ DO BLOCO - AÇÃO DE RESGATE */}
-                    <Box sx={{ 
-                        mt: 5, 
-                        pt: 3, 
-                        borderTop: '2px solid', 
-                        borderColor: 'primary.main',
-                        textAlign: 'center'
-                    }}>
-                        <Typography variant="h6" gutterBottom>
-                            Saldo Acumulado para Resgate:
-                        </Typography>
-                        <Typography variant="h3" color="primary.main" fontWeight="bold" sx={{ mb: 3 }}>
-                            R$ {accumulatedBalance.toFixed(2).replace('.', ',')}
-                        </Typography>
-                        
-                        <Button 
-                            variant="contained" 
-                            color="success" 
-                            size="large" 
-                            startIcon={<CardGiftcardIcon />}
-                            onClick={openModal}
-                            disabled={accumulatedBalance === 0}
-                            sx={{ 
-                                py: 1.5, 
-                                px: 5,
-                                fontSize: '1.1rem',
-                                fontWeight: 'bold',
-                                '&:hover': {
-                                    transform: 'translateY(-2px)',
-                                    boxShadow: '0 6px 20px rgba(76, 175, 80, 0.3)'
-                                }
-                            }}
-                        >
-                            RESGATAR SALDO AGORA
-                        </Button>
-                        <Typography variant="caption" display="block" sx={{ mt: 1, color: 'text.secondary' }}>
-                            Mínimo de R$1,00 para resgate. Use o botão "Resgatar" no menu para acessar o Gift Card.
-                        </Typography>
+                    <Box>
+                        <Button onClick={openModal} disabled={accumulatedBalance === 0} sx={{ border: '1px solid #FFB959', borderRadius: '1000px', color: '#000000', fontWeight: 700, px: 4, py: 1 }}>RESGATAR</Button>
+                        <Typography variant="caption" display="block" sx={{ mt: 1, color: '#6B6B6B' }}>Mínimo de R$1,00 para resgate.</Typography>
                     </Box>
-                </Paper>
-            </Container>
+                </Box>
+            </Box>
         </Box>
     );
 }
