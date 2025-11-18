@@ -15,6 +15,7 @@ import DrinksSection from '@/components/DrinksSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import RegulationSection from '@/components/RegulationSection';
 import FAQSection from '@/components/FAQSection';
+import ReadyToStartSection from '@/components/ReadyToStartSection';
 
 // Conteúdo do Regulamento e FAQ
 const REGULAMENTO_TEXTO = [
@@ -115,47 +116,9 @@ export default function LandingPage() {
             <Divider sx={{ my: 4 }} />
 
             <FAQSection />
-            {/* CALL TO ACTION FINAL */}
-            <Box sx={{ 
-                textAlign: 'center',
-                py: 6,
-                bgcolor: 'primary.main',
-                color: 'white',
-                borderRadius: 3,
-                mb: 4,
-                border: '3px solid',
-                borderColor: 'secondary.main',
-                boxShadow: '0 8px 32px rgba(229, 0, 0, 0.3)'
-            }}>
-                <Typography variant="h4" sx={{ mb: 3 }}>
-                    PRONTO PARA COMEÇAR?
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 4, fontSize: '1.1rem' }}>
-                    Compre seus Chilli Drinks e comece a acumular saldo agora mesmo!
-                </Typography>
-                <Button 
-                    variant="contained"
-                    size="large"
-                    startIcon={<ShoppingBagIcon />}
-                    sx={{ 
-                        bgcolor: 'secondary.main',
-                        color: 'black',
-                        py: 2,
-                        px: 6,
-                        fontSize: '1.2rem',
-                        fontWeight: 900,
-                        '&:hover': {
-                            bgcolor: 'secondary.dark',
-                            transform: 'translateY(-2px)'
-                        }
-                    }}
-                    href="https://www.mercadolivre.com.br/pagina/chillibeansdrinks"
-                    target="_blank"
-                >
-                    COMPRAR CHILLI DRINKS
-                </Button>
-            </Box>
         </Container>
+
+        <ReadyToStartSection />
         <ChilliBrandFooter />
         </Box>
         </>

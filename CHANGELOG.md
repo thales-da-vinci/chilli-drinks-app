@@ -18,6 +18,12 @@
 - FEAT(FAQSection): Novo componente `src/components/FAQSection.tsx` com título bicolor (PERGUNTAS vermelho / FREQUENTES preto) e Accordions estilizados.
 - CHORE(Cleanup): Extraído o bloco de FAQ do `src/app/page.tsx` e substituído por `<FAQSection />` para manter a homepage modular e limpa.
 
+## FASE 11.1 - FEAT(UI): Seção Final "Pronto para Começar" - 2025-11-17
+- FEAT(ReadyToStartSection): Novo componente `src/components/ReadyToStartSection.tsx` com background texturizado, imagem do app e tipografia impactante (PRONTO PARA / COMEÇAR) e CTA para Mercado Livre.
+- FIX(FAQ): Ajuste de alinhamento do título do `FAQSection` para alinhamento à esquerda conforme design.
+- CHORE(Cleanup): Removido CTA antigo embutido no `page.tsx` e integrado `ReadyToStartSection` como componente modular.
+
+
 
 
 ## FASE 6.11 - STYLE(Hero/Animation): Polimento Fino com Animações ✅ CONCLUÍDA

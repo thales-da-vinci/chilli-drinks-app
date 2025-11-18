@@ -14,7 +14,7 @@ const FAQSection: React.FC = () => {
   return (
     <Box component="section" id="faq" sx={{ bgcolor: '#FFFFFF', py: 10 }}>
       <Container maxWidth="xl" sx={{ px: { xs: 4, md: '10%' } }}>
-        <Box sx={{ textAlign: 'center', mb: 8 }}>
+        <Box sx={{ textAlign: { xs: 'left', md: 'left' }, mb: 8, display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
           <Typography sx={{ color: '#D40B28', fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: { xs: '3rem', md: '5rem' }, lineHeight: 0.9, textTransform: 'uppercase' }}>
             PERGUNTAS
           </Typography>
