@@ -45,6 +45,13 @@
 - CHORE(Commit): Commit realizado: `fix(ui): ajuste tamanho imagem cta e alinhamento footer`.
 
 
+## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18
+- FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`background-pattern.png`) e botão "Voltar" amarelo no canto superior esquerdo.
+ - FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`/assets/chilli-drinks-app-login-banner-bg.jpg`) e botão "Voltar" amarelo no canto superior esquerdo.
+- FEAT(Auth): Novo `LoginForm` estilizado em `src/components/auth/LoginForm.tsx`: card central vermelho (`#D40B28`), inputs em formato pílula brancos com labels acima, logo branco, botão "ENTRAR" com borda amarela e link amarelo "Cadastre-se".
+- CHORE(Auth): Mantida lógica de autenticação (CPF + senha) via `useAuth` para preservar funcionamento atual. Ajuste visual implementado sem alterar a validação do `handleLogin`.
+
+
 
 
 
