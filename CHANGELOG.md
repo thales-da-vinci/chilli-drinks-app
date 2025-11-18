@@ -49,6 +49,7 @@
 - FIX(Integration): Mantida a lógica e hooks existentes (`useAuth`, `useUserCodesQuery`, `useGiftCardModal`) e integrados os componentes `CodeRegistrationForm`, `BonusProgress` e `WaitingCodeList` no novo layout.
 - CHORE(Refactor): Substituído layout anterior baseado em `Paper`/container por um único cartão responsivo centralizado para alinhar ao Figma e melhorar hierarquia visual.
 - CHORE(Commit): Commit criado: `feat(dashboard): centered card layout (FASE 13.1)`.
+ - FIX(Assets): Apontado background da página Dashboard para `/assets/chilli-drinks-app-dashboard-banner-bg.jpg`.
 
 
 ## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18

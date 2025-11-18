@@ -58,8 +58,8 @@ export default function DashboardPage() {
 
     return (
         <Box sx={{ minHeight: '100vh', width: '100%', position: 'relative', bgcolor: '#000000', display: 'flex', justifyContent: 'center', alignItems: 'center', py: 4 }}>
-            {/* Background texture overlay */}
-            <Box sx={{ position: 'absolute', inset: 0, backgroundImage: 'url(/assets/background-pattern.png)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.12 }} />
+            {/* Background texture overlay (banner específico da Dashboard) */}
+            <Box sx={{ position: 'absolute', inset: 0, backgroundImage: 'url(/assets/chilli-drinks-app-dashboard-banner-bg.jpg)', backgroundSize: 'cover', backgroundPosition: 'center', opacity: 0.12 }} />
             <Box sx={{ position: 'absolute', inset: 0, bgcolor: 'rgba(0,0,0,0.9)' }} />
 
             {/* Card Principal */}
