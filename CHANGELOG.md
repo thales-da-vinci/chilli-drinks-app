@@ -44,6 +44,12 @@
 - FIX(UI): `src/components/ChilliBrand/ChilliBrandFooter.tsx` — Coluna de links alinhada à esquerda (`alignItems: 'flex-start'`) com `pl: { xs: 4, md: 0 }` para espaçamento em mobile.
 - CHORE(Commit): Commit realizado: `fix(ui): ajuste tamanho imagem cta e alinhamento footer`.
 
+## FASE 13.1 - FEAT(Dashboard): Card-Centered Layout - 2025-11-18
+- FEAT(Dashboard): Reimplementado `src/app/(app)/dashboard/page.tsx` para layout centrado em cartão (maxWidth: 761px) com fundo texturizado escuro e overlay, contendo seções: cadastro de códigos, progresso de bônus, códigos em espera e bloco de saldo/resgate.
+- FIX(Integration): Mantida a lógica e hooks existentes (`useAuth`, `useUserCodesQuery`, `useGiftCardModal`) e integrados os componentes `CodeRegistrationForm`, `BonusProgress` e `WaitingCodeList` no novo layout.
+- CHORE(Refactor): Substituído layout anterior baseado em `Paper`/container por um único cartão responsivo centralizado para alinhar ao Figma e melhorar hierarquia visual.
+- CHORE(Commit): Commit criado: `feat(dashboard): centered card layout (FASE 13.1)`.
+
 
 ## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18
 - FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`background-pattern.png`) e botão "Voltar" amarelo no canto superior esquerdo.
