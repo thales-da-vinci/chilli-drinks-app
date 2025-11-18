@@ -23,6 +23,10 @@
 - FIX(FAQ): Ajuste de alinhamento do título do `FAQSection` para alinhamento à esquerda conforme design.
 - CHORE(Cleanup): Removido CTA antigo embutido no `page.tsx` e integrado `ReadyToStartSection` como componente modular.
 
+## FASE 11.2 - FIX(Build): ReadyToStartSection - 2025-11-17
+- FIX(Build): Substituído uso de `Grid` por `Box` (CSS Grid) em `src/components/ReadyToStartSection.tsx` para resolver erro de tipagem do MUI v6 (`Property 'item' does not exist`).
+
+
 
 
 
