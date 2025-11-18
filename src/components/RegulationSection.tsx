@@ -33,7 +33,7 @@ const RegulationSection: React.FC = () => {
 
         {/* Pimenta (eye) sobreposta */}
         <Box sx={{ position: 'absolute', top: '50%', left: { xs: '5%', md: '15%' }, transform: 'translateY(-50%)', zIndex: 10 }}>
-          <Image src={chilliImg} alt="pimenta" width={186} height={186} style={{ objectFit: 'contain' }} />
+          <Image src={chilliImg} alt="pimenta" width={110} height={110} style={{ objectFit: 'contain' }} />
         </Box>
       </Box>
 

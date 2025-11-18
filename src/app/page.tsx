@@ -113,11 +113,10 @@ export default function LandingPage() {
             <HeroBanner />
             <DrinksSection />
             <HowItWorksSection />
+            <RegulationSection />
 
             <Container maxWidth="xl">
             <Divider sx={{ my: 4 }} />
-
-            <RegulationSection />
 
             {/* SEÇÃO 5: FAQ */}
             <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, textAlign: 'center', color: 'primary.main' }}>
