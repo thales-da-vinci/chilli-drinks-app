@@ -11,8 +11,8 @@ const steps = [
 
 const HowItWorksSection: React.FC = () => {
   return (
-    <Box component="section" id="como-funciona" sx={{ backgroundColor: '#E6EAEE', py: 10 }}>
-      <Container maxWidth="xl">
+    <Box component="section" id="como-funciona" sx={{ backgroundColor: '#E6EAEE', py: 10, width: '100%' }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 4, md: '10%', lg: '12%' } }}>
         <Box sx={{ textAlign: { xs: 'center', md: 'left' }, mb: 6, display: 'flex', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-start' } }}>
           <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 600, fontSize: { xs: '2rem', md: '3rem' }, color: '#D40B28', textTransform: 'uppercase' }}>
             COMO

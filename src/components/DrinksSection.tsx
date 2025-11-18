@@ -27,8 +27,8 @@ const drinks = [
 
 const DrinksSection: React.FC = () => {
   return (
-    <Box component="section" id="bebidas-coqueteis" sx={{ backgroundColor: '#FFFFFF', py: 10 }}>
-      <Container maxWidth="xl">
+    <Box component="section" id="bebidas-coqueteis" sx={{ backgroundColor: '#FFFFFF', py: 10, width: '100%' }}>
+      <Container maxWidth="xl" sx={{ px: { xs: 4, md: '10%', lg: '12%' } }}>
         <Typography
           sx={{
             fontFamily: 'Raleway, sans-serif',

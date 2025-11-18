@@ -108,12 +108,12 @@ export default function LandingPage() {
     return (
         <>
         <ChilliBrandHeader />
-        <Box sx={{ bgcolor: 'background.default', minHeight: '100vh' }}>
+        <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', width: '100%' }}>
             <HeroBanner />
-            <Container maxWidth="xl">
             <DrinksSection />
             <HowItWorksSection />
 
+            <Container maxWidth="xl">
             <Divider sx={{ my: 4 }} />
 
             {/* SEÇÃO 3: COMO FUNCIONA */}
