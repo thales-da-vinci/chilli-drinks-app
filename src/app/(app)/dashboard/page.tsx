@@ -107,37 +107,46 @@ export default function DashboardPage() {
 
                     {/* Saldo e Resgate */}
                     <Box sx={{ 
-                        mt: 4, 
-                        pt: 3,
+                        mt: 6, 
+                        pt: 4,
+                        pb: 6,
                         display: 'flex', 
                         flexDirection: 'column', 
                         alignItems: 'center', 
                         justifyContent: 'center',
                         textAlign: 'center', 
-                        gap: 2,
+                        gap: 3,
                         width: '100%',
                         maxWidth: '500px',
                         mx: 'auto',
-                        px: 2
+                        px: 3
                     }}>
-                        <Typography sx={{ 
-                            fontFamily: 'Raleway, sans-serif', 
-                            fontWeight: 700, 
-                            fontSize: '20px', 
-                            color: '#000000',
-                            lineHeight: 1.2
-                        }}>
+                        <Typography 
+                            component="h3"
+                            sx={{ 
+                                fontFamily: 'Raleway, sans-serif', 
+                                fontWeight: 700, 
+                                fontSize: { xs: '18px', sm: '20px' },
+                                color: '#000000',
+                                lineHeight: 1.2,
+                                letterSpacing: '0.5px'
+                            }}
+                        >
                             Saldo Acumulado para Resgate:
                         </Typography>
                         
-                        <Typography sx={{ 
-                            fontFamily: 'Raleway, sans-serif', 
-                            fontWeight: 900, 
-                            fontSize: { xs: '36px', sm: '48px' }, 
-                            color: '#D40B28',
-                            lineHeight: 1.1,
-                            wordBreak: 'break-word'
-                        }}>
+                        <Typography 
+                            component="p"
+                            sx={{ 
+                                fontFamily: 'Raleway, sans-serif', 
+                                fontWeight: 900, 
+                                fontSize: { xs: '40px', sm: '48px', md: '56px' },
+                                color: '#D40B28',
+                                lineHeight: 1,
+                                letterSpacing: '-0.5px',
+                                my: 1
+                            }}
+                        >
                             R$ {accumulatedBalance.toFixed(2).replace('.', ',')}
                         </Typography>
                         
@@ -146,34 +155,42 @@ export default function DashboardPage() {
                             disabled={accumulatedBalance < 1} 
                             variant="contained" 
                             sx={{ 
-                                bgcolor: '#FFB959', 
+                                bgcolor: '#FFE100', 
                                 color: '#000', 
                                 borderRadius: '1000px', 
                                 fontWeight: 700, 
                                 boxShadow: 'none', 
-                                px: 4, 
-                                py: 1.5, 
-                                textTransform: 'uppercase', 
+                                px: 6, 
+                                py: 1.8, 
+                                fontSize: '16px',
+                                textTransform: 'uppercase',
+                                mt: 1,
                                 '&:hover': { 
-                                    bgcolor: '#FFCC66',
-                                    boxShadow: 'none'
+                                    bgcolor: '#FFD700',
+                                    boxShadow: 'none',
+                                    transform: 'translateY(-1px)'
                                 },
                                 '&.Mui-disabled': {
                                     bgcolor: '#E0E0E0',
-                                    color: '#9E9E9E'
-                                }
+                                    color: '#9E9E9E',
+                                    transform: 'none'
+                                },
+                                transition: 'all 0.2s ease-in-out'
                             }}
                         >
-                            RESGATAR
+                            RESGATAR AGORA
                         </Button>
                         
                         <Typography 
                             variant="caption" 
-                            display="block" 
+                            component="p"
                             sx={{ 
                                 color: '#6B6B6B',
                                 fontSize: '14px',
-                                mt: -0.5
+                                mt: 1,
+                                fontFamily: 'Raleway, sans-serif',
+                                fontWeight: 400,
+                                opacity: 0.9
                             }}
                         >
                             Mínimo de R$1,00 para resgate.
