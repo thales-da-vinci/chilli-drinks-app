@@ -22,7 +22,7 @@ const ReadyToStartSection: React.FC = () => {
         >
           {/* Coluna Esquerda - Imagem do App */}
           <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-            <Image src={appImg} alt="App Chilli Drinks" style={{ width: '100%', height: 'auto', maxWidth: 520 }} width={520} height={520} />
+            <Image src={appImg} alt="App Chilli Drinks" style={{ width: '100%', height: 'auto', maxWidth: 420 }} width={420} height={420} />
           </Box>
 
           {/* Coluna Direita - Texto e CTA */}
@@ -42,7 +42,7 @@ const ReadyToStartSection: React.FC = () => {
               variant="contained"
               href="https://www.mercadolivre.com.br/pagina/chillibeansdrinks"
               target="_blank"
-              sx={{ bgcolor: '#0080FF', color: '#FFFFFF', borderRadius: '1000px', py: 2, px: 6, fontSize: '1.5rem', fontWeight: 700, width: '100%', maxWidth: '520px', '&:hover': { bgcolor: '#0066cc' } }}
+              sx={{ bgcolor: '#0080FF', color: '#FFFFFF', borderRadius: '1000px', py: 2, px: 6, fontSize: '1.5rem', fontWeight: 700, width: '100%', maxWidth: '420px', boxShadow: 'none', border: 'none', '&:hover': { bgcolor: '#0066cc', boxShadow: 'none' } }}
             >
               COMPRAR CHILLI DRINKS
             </Button>

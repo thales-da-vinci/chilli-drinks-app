@@ -27,6 +27,13 @@
 - FIX(Build): Substituído uso de `Grid` por `Box` (CSS Grid) em `src/components/ReadyToStartSection.tsx` para resolver erro de tipagem do MUI v6 (`Property 'item' does not exist`).
 
 
+## FASE 12.1 - FEAT(UI): Polimento Seção Final & Footer - 2025-11-17
+- FIX(UI): Ajustes na `ReadyToStartSection` (`src/components/ReadyToStartSection.tsx`): botão de CTA sem borda (`boxShadow: 'none'`, `border: 'none'`) e redução da imagem do app para `maxWidth: 420px` para melhor proporção com o layout.
+- FEAT(ChilliBrandFooter): Novo componente `src/components/ChilliBrand/ChilliBrandFooter.tsx` implementado conforme Figma: fundo `#F6F7F7`, três colunas (Logo | Navegação vertical | Social + Copyright), links em caixa alta com `Raleway Bold` e cor `#6B6B6B`.
+- CHORE(Page): Footer integrado na homepage (`src/app/page.tsx`) como último componente após `ReadyToStartSection`.
+- CHORE(Assets): Verificar presença do logo circular vermelho em `public/assets/chilli-drinks-app-logo-circulo-vermelho.png` e do ícone de Instagram; caso ausente, adicionar os assets correspondentes.
+
+
 
 
 
