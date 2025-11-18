@@ -6,12 +6,10 @@ import { useAuth } from '@/hooks/auth/useAuth';
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import CardGiftcardIcon from '@mui/icons-material/CardGiftcard';
 import { DashboardHeader } from '@/components/DashboardHeader';
 
-// Novos componentes da FASE 4.2
+// Components
 import { CodeRegistrationForm } from '@/components/dashboard/CodeRegistrationForm';
-import { BonusProgress } from '@/components/dashboard/BonusProgress';
 import { WaitingCodeList } from '@/components/dashboard/WaitingCodeList';
 
 export default function DashboardPage() {
@@ -72,7 +70,7 @@ export default function DashboardPage() {
                     </Box>
 
                     {/* 01. Adicionar Códigos (Form Inline) */}
-                    <Box sx={{ mt: 2 }}>
+                    <Box id="cadastro-tabs" sx={{ mt: 2, scrollMarginTop: '100px' }}>
                         <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, mb: 2 }}>
                             <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>01.</Box>
                             <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>Adicionar Códigos TAB</Box>
