@@ -14,6 +14,7 @@ import ChilliBrandHeader from '@/components/ChilliBrand/ChilliBrandHeader';
 import { HeroBanner } from '@/components/HeroBanner';
 import DrinksSection from '@/components/DrinksSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
+import RegulationSection from '@/components/RegulationSection';
 
 // Conteúdo do Regulamento e FAQ
 const REGULAMENTO_TEXTO = [
@@ -197,36 +198,7 @@ export default function LandingPage() {
                 </Box>
             </Box>
 
-            {/* SEÇÃO 4: REGULAMENTO */}
-            <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, textAlign: 'center', color: 'primary.main' }}>
-                REGULAMENTO
-            </Typography>
-            <Paper elevation={3} sx={{ 
-                p: 4, 
-                mb: 6, 
-                borderRadius: 3,
-                border: '2px solid',
-                borderColor: 'primary.main',
-                bgcolor: 'background.paper'
-            }}>
-                {REGULAMENTO_TEXTO.map((item, index) => (
-                    <Typography 
-                        key={index} 
-                        variant="body1" 
-                        paragraph
-                        sx={{ 
-                            mb: 2,
-                            '&::before': {
-                                content: `"${index + 1}. "`,
-                                fontWeight: 900,
-                                color: 'primary.main'
-                            }
-                        }}
-                    >
-                        {item.replace(/^\d+\.\s*/, '')}
-                    </Typography>
-                ))}
-            </Paper>
+            <RegulationSection />
 
             {/* SEÇÃO 5: FAQ */}
             <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, textAlign: 'center', color: 'primary.main' }}>
