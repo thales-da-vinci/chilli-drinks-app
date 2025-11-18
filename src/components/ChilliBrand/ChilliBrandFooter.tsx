@@ -1,31 +1,35 @@
 'use client';
 
 import Image from 'next/image';
-import { Box, Grid, Typography, IconButton, Button } from '@mui/material';
+import { Box, Typography, IconButton, Button } from '@mui/material';
 import InstagramIcon from '@mui/icons-material/Instagram';
 
 export default function ChilliBrandFooter() {
   return (
     <Box component="footer" sx={{ bgcolor: '#F6F7F7', py: 6, px: { xs: 4, md: 10 } }}>
-      <Grid container justifyContent="space-between" alignItems="center">
+      <Box sx={{
+        display: 'flex',
+        flexDirection: { xs: 'column', md: 'row' },
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        gap: 4
+      }}>
         {/* Coluna 1 - Logo */}
-        <Grid item xs={12} md={4}>
-          <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
-            <Image src="/assets/chilli-drinks-app-logo-circulo-vermelho.png" alt="Logo Chilli Beans" width={100} height={100} />
-          </Box>
-        </Grid>
+        <Box sx={{ flex: 1, display: 'flex', justifyContent: { xs: 'center', md: 'flex-start' } }}>
+          <Image src="/assets/chilli-drinks-app-logo-circulo-vermelho.png" alt="Logo Chilli Beans" width={100} height={100} />
+        </Box>
 
         {/* Coluna 2 - Links */}
-        <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 2 }}>
           <Button href="#bebidas" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>BEBIDAS & COQUETÉIS</Button>
           <Button href="#como-funciona" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMO FUNCIONA</Button>
           <Button href="/regulamento" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>REGULAMENTO</Button>
           <Button href="#faq" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>PERGUNTAS FREQUENTES</Button>
           <Button href="#comecar" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMEÇAR</Button>
-        </Grid>
+        </Box>
 
         {/* Coluna 3 - Social & Copyright */}
-        <Grid item xs={12} md={4} sx={{ display: 'flex', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-end' }, gap: 2 }}>
+        <Box sx={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: { xs: 'center', md: 'flex-end' }, gap: 2 }}>
           <Box sx={{ display: 'flex', gap: 1 }}>
             <IconButton href="https://www.instagram.com/chillidrinksbrasil" target="_blank" sx={{ p: 0 }}>
               <InstagramIcon sx={{ color: '#000000' }} />
@@ -40,8 +44,8 @@ export default function ChilliBrandFooter() {
               'Se não provoca, não é Chilli Beans'
             </Typography>
           </Box>
-        </Grid>
-      </Grid>
+        </Box>
+      </Box>
     </Box>
   );
 }

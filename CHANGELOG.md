@@ -34,6 +34,11 @@
 - CHORE(Assets): Verificar presença do logo circular vermelho em `public/assets/chilli-drinks-app-logo-circulo-vermelho.png` e do ícone de Instagram; caso ausente, adicionar os assets correspondentes.
 
 
+## FASE 12.2 - FIX(Build): Footer Grid → Flexbox - 2025-11-17
+- FIX(Build): Substituído uso de `Grid` por `Box` (Flexbox) em `src/components/ChilliBrand/ChilliBrandFooter.tsx` para resolver erro de tipagem do MUI v6 (`Property 'item' does not exist`).
+- CHORE(Commit): Commit realizado: `fix(build): replace Grid with Flexbox in Footer`.
+
+
 
 
 
