@@ -14,6 +14,11 @@
 - FIX(Style): Ajuste de escala da imagem da pimenta (reduzida para 110px) e refinamento de posicionamento.
 - CHORE(Commits): Commits locais recentes: `fix(ui): cleanup homepage e novo header regulamento`, `fix(layout): união de seções full-width e ajuste pimenta`, `fix(ui): linha colorida regulamento full-width`.
 
+## FASE 10.1 - FEAT(UI): Seção Perguntas Frequentes (FAQ) - 2025-11-17
+- FEAT(FAQSection): Novo componente `src/components/FAQSection.tsx` com título bicolor (PERGUNTAS vermelho / FREQUENTES preto) e Accordions estilizados.
+- CHORE(Cleanup): Extraído o bloco de FAQ do `src/app/page.tsx` e substituído por `<FAQSection />` para manter a homepage modular e limpa.
+
+
 
 ## FASE 6.11 - STYLE(Hero/Animation): Polimento Fino com Animações ✅ CONCLUÍDA
 **Commit:** `[pending]`

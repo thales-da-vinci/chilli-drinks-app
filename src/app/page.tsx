@@ -1,10 +1,9 @@
 'use client';
 
-import { Box, Container, Typography, Button, Paper, Divider, Accordion, AccordionSummary, AccordionDetails, keyframes } from '@mui/material';
+import { Box, Container, Typography, Button, Paper, Divider, keyframes } from '@mui/material';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/auth/useAuth';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import VpnKeyIcon from '@mui/icons-material/VpnKey';
 import PersonAddIcon from '@mui/icons-material/PersonAdd';
 import DashboardIcon from '@mui/icons-material/Dashboard';
@@ -15,6 +14,7 @@ import { HeroBanner } from '@/components/HeroBanner';
 import DrinksSection from '@/components/DrinksSection';
 import HowItWorksSection from '@/components/HowItWorksSection';
 import RegulationSection from '@/components/RegulationSection';
+import FAQSection from '@/components/FAQSection';
 
 // Conteúdo do Regulamento e FAQ
 const REGULAMENTO_TEXTO = [
@@ -25,11 +25,7 @@ const REGULAMENTO_TEXTO = [
     '5. Validade: Os códigos TABS e o saldo acumulado têm validade de 12 meses. Consulte o "HISTÓRICO DE TABS".'
 ];
 
-const FAQ_ITEMS = [
-    { question: 'Como eu resgato meu Gift Card?', answer: 'Seu saldo acumulado pode ser resgatado no Dashboard (botão RESGATAR SALDO AGORA) a partir de R$1,00.' },
-    { question: 'Onde posso usar o Gift Card?', answer: 'O Gift Card é um cartão pré-pago da VTX e pode ser utilizado em toda a rede de parceiros credenciados.' },
-    { question: 'O que é o Bônus de 10 TABS?', answer: 'É um incentivo. Ao atingir 10 códigos cadastrados, você recebe um valor extra para o seu Gift Card, incentivando o consumo.' }
-];
+
 
 const pulseAnimation = keyframes`
   0% { transform: scale(1); }
@@ -118,42 +114,7 @@ export default function LandingPage() {
             <Container maxWidth="xl">
             <Divider sx={{ my: 4 }} />
 
-            {/* SEÇÃO 5: FAQ */}
-            <Typography variant="h3" component="h2" gutterBottom sx={{ mb: 4, textAlign: 'center', color: 'primary.main' }}>
-                PERGUNTAS FREQUENTES
-            </Typography>
-            <Box sx={{ mb: 6 }}>
-                {FAQ_ITEMS.map((item, index) => (
-                    <Accordion key={index} sx={{ 
-                        mb: 2, 
-                        borderRadius: 2,
-                        border: '1px solid',
-                        borderColor: 'primary.main',
-                        bgcolor: 'background.paper',
-                        '&:before': { display: 'none' }
-                    }}>
-                        <AccordionSummary
-                            expandIcon={<ExpandMoreIcon sx={{ color: 'primary.main', fontSize: '2rem' }} />}
-                            sx={{ 
-                                bgcolor: 'background.default',
-                                borderRadius: '8px 8px 0 0',
-                                '&.Mui-expanded': {
-                                    borderRadius: '8px 8px 0 0'
-                                }
-                            }}
-                        >
-                            <Typography variant="h6" fontWeight="bold" color="primary.main">
-                                {item.question}
-                            </Typography>
-                        </AccordionSummary>
-                        <AccordionDetails sx={{ p: 3 }}>
-                            <Typography variant="body1" sx={{ lineHeight: 1.6 }}>
-                                {item.answer}
-                            </Typography>
-                        </AccordionDetails>
-                    </Accordion>
-                ))}
-            </Box>
+            <FAQSection />
             {/* CALL TO ACTION FINAL */}
             <Box sx={{ 
                 textAlign: 'center',
