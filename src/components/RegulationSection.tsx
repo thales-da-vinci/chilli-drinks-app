@@ -21,7 +21,7 @@ const RegulationSection: React.FC = () => {
       <Box sx={{ width: '100%', position: 'relative', height: 180, background: 'linear-gradient(180deg, #E6EAEE 50%, #FFFFFF 50%)' }}>
         {/* Faixa colorida centralizada verticalmente */}
         <Box sx={{ position: 'absolute', top: '50%', left: 0, transform: 'translateY(-50%)', width: '100%', display: 'flex', justifyContent: 'center' }}>
-          <Box sx={{ display: 'flex', width: '100%', maxWidth: 1200, height: 16 }}>
+          <Box sx={{ display: 'flex', width: '100%', height: 16 }}>
             <Box sx={{ flex: 4, bgcolor: '#BE0822', height: '100%' }} />
             <Box sx={{ flex: 1, bgcolor: '#FF6895', height: '100%' }} />
             <Box sx={{ flex: 1, bgcolor: '#E6EAEE', height: '100%' }} />

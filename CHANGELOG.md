@@ -8,6 +8,12 @@
 - FIX(Build): Corrigido import de `keyframes` (usar `@mui/material/styles`) e removida dependência problemática; substituição do `Grid` do MUI por `Box` + CSS Grid para resolver typing/compatibilidade.
 - STYLE(Font): Fonte `Raleway` adicionada via `next/font/google` e aplicada globalmente em `layout.tsx`.
 - CHORE(Commits): Commits locais em PT-BR; preparar push para acionar deploy na Vercel após validação local.
+- FIX(UI): Removido bloco duplicado "Como Funciona" em `src/app/page.tsx` — limpeza do código e manutenção do componente `HowItWorksSection`.
+- FIX(UI): Refatorado header do `RegulationSection` para reproduzir fielmente o Figma: gradiente superior, faixa colorida com proporções e pimenta sobreposta.
+- FIX(Layout): Moved `RegulationSection` para fora do `Container` da homepage para que a faixa colorida seja Full-Width (encaixe às bordas da tela).
+- FIX(Style): Ajuste de escala da imagem da pimenta (reduzida para 110px) e refinamento de posicionamento.
+- CHORE(Commits): Commits locais recentes: `fix(ui): cleanup homepage e novo header regulamento`, `fix(layout): união de seções full-width e ajuste pimenta`, `fix(ui): linha colorida regulamento full-width`.
+
 
 ## FASE 6.11 - STYLE(Hero/Animation): Polimento Fino com Animações ✅ CONCLUÍDA
 **Commit:** `[pending]`
