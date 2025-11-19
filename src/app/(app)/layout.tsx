@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation';
 import { AuthGuard } from '@/components/auth/AuthGuard';
 import { DashboardHeader } from '@/components/DashboardHeader';
 import { GiftCardModal } from '@/components/GiftCardModal';
+import { TabsHistoryModal } from '@/components/TabsHistoryModal';
 import { Box } from '@mui/material';
 
 interface AppLayoutProps {
@@ -47,6 +48,9 @@ export default function AppLayout({ children }: AppLayoutProps) {
         <Box sx={{ position: 'relative', zIndex: 1200 }}>
           <DashboardHeader />
           <GiftCardModal />
+          {/* Global Tabs History Modal (FASE 17) */}
+          {/* Rendered at layout level so it is independent from the Drawer */}
+          <TabsHistoryModal />
         </Box>
 
         {/* Conteúdo principal */}

@@ -4,6 +4,7 @@ import { Raleway } from 'next/font/google';
 import { ThemeRegistry } from '@/components/ThemeRegistry/ThemeRegistry';
 import { QueryProvider } from '@/components/providers/QueryProvider';
 import { GiftCardModalProvider } from '@/contexts/GiftCardModalContext';
+import { TabsHistoryModalProvider } from '@/contexts/TabsHistoryModalContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import ClientAppWrapper from '@/components/ClientAppWrapper';
 
@@ -25,11 +26,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <ThemeRegistry>
           <AuthProvider>
             <GiftCardModalProvider>
-              <ClientAppWrapper>
-                <QueryProvider>
-                  {children}
-                </QueryProvider>
-              </ClientAppWrapper>
+              <TabsHistoryModalProvider>
+                <ClientAppWrapper>
+                  <QueryProvider>
+                    {children}
+                  </QueryProvider>
+                </ClientAppWrapper>
+              </TabsHistoryModalProvider>
             </GiftCardModalProvider>
           </AuthProvider>
         </ThemeRegistry>

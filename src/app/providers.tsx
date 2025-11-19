@@ -6,6 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactNode } from 'react';
 import { chilliDrinksTheme } from '@/styles/theme'; // Importa nosso tema customizado
+import { TabsHistoryModalProvider } from '@/contexts/TabsHistoryModalContext';
 
 // 1. Configuração do TanStack Query Client (Fora do componente para persistência)
 const queryClient = new QueryClient({
@@ -33,7 +34,9 @@ export function AppProviders({ children }: AppProvidersProps) {
       <ThemeProvider theme={chilliDrinksTheme}>
         {/* CssBaseline: Reseta o CSS padrão do navegador para o padrão MUI. Essencial! */}
         <CssBaseline />
-        {children}
+        <TabsHistoryModalProvider>
+          {children}
+        </TabsHistoryModalProvider>
       </ThemeProvider>
     </QueryClientProvider>
   );

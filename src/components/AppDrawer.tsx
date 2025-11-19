@@ -19,9 +19,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useAuth } from '@/hooks/auth/useAuth';
-import { TabsHistoryModal } from '@/components/TabsHistoryModal';
-import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
-import { useState } from 'react'; 
+import { useTabsHistoryModal } from '@/contexts/TabsHistoryModalContext';
 
 interface AppDrawerProps {
   open: boolean;
@@ -31,18 +29,10 @@ interface AppDrawerProps {
 export function AppDrawer({ open, onClose }: AppDrawerProps) {
   const { user, isLoading, handleLogout } = useAuth();
   const { openModal } = useGiftCardModal();
-  const { data: userCodes = [] } = useUserCodesQuery();
+  const { openModal: openHistoryModal } = useTabsHistoryModal();
   const isAuthenticated = !!user;
-  const [isTabsHistoryModalOpen, setIsTabsHistoryModalOpen] = useState(false);
   
-  // Mapeia os códigos do MSW para o formato do modal
-  const tabsHistory = userCodes.map(code => ({
-    id: code.id,
-    code: code.code,
-    value: code.value,
-    date: code.createdAt,
-    status: code.redeemedAt ? 'Resgatado' : 'Em Espera'
-  }));
+  // Nota: tabsHistory agora é construído dentro do modal global (FASE 17)
 
   const handleGiftCardClick = () => {
     // Close drawer first, then open the global GiftCard modal
@@ -51,9 +41,9 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
   };
   
   const handleTabsHistoryClick = () => {
-    // Close drawer first to avoid overlay conflicts, then open modal
+    // Abre o modal global via contexto e fecha o drawer
+    openHistoryModal();
     onClose();
-    setTimeout(() => setIsTabsHistoryModalOpen(true), 150);
   };
   
   const handleLogoutClick = () => {
@@ -249,12 +239,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
         </List>
       </Box>
       
-      {/* Modal Histórico de TABS */}
-      <TabsHistoryModal 
-        open={isTabsHistoryModalOpen}
-        onClose={() => setIsTabsHistoryModalOpen(false)}
-        tabsHistory={tabsHistory}
-      />
+      {/* TabsHistoryModal agora é global e é renderizado no layout */}
     </Drawer>
     </>
   );
