@@ -43,7 +43,7 @@ export function TabsHistoryModal({ open, onClose, tabsHistory }: TabsHistoryModa
     };
 
     return (
-        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
+        <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth sx={{ zIndex: 1500 }}>
             <DialogTitle sx={{ 
                 display: 'flex', 
                 alignItems: 'center', 

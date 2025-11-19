@@ -45,12 +45,15 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
   }));
 
   const handleGiftCardClick = () => {
-    openModal();
-    onClose(); 
+    // Close drawer first, then open the global GiftCard modal
+    onClose();
+    setTimeout(() => openModal(), 150);
   };
   
   const handleTabsHistoryClick = () => {
-    setIsTabsHistoryModalOpen(true);
+    // Close drawer first to avoid overlay conflicts, then open modal
+    onClose();
+    setTimeout(() => setIsTabsHistoryModalOpen(true), 150);
   };
   
   const handleLogoutClick = () => {
