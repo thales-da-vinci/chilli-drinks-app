@@ -13,7 +13,7 @@ export default function ChilliBrandHeader() {
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
 
     const navLinks = [
-        { label: 'BEBIDAS & COQUETÉIS', href: '#bebidas' },
+        { label: 'BEBIDAS & COQUETÉIS', href: '#bebidas-coqueteis' },
         { label: 'COMO FUNCIONA', href: '#como-funciona' },
         { label: 'REGULAMENTO', href: '#regulamento' },
         { label: 'PERGUNTAS FREQUENTES', href: '#faq' },
