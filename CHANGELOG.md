@@ -554,3 +554,10 @@
 
 - FIX(UX): Atualizado `src/components/ChilliBrand/ChilliBrandHeader.tsx` para condicionar o destino do botão `CADASTRAR TABS` e do link `COMEÇAR` com base no estado de autenticação do usuário. Agora direciona para `/dashboard#cadastro-tabs` quando o usuário está autenticado, e para `/login` quando não estiver.
 - CHORE(Commit): Commit realizado: `fix(ux): smart auth redirect on homepage header (FASE 14)`.
+
+## FASE 15 - STYLE(UI/Drawer): Redesign App Drawer (2025-11-19)
+
+- STYLE(UI): Substituído `src/components/AppDrawer.tsx` para um visual `Clean & Bold` com identidade Chilli Drinks. Drawer com `zIndex: 1400`, largura confortável (max 320px), header com logo circular vermelho e saudação `Olá, {Nome}`.
+- STYLE(UI): Itens de navegação com tipografia `Raleway` 700 uppercase, ícones em `#D40B28`, hover com `bgcolor: #FFF0F2` e destaque vermelho no texto/ícone.
+- FIX(UX): Mantida lógica de autenticação para exibir links públicos ou privados (Entrar / Criar Conta vs Meus Dados / Meu Giftcard / Histórico) e botão de logout destacado no rodapé.
+- CHORE(Commit): Commit realizado: `style(ui): redesign app drawer with brand identity (FASE 15)`.

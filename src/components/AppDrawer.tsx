@@ -1,7 +1,11 @@
 'use client';
 
-import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Box, Typography } from '@mui/material';
+import { Drawer, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, Box, Typography, IconButton } from '@mui/material';
 import Link from 'next/link';
+import Image from 'next/image';
+import CloseIcon from '@mui/icons-material/Close';
+
+// Icons
 import HistoryIcon from '@mui/icons-material/History'; 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ArticleIcon from '@mui/icons-material/Article';
@@ -10,6 +14,9 @@ import CreditCardIcon from '@mui/icons-material/CreditCard';
 import LiveHelpIcon from '@mui/icons-material/LiveHelp'; 
 import VpnKeyIcon from '@mui/icons-material/VpnKey'; 
 import PersonAddIcon from '@mui/icons-material/PersonAdd'; 
+import LocalBarIcon from '@mui/icons-material/LocalBar';
+import InfoIcon from '@mui/icons-material/Info';
+
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useAuth } from '@/hooks/auth/useAuth';
 import { TabsHistoryModal } from '@/components/TabsHistoryModal';
@@ -37,22 +44,6 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
     status: code.redeemedAt ? 'Resgatado' : 'Em Espera'
   }));
 
-  // Se estiver carregando, renderiza um estado de loading
-  if (isLoading) {
-    return (
-      <Drawer anchor="right" open={open} onClose={onClose}>
-        <Box sx={{ width: 250, p: 3, bgcolor: 'primary.dark', color: 'white' }}>
-          <Typography variant="h6" fontWeight="bold" color="primary.light">
-            MENU CHILLI DRINKS
-          </Typography>
-        </Box>
-        <Box sx={{ p: 2, textAlign: 'center' }}>
-          <Typography>Carregando menu...</Typography>
-        </Box>
-      </Drawer>
-    );
-  }
-
   const handleGiftCardClick = () => {
     openModal();
     onClose(); 
@@ -67,124 +58,193 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
     onClose();
   };
 
+  // Estilo comum para os itens da lista
+  const listItemSx = {
+    my: 0.5,
+    borderRadius: '8px',
+    '&:hover': {
+        bgcolor: '#FFF0F2', // Fundo vermelho bem claro
+        '& .MuiListItemIcon-root': { color: '#D40B28' },
+        '& .MuiTypography-root': { color: '#D40B28' }
+    }
+  };
+
+  const listItemTextSx = {
+    fontFamily: 'Raleway, sans-serif',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    fontSize: '14px',
+    color: '#2B2B2B'
+  };
+
+  const iconColor = '#D40B28'; // Vermelho Chilli
+
   return (
-    <Drawer anchor="right" open={open} onClose={onClose}>
-      <Box 
-        sx={{ 
-            width: 250, 
-            p: 3, 
-            bgcolor: 'primary.dark',
-            color: 'white' 
-        }} 
-        role="presentation"
-      >
-        <Typography variant="h6" fontWeight="bold" color="primary.light">
-          MENU CHILLI DRINKS
+    <>
+    <Drawer 
+        anchor="right" 
+        open={open} 
+        onClose={onClose}
+        sx={{ zIndex: 1400 }} // Z-Index alto para ficar acima do Header (1300)
+        PaperProps={{
+            sx: {
+                width: '100%',
+                maxWidth: '320px',
+                bgcolor: '#FFFFFF',
+                borderTopLeftRadius: { xs: '16px', md: '0' },
+                borderBottomLeftRadius: { xs: '16px', md: '0' },
+                boxShadow: '-4px 0 24px rgba(0,0,0,0.1)'
+            }
+        }}
+    >
+      {/* Cabeçalho do Menu */}
+      <Box sx={{ p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center', position: 'relative' }}>
+        <IconButton 
+            onClick={onClose} 
+            sx={{ position: 'absolute', top: 16, right: 16, color: '#9CA3AF' }}
+        >
+            <CloseIcon />
+        </IconButton>
+
+        <Box sx={{ mb: 2, mt: 2 }}>
+            <Image 
+                src="/assets/chilli-drinks-app-logo-circulo-vermelho.png"
+                alt="Chilli Drinks"
+                width={80}
+                height={80}
+            />
+        </Box>
+        
+        <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 400, fontSize: '14px', color: '#6B7280' }}>
+            Olá,
         </Typography>
-        <Typography variant="body2" sx={{ mb: 1, opacity: 0.8 }}>
-          {isAuthenticated ? user.name?.toUpperCase() || 'CLIENTE' : 'VISITANTE'} 
+        <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 800, fontSize: '20px', color: '#000000', textAlign: 'center' }}>
+            {isAuthenticated && user?.name ? user.name.split(' ')[0].toUpperCase() : 'VISITANTE'}
         </Typography>
       </Box>
-      <List sx={{ pt: 0 }}>
-        
-        {!isAuthenticated && (
-          <>
-            <ListItem disablePadding>
-              <Link href="/login" passHref style={{ textDecoration: 'none', width: '100%' }}>
+
+      <Divider sx={{ borderColor: '#F3F4F6', mb: 2 }} />
+
+      <Box sx={{ px: 2, pb: 4, flexGrow: 1, overflowY: 'auto' }}>
+        <List>
+            {/* ITENS PÚBLICOS */}
+            <ListItem disablePadding sx={listItemSx}>
+              <Link href="/#bebidas-coqueteis" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
-                  <ListItemIcon>
-                    <VpnKeyIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText primary="ENTRAR" />
+                  <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><LocalBarIcon /></ListItemIcon>
+                  <ListItemText primaryTypographyProps={listItemTextSx} primary="BEBIDAS & COQUETÉIS" />
                 </ListItemButton>
               </Link>
             </ListItem>
 
-            <ListItem disablePadding>
-              <Link href="/register" passHref style={{ textDecoration: 'none', width: '100%' }}>
+            <ListItem disablePadding sx={listItemSx}>
+              <Link href="/#como-funciona" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
-                  <ListItemIcon>
-                    <PersonAddIcon color="primary" />
-                  </ListItemIcon>
-                  <ListItemText primary="CRIAR CONTA" />
+                  <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><InfoIcon /></ListItemIcon>
+                  <ListItemText primaryTypographyProps={listItemTextSx} primary="COMO FUNCIONA" />
                 </ListItemButton>
               </Link>
             </ListItem>
-            
-            <Divider />
-          </>
-        )}
 
-        {isAuthenticated && (
-            <>
-                <ListItem disablePadding>
-                  <Link href="/meus-dados" passHref style={{ textDecoration: 'none', width: '100%' }}>
+            {/* ITENS DE AUTENTICAÇÃO (SE NÃO LOGADO) */}
+            {!isAuthenticated && (
+              <>
+                <Divider sx={{ my: 2, borderColor: '#F3F4F6' }} />
+                <ListItem disablePadding sx={listItemSx}>
+                  <Link href="/login" passHref style={{ textDecoration: 'none', width: '100%' }}>
                     <ListItemButton onClick={onClose}>
-                      <ListItemIcon>
-                        <AccountCircleIcon color="primary" />
-                      </ListItemIcon>
-                      <ListItemText primary="MEUS DADOS" />
+                      <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><VpnKeyIcon /></ListItemIcon>
+                      <ListItemText primaryTypographyProps={listItemTextSx} primary="ENTRAR" />
                     </ListItemButton>
                   </Link>
                 </ListItem>
 
-                <ListItem disablePadding>
-                  <ListItemButton onClick={handleGiftCardClick}>
-                    <ListItemIcon>
-                      <CreditCardIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="MEU GIFTCARD" />
-                  </ListItemButton>
+                <ListItem disablePadding sx={listItemSx}>
+                  <Link href="/register" passHref style={{ textDecoration: 'none', width: '100%' }}>
+                    <ListItemButton onClick={onClose}>
+                      <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><PersonAddIcon /></ListItemIcon>
+                      <ListItemText primaryTypographyProps={listItemTextSx} primary="CRIAR CONTA" />
+                    </ListItemButton>
+                  </Link>
                 </ListItem>
-                
-                <ListItem disablePadding>
-                  <ListItemButton onClick={handleTabsHistoryClick}>
-                    <ListItemIcon>
-                      <HistoryIcon color="primary" />
-                    </ListItemIcon>
-                    <ListItemText primary="HISTÓRICO DE TABS" />
-                  </ListItemButton>
-                </ListItem>
-                
-                <Divider />
-            </>
-        )}
+              </>
+            )}
 
-        <ListItem disablePadding>
-          <Link href="/regulamento" passHref style={{ textDecoration: 'none', width: '100%' }}>
-            <ListItemButton onClick={onClose}>
-              <ListItemIcon>
-                <ArticleIcon color="action" />
-              </ListItemIcon>
-              <ListItemText primary="REGULAMENTO" />
-            </ListItemButton>
-          </Link>
-        </ListItem>
-        
-        <ListItem disablePadding>
-          <Link href="/faq" passHref style={{ textDecoration: 'none', width: '100%' }}>
-            <ListItemButton onClick={onClose}>
-              <ListItemIcon>
-                <LiveHelpIcon color="action" />
-              </ListItemIcon>
-              <ListItemText primary="TIRE SUAS DÚVIDAS" />
-            </ListItemButton>
-          </Link>
-        </ListItem>
+            {/* ITENS DE USUÁRIO LOGADO */}
+            {isAuthenticated && (
+                <>
+                    <Divider sx={{ my: 2, borderColor: '#F3F4F6' }} />
+                    
+                    <ListItem disablePadding sx={listItemSx}>
+                      <Link href="/meus-dados" passHref style={{ textDecoration: 'none', width: '100%' }}>
+                        <ListItemButton onClick={onClose}>
+                          <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><AccountCircleIcon /></ListItemIcon>
+                          <ListItemText primaryTypographyProps={listItemTextSx} primary="MEUS DADOS" />
+                        </ListItemButton>
+                      </Link>
+                    </ListItem>
 
-        <Divider />
+                    <ListItem disablePadding sx={listItemSx}>
+                      <ListItemButton onClick={handleGiftCardClick}>
+                        <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><CreditCardIcon /></ListItemIcon>
+                        <ListItemText primaryTypographyProps={listItemTextSx} primary="MEU GIFTCARD" />
+                      </ListItemButton>
+                    </ListItem>
+                    
+                    <ListItem disablePadding sx={listItemSx}>
+                      <ListItemButton onClick={handleTabsHistoryClick}>
+                        <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><HistoryIcon /></ListItemIcon>
+                        <ListItemText primaryTypographyProps={listItemTextSx} primary="HISTÓRICO DE TABS" />
+                      </ListItemButton>
+                    </ListItem>
+                </>
+            )}
 
-        {isAuthenticated && (
-          <ListItem disablePadding>
-            <ListItemButton onClick={handleLogoutClick}>
-              <ListItemIcon>
-                <ExitToAppIcon color="error" />
-              </ListItemIcon>
-              <ListItemText primary="SAIR" />
-            </ListItemButton>
-          </ListItem>
-        )}
-      </List>
+            <Divider sx={{ my: 2, borderColor: '#F3F4F6' }} />
+
+            <ListItem disablePadding sx={listItemSx}>
+              <Link href="/#regulamento" passHref style={{ textDecoration: 'none', width: '100%' }}>
+                <ListItemButton onClick={onClose}>
+                  <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><ArticleIcon /></ListItemIcon>
+                  <ListItemText primaryTypographyProps={listItemTextSx} primary="REGULAMENTO" />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+            
+            <ListItem disablePadding sx={listItemSx}>
+              <Link href="/faq" passHref style={{ textDecoration: 'none', width: '100%' }}>
+                <ListItemButton onClick={onClose}>
+                  <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><LiveHelpIcon /></ListItemIcon>
+                  <ListItemText primaryTypographyProps={listItemTextSx} primary="TIRE SUAS DÚVIDAS" />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+
+            {isAuthenticated && (
+              <Box sx={{ mt: 4 }}>
+                  <ListItem disablePadding>
+                    <ListItemButton 
+                        onClick={handleLogoutClick}
+                        sx={{
+                            borderRadius: '8px',
+                            border: '1px solid #EF4444',
+                            color: '#EF4444',
+                            justifyContent: 'center',
+                            '&:hover': {
+                                bgcolor: '#FEF2F2',
+                                border: '1px solid #DC2626',
+                                color: '#DC2626'
+                            }
+                        }}
+                    >
+                      <ListItemIcon sx={{ minWidth: 'auto', mr: 1, color: 'inherit' }}><ExitToAppIcon /></ListItemIcon>
+                      <ListItemText primaryTypographyProps={{ fontWeight: 700 }} primary="SAIR DO APP" />
+                    </ListItemButton>
+                  </ListItem>
+              </Box>
+            )}
+        </List>
+      </Box>
       
       {/* Modal Histórico de TABS */}
       <TabsHistoryModal 
@@ -193,5 +253,6 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
         tabsHistory={tabsHistory}
       />
     </Drawer>
+    </>
   );
 }
