@@ -7,11 +7,13 @@ import { AppBar, Toolbar, Box, IconButton, Button, Typography } from '@mui/mater
 import MenuIcon from '@mui/icons-material/Menu';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
+import { useAuth } from '@/hooks/auth/useAuth';
 import { AppDrawer } from '@/components/AppDrawer';
 import { usePathname } from 'next/navigation';
 
 export function DashboardHeader() {
   const { openModal } = useGiftCardModal();
+  const { isAuthenticated } = useAuth();
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
@@ -143,7 +145,7 @@ export function DashboardHeader() {
             {/* Botão Cadastrar */}
             <Button
               component={Link}
-              href="/dashboard#cadastro-tabs"
+              href={isAuthenticated ? '/dashboard#cadastro-tabs' : '/login'}
               variant="text"
               disableRipple
               sx={{

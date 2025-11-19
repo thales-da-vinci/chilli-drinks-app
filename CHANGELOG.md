@@ -543,3 +543,9 @@
 - FIX(UI): Ajustado `pt: '88px'` no `main` para compensar o `AppBar` fixo e evitar sobreposição do conteúdo.
 - FIX(UI): Removidos `position`/`zIndex` conflitantes em `src/app/(app)/dashboard/page.tsx` — o Header permanece interativo e clicável.
 - CHORE(Commit): Commits locais criados: `fix(critical): hard reset files to remove duplicates (FASE 13.8)` e `fix(ui): overwrite corrupted files and fix z-index (FASE 13.8/13.9)`.
+
+## FASE 13.11 - FIX(UX/Navigation): Smart redirect for Register Tab (2025-11-19)
+
+- FIX(UX): Atualizado `src/components/DashboardHeader.tsx` para condicionar o destino do botão `CADASTRAR TAB` com base no estado de autenticação. Agora direciona para `/dashboard#cadastro-tabs` quando o usuário está autenticado, e para `/login` quando não estiver.
+- FIX(UI): Tornei o menu hambúrguer sempre visível em todas as larguras (FASE 13.10 → ajuste complementar na FASE 13.11).
+- CHORE(Commit): Commit realizado: `fix(ux): smart redirect for register tab button based on auth status (FASE 13.11)`.
