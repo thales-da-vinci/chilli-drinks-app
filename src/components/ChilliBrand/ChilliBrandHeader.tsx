@@ -22,12 +22,14 @@ export default function ChilliBrandHeader() {
     ];
 
     return (
-        <AppBar 
-            position="static" 
+        <AppBar
+            position="fixed"
             elevation={1}
-            sx={{ 
+            sx={{
                 bgcolor: 'background.paper',
-                color: 'text.primary'
+                color: 'text.primary',
+                zIndex: 1300,
+                width: '100%'
             }}
         >
             <Container maxWidth="xl">

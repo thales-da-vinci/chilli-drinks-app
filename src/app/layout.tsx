@@ -7,6 +7,7 @@ import { GiftCardModalProvider } from '@/contexts/GiftCardModalContext';
 import { TabsHistoryModalProvider } from '@/contexts/TabsHistoryModalContext';
 import { AuthProvider } from '@/contexts/AuthContext';
 import ClientAppWrapper from '@/components/ClientAppWrapper';
+import { ScrollToTopButton } from '@/components/ScrollToTopButton';
 
 export const metadata: Metadata = {
   title: 'CHILLI DRINKS TAG',
@@ -31,6 +32,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
                   <QueryProvider>
                     {children}
                   </QueryProvider>
+                  {/* Global scroll-to-top button (FASE 18) */}
+                  <ScrollToTopButton />
                 </ClientAppWrapper>
               </TabsHistoryModalProvider>
             </GiftCardModalProvider>
