@@ -172,7 +172,7 @@ export function DashboardHeader() {
               sx={{
                 color: '#000000',
                 ml: 1,
-                display: { xs: 'flex', lg: 'none' } // Aparece até o breakpoint LG onde o menu de texto entra
+                display: 'flex'
               }}
             >
               <MenuIcon />

@@ -4,6 +4,7 @@ import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { AuthGuard } from '@/components/auth/AuthGuard';
 import { DashboardHeader } from '@/components/DashboardHeader';
+import { GiftCardModal } from '@/components/GiftCardModal';
 import { Box } from '@mui/material';
 
 interface AppLayoutProps {
@@ -45,6 +46,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
         {/* Header wrapper com zIndex alto para garantir interatividade */}
         <Box sx={{ position: 'relative', zIndex: 1200 }}>
           <DashboardHeader />
+          <GiftCardModal />
         </Box>
 
         {/* Conteúdo principal */}
