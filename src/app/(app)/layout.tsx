@@ -3,7 +3,7 @@
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { AuthGuard } from '@/components/auth/AuthGuard';
-import { AppHeader } from '@/components/layout/AppHeader';
+import { DashboardHeader } from '@/components/DashboardHeader';
 import { Box } from '@mui/material';
 
 interface AppLayoutProps {
@@ -39,18 +39,16 @@ export default function AppLayout({ children }: AppLayoutProps) {
           },
         }}
       >
-        {!isDashboard && (
-          <Box sx={{ position: 'relative', zIndex: 1 }}>
-            <AppHeader />
-          </Box>
-        )}
+        <Box sx={{ position: 'relative', zIndex: 1 }}>
+          <DashboardHeader />
+        </Box>
         <Box
           component="main"
           sx={{
             flexGrow: 1,
             position: 'relative',
             zIndex: 1,
-            pt: 4,
+            pt: '88px',
             pb: 4,
           }}
         >

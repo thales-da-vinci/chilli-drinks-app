@@ -58,6 +58,14 @@
 - CHORE(Integration): Integrado `DashboardHeader` no topo do `dashboard/page.tsx` e ajustado o card principal para não ser sobreposto pelo header (`marginTop`).
 - CHORE(Commit): Commit sugerido: `feat(dashboard): FASE 13.2 - background global e header exclusivo`.
 
+## FASE 13.5 - FIX(Global/Header): Unificação do Header e Polimento do Dashboard - 2025-11-18
+- FIX(Header): Substituído o header antigo (`AppHeader`) pelo novo header branco e unificado `src/components/DashboardHeader.tsx` em todo o app (exceto páginas que explicitamente sobrescrevam o layout).
+- FIX(UI): `DashboardHeader` agora é um Client Component (`'use client'`) com menu hamburger funcional (`AppDrawer`), links absolutos para âncoras da home (`/#regulamento`, `/#faq`, etc.) e integração com `useGiftCardModal` para abrir o modal "Meu Giftcard".
+- FIX(Style): Header com fundo branco (`#FFFFFF`), borda inferior `#D8DCE0`, ícones/textos em preto/cinza e logo colorido (`/assets/chilli-drinks-app-logo-circulo-vermelho.png`).
+- FIX(Dashboard): Removida renderização duplicada do header em `src/app/(app)/dashboard/page.tsx` e adicionado `id="cadastro-tabs"` ao container do formulário para navegação por âncoras.
+- FIX(UI): Centralizado o bloco de Saldo/Resgate no cartão do Dashboard: `display: 'flex'`, `flexDirection: 'column'`, `alignItems: 'center'`, `textAlign: 'center'`. Botão `RESGATAR` padronizado como botão amarelo sólido sem borda.
+- CHORE(Commit): Commit realizado: `fix(ui): FASE 13.5 - header unificado e saldo centralizado`.
+
 
 ## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18
 - FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`background-pattern.png`) e botão "Voltar" amarelo no canto superior esquerdo.

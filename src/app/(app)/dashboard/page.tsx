@@ -6,7 +6,6 @@ import { useAuth } from '@/hooks/auth/useAuth';
 import { useGiftCardModal } from '@/contexts/GiftCardModalContext';
 import { useUserCodesQuery } from '@/hooks/codes/useUserCodesQuery';
 import { Box, Typography, Button, CircularProgress } from '@mui/material';
-import { DashboardHeader } from '@/components/DashboardHeader';
 
 // Components
 import { CodeRegistrationForm } from '@/components/dashboard/CodeRegistrationForm';
@@ -57,7 +56,6 @@ export default function DashboardPage() {
 
         return (
             <>
-                <DashboardHeader />
                 <Box sx={{ width: '100%', maxWidth: '761px', bgcolor: '#F6F7F7', borderRadius: '12px', p: { xs: 3, md: 4 }, position: 'relative', zIndex: 2, mx: 'auto', mt: { xs: 10, md: 12 } }}>
                     {/* Cabeçalho */}
                     <Box sx={{ textAlign: 'center', mb: 3 }}>
@@ -78,9 +76,9 @@ export default function DashboardPage() {
 
                         <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
                             {/* Mantemos o CodeRegistrationForm, mas envolvido para estilo inline */}
-                            <Box sx={{ flex: 1, minWidth: 240 }}>
-                                <CodeRegistrationForm />
-                            </Box>
+                                <Box id="cadastro-tabs" sx={{ flex: 1, minWidth: 240 }}>
+                                    <CodeRegistrationForm />
+                                </Box>
                         </Box>
 
                         {/* Bônus Progresso */}
