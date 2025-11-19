@@ -56,7 +56,7 @@ export default function DashboardPage() {
 
         return (
             <>
-                <Box sx={{ width: '100%', maxWidth: '761px', bgcolor: '#F6F7F7', borderRadius: '12px', p: { xs: 3, md: 4 }, position: 'relative', zIndex: 2, mx: 'auto', mt: { xs: 10, md: 12 } }}>
+                <Box sx={{ width: '100%', maxWidth: '761px', bgcolor: '#F6F7F7', borderRadius: '12px', p: { xs: 3, md: 4 }, mx: 'auto', mt: { xs: 10, md: 12 } }}>
                     {/* Cabeçalho */}
                     <Box sx={{ textAlign: 'center', mb: 3 }}>
                         <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 700, fontSize: '32px', color: '#D40B28' }}>
