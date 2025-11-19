@@ -6,18 +6,19 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useAuth } from '@/hooks/auth/useAuth';
 
 export default function ChilliBrandHeader() {
     const [drawerOpen, setDrawerOpen] = useState(false);
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('md'));
-
+    const { isAuthenticated } = useAuth();
     const navLinks = [
         { label: 'BEBIDAS & COQUETÉIS', href: '#bebidas-coqueteis' },
         { label: 'COMO FUNCIONA', href: '#como-funciona' },
         { label: 'REGULAMENTO', href: '#regulamento' },
         { label: 'PERGUNTAS FREQUENTES', href: '#faq' },
-        { label: 'COMEÇAR', href: '/login' },
+        { label: 'COMEÇAR', href: isAuthenticated ? '/dashboard#cadastro-tabs' : '/login' },
     ];
 
     return (
@@ -71,7 +72,7 @@ export default function ChilliBrandHeader() {
                             <Button
                                 variant="contained"
                                 component={Link}
-                                href="/login"
+                                href={isAuthenticated ? '/dashboard#cadastro-tabs' : '/login'}
                                 sx={{
                                     bgcolor: '#FFE100',
                                     color: '#000',
@@ -170,7 +171,7 @@ export default function ChilliBrandHeader() {
                         <Button
                             variant="contained"
                             component={Link}
-                            href="/login"
+                            href={isAuthenticated ? '/dashboard#cadastro-tabs' : '/login'}
                             fullWidth
                             sx={{
                                 bgcolor: '#FFE100',

@@ -549,3 +549,8 @@
 - FIX(UX): Atualizado `src/components/DashboardHeader.tsx` para condicionar o destino do botão `CADASTRAR TAB` com base no estado de autenticação. Agora direciona para `/dashboard#cadastro-tabs` quando o usuário está autenticado, e para `/login` quando não estiver.
 - FIX(UI): Tornei o menu hambúrguer sempre visível em todas as larguras (FASE 13.10 → ajuste complementar na FASE 13.11).
 - CHORE(Commit): Commit realizado: `fix(ux): smart redirect for register tab button based on auth status (FASE 13.11)`.
+
+## FASE 14 - FIX(UX/Homepage): Smart auth redirect on Homepage header (2025-11-19)
+
+- FIX(UX): Atualizado `src/components/ChilliBrand/ChilliBrandHeader.tsx` para condicionar o destino do botão `CADASTRAR TABS` e do link `COMEÇAR` com base no estado de autenticação do usuário. Agora direciona para `/dashboard#cadastro-tabs` quando o usuário está autenticado, e para `/login` quando não estiver.
+- CHORE(Commit): Commit realizado: `fix(ux): smart auth redirect on homepage header (FASE 14)`.
