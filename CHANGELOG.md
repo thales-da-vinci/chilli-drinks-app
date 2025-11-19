@@ -529,3 +529,7 @@
 - FIX(NextId): CÃ¡lculo automÃ¡tico do prÃ³ximo ID baseado no estado carregado do localStorage
 ## FASE 13.8 - FIX(Critical): Hard reset files (2025-11-18)
 - FIX(Build): Truncado e reescrito `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplicações e diretivas múltiplas.
+
+## FASE 13.8 - FIX(UI/Critical): Hard overwrite (2025-11-18)
+- FIX(Build): Forçado overwrite de `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplicações e corrigir z-index do Header.
+- FIX(UI): Header fixado com `zIndex: 1300`; card do Dashboard ajustado para não sobrepor o Header.

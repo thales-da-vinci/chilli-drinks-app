@@ -1,4 +1,4 @@
-﻿"use client";
+﻿'use client';
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -15,7 +15,9 @@ export function DashboardHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  const handleDrawerToggle = () => setMobileOpen(v => !v);
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
 
   const navLinks = [
     { text: 'BEBIDAS & COQUETÉIS', href: '/#bebidas-coqueteis' },
@@ -25,11 +27,6 @@ export function DashboardHeader() {
   ];
 
   const isHome = pathname === '/';
-
-  const scrollToCadastro = () => {
-    const el = document.getElementById('cadastro-tabs');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  };
 
   return (
     <>
@@ -42,7 +39,8 @@ export function DashboardHeader() {
           height: '88px',
           display: 'flex',
           justifyContent: 'center',
-          zIndex: (theme) => theme.zIndex.drawer + 1,
+          // FIX: Z-Index 1300 garante que fique acima de qualquer conteúdo da página
+          zIndex: 1300
         }}
       >
         <Toolbar
@@ -56,37 +54,39 @@ export function DashboardHeader() {
             alignItems: 'center',
           }}
         >
+          {/* Esquerda: Voltar + Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {!isHome && (
-              <IconButton
-                edge="start"
-                aria-label="back"
-                component={Link}
-                href="/"
-                sx={{ color: '#000000', display: { xs: 'none', md: 'flex' } }}
-              >
-                <ArrowBackIosNewIcon />
-              </IconButton>
+                <IconButton
+                    edge="start"
+                    aria-label="back"
+                    component={Link}
+                    href="/"
+                    sx={{ color: '#000000', display: { xs: 'none', md: 'flex' } }}
+                >
+                    <ArrowBackIosNewIcon />
+                </IconButton>
             )}
 
             <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-              <Image
-                src="/assets/chilli-drinks-app-logo-circulo-vermelho.png"
-                alt="Chilli Drinks Logo"
-                width={64}
-                height={64}
-                priority
-              />
+                <Image
+                  src="/assets/chilli-drinks-app-logo-circulo-vermelho.png"
+                  alt="Chilli Drinks Logo"
+                  width={64}
+                  height={64}
+                  priority
+                />
             </Link>
           </Box>
 
+          {/* Centro: Links (Desktop) */}
           <Box
             sx={{
               display: { xs: 'none', lg: 'flex' },
               gap: 4,
               mx: 4,
               flex: 1,
-              justifyContent: 'center',
+              justifyContent: 'center'
             }}
           >
             {navLinks.map((link) => (
@@ -103,7 +103,9 @@ export function DashboardHeader() {
                   fontFamily: 'Raleway, sans-serif',
                   whiteSpace: 'nowrap',
                   cursor: 'pointer',
-                  '&:hover': { color: '#D40B28' },
+                  '&:hover': {
+                    color: '#D40B28',
+                  }
                 }}
               >
                 {link.text}
@@ -111,33 +113,39 @@ export function DashboardHeader() {
             ))}
           </Box>
 
+          {/* Direita: Ações */}
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
+            {/* Botão Giftcard */}
             <Button
               onClick={openModal}
               variant="contained"
+              disableElevation
               sx={{
                 bgcolor: '#FFE100',
                 color: '#000000',
                 borderRadius: '1000px',
                 fontWeight: 700,
-                boxShadow: 'none',
                 px: 3,
                 py: 1,
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
-                border: 'none',
+                border: 'none', // Sem borda
+                boxShadow: 'none', // Sem sombra
                 '&:hover': { bgcolor: '#FFCC00', boxShadow: 'none' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
-                display: { xs: 'none', sm: 'flex' },
+                display: { xs: 'none', sm: 'flex' }
               }}
             >
               MEU GIFTCARD
             </Button>
 
+            {/* Botão Cadastrar */}
             <Button
-              onClick={scrollToCadastro}
+              component={Link}
+              href="/dashboard#cadastro-tabs"
               variant="text"
+              disableRipple
               sx={{
                 color: '#6B6B6B',
                 fontWeight: 700,
@@ -146,23 +154,32 @@ export function DashboardHeader() {
                 py: 1,
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
-                border: 'none',
+                border: 'none', // Sem borda
                 '&:hover': { bgcolor: 'rgba(0,0,0,0.05)', color: '#D40B28' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
-                display: { xs: 'none', md: 'flex' },
+                display: { xs: 'none', md: 'flex' }
               }}
             >
               CADASTRAR TAB
             </Button>
 
-            <IconButton edge="end" aria-label="menu" onClick={handleDrawerToggle} sx={{ color: '#000000', ml: 1 }}>
+            {/* Menu Hambúrguer (Visível sempre em mobile, ou conforme necessidade) */}
+            <IconButton
+              edge="end"
+              aria-label="menu"
+              onClick={handleDrawerToggle}
+              sx={{
+                color: '#000000',
+                ml: 1,
+                display: { xs: 'flex', lg: 'none' } // Aparece até o breakpoint LG onde o menu de texto entra
+              }}
+            >
               <MenuIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-
       <AppDrawer open={mobileOpen} onClose={handleDrawerToggle} />
     </>
   );
