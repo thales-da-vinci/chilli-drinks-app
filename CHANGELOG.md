@@ -527,3 +527,5 @@
 - FIX(MSW): Refatoração do carregamento do localStorage para garantir persistência ao reiniciar servidor
 - FIX(Persistence): Implementação de funções loadTabsState() e saveTabsState() para sincronização robusta
 - FIX(NextId): Cálculo automático do próximo ID baseado no estado carregado do localStorage
+## FASE 13.8 - FIX(Critical): Hard reset files (2025-11-18)
+- FIX(Build): Truncado e reescrito `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplica��es e diretivas m�ltiplas.
