@@ -132,7 +132,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               <Link href="/#bebidas-coqueteis" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
                   <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><LocalBarIcon /></ListItemIcon>
-                  <ListItemText primaryTypographyProps={listItemTextSx} primary="BEBIDAS & COQUETÉIS" />
+                  <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="BEBIDAS & COQUETÉIS" />
                 </ListItemButton>
               </Link>
             </ListItem>
@@ -141,7 +141,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               <Link href="/#como-funciona" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
                   <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><InfoIcon /></ListItemIcon>
-                  <ListItemText primaryTypographyProps={listItemTextSx} primary="COMO FUNCIONA" />
+                  <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="COMO FUNCIONA" />
                 </ListItemButton>
               </Link>
             </ListItem>
@@ -154,7 +154,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
                   <Link href="/login" passHref style={{ textDecoration: 'none', width: '100%' }}>
                     <ListItemButton onClick={onClose}>
                       <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><VpnKeyIcon /></ListItemIcon>
-                      <ListItemText primaryTypographyProps={listItemTextSx} primary="ENTRAR" />
+                      <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="ENTRAR" />
                     </ListItemButton>
                   </Link>
                 </ListItem>
@@ -163,7 +163,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
                   <Link href="/register" passHref style={{ textDecoration: 'none', width: '100%' }}>
                     <ListItemButton onClick={onClose}>
                       <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><PersonAddIcon /></ListItemIcon>
-                      <ListItemText primaryTypographyProps={listItemTextSx} primary="CRIAR CONTA" />
+                      <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="CRIAR CONTA" />
                     </ListItemButton>
                   </Link>
                 </ListItem>
@@ -179,7 +179,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
                       <Link href="/meus-dados" passHref style={{ textDecoration: 'none', width: '100%' }}>
                         <ListItemButton onClick={onClose}>
                           <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><AccountCircleIcon /></ListItemIcon>
-                          <ListItemText primaryTypographyProps={listItemTextSx} primary="MEUS DADOS" />
+                          <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="MEUS DADOS" />
                         </ListItemButton>
                       </Link>
                     </ListItem>
@@ -187,14 +187,14 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
                     <ListItem disablePadding sx={listItemSx}>
                       <ListItemButton onClick={handleGiftCardClick}>
                         <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><CreditCardIcon /></ListItemIcon>
-                        <ListItemText primaryTypographyProps={listItemTextSx} primary="MEU GIFTCARD" />
+                        <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="MEU GIFTCARD" />
                       </ListItemButton>
                     </ListItem>
                     
                     <ListItem disablePadding sx={listItemSx}>
                       <ListItemButton onClick={handleTabsHistoryClick}>
                         <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><HistoryIcon /></ListItemIcon>
-                        <ListItemText primaryTypographyProps={listItemTextSx} primary="HISTÓRICO DE TABS" />
+                        <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="HISTÓRICO DE TABS" />
                       </ListItemButton>
                     </ListItem>
                 </>
@@ -206,7 +206,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               <Link href="/#regulamento" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
                   <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><ArticleIcon /></ListItemIcon>
-                  <ListItemText primaryTypographyProps={listItemTextSx} primary="REGULAMENTO" />
+                  <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="REGULAMENTO" />
                 </ListItemButton>
               </Link>
             </ListItem>
@@ -215,7 +215,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
               <Link href="/faq" passHref style={{ textDecoration: 'none', width: '100%' }}>
                 <ListItemButton onClick={onClose}>
                   <ListItemIcon sx={{ minWidth: 40, color: iconColor }}><LiveHelpIcon /></ListItemIcon>
-                  <ListItemText primaryTypographyProps={listItemTextSx} primary="TIRE SUAS DÚVIDAS" />
+                  <ListItemText primaryTypographyProps={{ sx: listItemTextSx }} primary="TIRE SUAS DÚVIDAS" />
                 </ListItemButton>
               </Link>
             </ListItem>
@@ -238,7 +238,7 @@ export function AppDrawer({ open, onClose }: AppDrawerProps) {
                         }}
                     >
                       <ListItemIcon sx={{ minWidth: 'auto', mr: 1, color: 'inherit' }}><ExitToAppIcon /></ListItemIcon>
-                      <ListItemText primaryTypographyProps={{ fontWeight: 700 }} primary="SAIR DO APP" />
+                      <ListItemText primaryTypographyProps={{ sx: { fontWeight: 700 } }} primary="SAIR DO APP" />
                     </ListItemButton>
                   </ListItem>
               </Box>
