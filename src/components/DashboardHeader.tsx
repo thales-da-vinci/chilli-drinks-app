@@ -19,7 +19,7 @@ export function DashboardHeader() {
     setMobileOpen(!mobileOpen);
   };
 
-  // Links corrigidos para apontar para as âncoras da Home Page
+  // Links de navegação apontando para a Home
   const navLinks = [
     { text: 'BEBIDAS & COQUETÉIS', href: '/#bebidas-coqueteis' },
     { text: 'COMO FUNCIONA', href: '/#como-funciona' },
@@ -40,8 +40,8 @@ export function DashboardHeader() {
           height: '88px',
           display: 'flex',
           justifyContent: 'center',
-          // FIX: Z-Index alto para garantir que fique acima do conteúdo do dashboard
-          zIndex: 1300,
+          // Z-INDEX ALTO para ficar acima de qualquer card
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar
@@ -55,7 +55,7 @@ export function DashboardHeader() {
             alignItems: 'center',
           }}
         >
-          {/* Esquerda: Voltar (se não for home) + Logo */}
+          {/* Esquerda: Voltar + Logo */}
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {!isHome && (
               <IconButton
@@ -80,7 +80,7 @@ export function DashboardHeader() {
             </Link>
           </Box>
 
-          {/* Centro: Links de Navegação (Desktop) */}
+          {/* Centro: Links (Desktop) */}
           <Box
             sx={{
               display: { xs: 'none', lg: 'flex' },
@@ -114,9 +114,8 @@ export function DashboardHeader() {
             ))}
           </Box>
 
-          {/* Direita: Botões de Ação */}
+          {/* Direita: Ações */}
           <Box sx={{ display: 'flex', gap: 2, alignItems: 'center' }}>
-            {/* Botão Giftcard */}
             <Button
               onClick={openModal}
               variant="contained"
@@ -131,10 +130,7 @@ export function DashboardHeader() {
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
                 border: 'none',
-                '&:hover': {
-                  bgcolor: '#FFCC00',
-                  boxShadow: 'none',
-                },
+                '&:hover': { bgcolor: '#FFCC00', boxShadow: 'none' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
                 display: { xs: 'none', sm: 'flex' },
@@ -143,7 +139,6 @@ export function DashboardHeader() {
               MEU GIFTCARD
             </Button>
 
-            {/* Botão Cadastrar */}
             <Button
               component={Link}
               href="/dashboard#cadastro-tabs"
@@ -157,10 +152,7 @@ export function DashboardHeader() {
                 textTransform: 'uppercase',
                 whiteSpace: 'nowrap',
                 border: 'none',
-                '&:hover': {
-                  bgcolor: 'rgba(0,0,0,0.05)',
-                  color: '#D40B28',
-                },
+                '&:hover': { bgcolor: 'rgba(0,0,0,0.05)', color: '#D40B28' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
                 display: { xs: 'none', md: 'flex' },
@@ -169,23 +161,17 @@ export function DashboardHeader() {
               CADASTRAR TAB
             </Button>
 
-            {/* Botão Menu Mobile */}
             <IconButton
               edge="end"
               aria-label="menu"
               onClick={handleDrawerToggle}
-              sx={{
-                color: '#000000',
-                ml: 1,
-              }}
+              sx={{ color: '#000000', ml: 1 }}
             >
               <MenuIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
-
-      {/* Drawer Mobile */}
       <AppDrawer open={mobileOpen} onClose={handleDrawerToggle} />
     </>
   );

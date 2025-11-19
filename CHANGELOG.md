@@ -66,6 +66,12 @@
 - FIX(UI): Centralizado o bloco de Saldo/Resgate no cartão do Dashboard: `display: 'flex'`, `flexDirection: 'column'`, `alignItems: 'center'`, `textAlign: 'center'`. Botão `RESGATAR` padronizado como botão amarelo sólido sem borda.
 - CHORE(Commit): Commit realizado: `fix(ui): FASE 13.5 - header unificado e saldo centralizado`.
 
+## FASE 13.7 - HOTFIX CRÍTICO (Build & Z-Index) - 2025-11-18
+- FIX(Build): Corrigido arquivo corrompido de `src/components/DashboardHeader.tsx` (substituição completa) para evitar duplicação de imports e diretivas `use client` reaplicadas indevidamente.
+- FIX(UI/Header): `DashboardHeader` reescrito de forma limpa com `zIndex: theme.zIndex.drawer + 1` garantindo que o Header permaneça acima do conteúdo e seja clicável; menu mobile funcional via `AppDrawer` e integração com `useGiftCardModal`.
+- FIX(UI/Dashboard): Removido `zIndex` e `position: 'relative'` do Card principal do Dashboard em `src/app/(app)/dashboard/page.tsx` para evitar sobreposição e problemas de interação com o Header.
+- CHORE(Commit): Commit realizado: `fix(ui): clean rewrite dashboard header and page to fix build and z-index`.
+
 
 ## FASE 11.1 - FEAT(Auth): Página de Login (Card Vermelho) - 2025-11-18
 - FEAT(Auth): Novo layout para a página de Login em `src/app/(auth)/login/page.tsx` com fundo texturizado (`background-pattern.png`) e botão "Voltar" amarelo no canto superior esquerdo.
