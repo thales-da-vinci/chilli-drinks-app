@@ -1,5 +1,5 @@
-
 "use client";
+
 import { ReactNode } from 'react';
 import { usePathname } from 'next/navigation';
 import { AuthGuard } from '@/components/auth/AuthGuard';
@@ -13,6 +13,7 @@ interface AppLayoutProps {
 export default function AppLayout({ children }: AppLayoutProps) {
   const pathname = usePathname();
   const isDashboard = pathname === '/dashboard';
+
   return (
     <AuthGuard>
       <Box
@@ -20,6 +21,7 @@ export default function AppLayout({ children }: AppLayoutProps) {
           minHeight: '100vh',
           display: 'flex',
           flexDirection: 'column',
+          // background condicional por rota
           backgroundImage: isDashboard
             ? 'url(/assets/chilli-drinks-app-dashboard-banner-bg.jpg)'
             : 'url(/assets/background-pattern.png)',
@@ -36,12 +38,16 @@ export default function AppLayout({ children }: AppLayoutProps) {
             bottom: 0,
             bgcolor: isDashboard ? 'rgba(0,0,0,0.60)' : 'rgba(0,0,0,0.85)',
             zIndex: 0,
+            pointerEvents: 'none',
           },
         }}
       >
-        <Box sx={{ position: 'relative', zIndex: 1 }}>
+        {/* Header wrapper com zIndex alto para garantir interatividade */}
+        <Box sx={{ position: 'relative', zIndex: 1200 }}>
           <DashboardHeader />
         </Box>
+
+        {/* Conteúdo principal */}
         <Box
           component="main"
           sx={{

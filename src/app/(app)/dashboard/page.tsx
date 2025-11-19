@@ -56,12 +56,9 @@ export default function DashboardPage() {
                 borderRadius: '12px',
                 p: { xs: 3, md: 4 },
                 mx: 'auto',
-                // Margem superior grande para não ficar atrás do Header fixo (88px)
+                // Margem superior para não ficar atrás do Header fixo (88px)
                 mt: { xs: 14, md: 16 },
                 mb: 8,
-                position: 'relative',
-                // FIX: zIndex baixo ou auto para não cobrir o Header (que é 1300)
-                zIndex: 1 
             }}
         >
             {/* Cabeçalho do Card */}

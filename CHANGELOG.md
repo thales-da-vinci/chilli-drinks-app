@@ -527,9 +527,19 @@
 - FIX(MSW): Refatoração do carregamento do localStorage para garantir persistência ao reiniciar servidor
 - FIX(Persistence): Implementação de funções loadTabsState() e saveTabsState() para sincronização robusta
 - FIX(NextId): Cálculo automático do próximo ID baseado no estado carregado do localStorage
+ 
 ## FASE 13.8 - FIX(Critical): Hard reset files (2025-11-18)
-- FIX(Build): Truncado e reescrito `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplica��es e diretivas m�ltiplas.
+
+- FIX(Build): Truncado e reescrito `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplica��es e diretivas m�ltiplas.
 
 ## FASE 13.8 - FIX(UI/Critical): Hard overwrite (2025-11-18)
-- FIX(Build): For�ado overwrite de `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplica��es e corrigir z-index do Header.
-- FIX(UI): Header fixado com `zIndex: 1300`; card do Dashboard ajustado para n�o sobrepor o Header.
+
+- FIX(Build): For�ado overwrite de `src/components/DashboardHeader.tsx` e `src/app/(app)/dashboard/page.tsx` para remover duplica��es e corrigir z-index do Header.
+- FIX(UI): Header fixado com `zIndex: 1300`; card do Dashboard ajustado para n�o sobrepor o Header.
+
+## FASE 13.9 - FIX(Layout / Z-Index): Corrigir stacking context (2025-11-18)
+
+- FIX(Layout): Substituído `src/app/(app)/layout.tsx` para garantir que o wrapper do Header tenha `zIndex: 1200` e o `main` tenha `zIndex: 1`.
+- FIX(UI): Ajustado `pt: '88px'` no `main` para compensar o `AppBar` fixo e evitar sobreposição do conteúdo.
+- FIX(UI): Removidos `position`/`zIndex` conflitantes em `src/app/(app)/dashboard/page.tsx` — o Header permanece interativo e clicável.
+- CHORE(Commit): Commits locais criados: `fix(critical): hard reset files to remove duplicates (FASE 13.8)` e `fix(ui): overwrite corrupted files and fix z-index (FASE 13.8/13.9)`.
