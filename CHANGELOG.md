@@ -13,6 +13,8 @@
 - FIX(Layout): Moved `RegulationSection` para fora do `Container` da homepage para que a faixa colorida seja Full-Width (encaixe às bordas da tela).
 - FIX(Style): Ajuste de escala da imagem da pimenta (reduzida para 110px) e refinamento de posicionamento.
 - CHORE(Commits): Commits locais recentes: `fix(ui): cleanup homepage e novo header regulamento`, `fix(layout): união de seções full-width e ajuste pimenta`, `fix(ui): linha colorida regulamento full-width`.
+ - CHORE(Commits): Commits locais recentes: `fix(ui): cleanup homepage e novo header regulamento`, `fix(layout): união de seções full-width e ajuste pimenta`, `fix(ui): linha colorida regulamento full-width`.
+ - CHORE(CHANGELOG): Corrigida formatação de headings e listas; adicionada nota de formatação e referência ao HOTFIX FASE 13.7 (2025-11-18).
 
 ## FASE 10.1 - FEAT(UI): Seção Perguntas Frequentes (FAQ) - 2025-11-17
 - FEAT(FAQSection): Novo componente `src/components/FAQSection.tsx` com título bicolor (PERGUNTAS vermelho / FREQUENTES preto) e Accordions estilizados.
