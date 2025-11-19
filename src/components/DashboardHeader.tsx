@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from 'react';
 import Link from 'next/link';
@@ -15,9 +15,7 @@ export function DashboardHeader() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const pathname = usePathname();
 
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
+  const handleDrawerToggle = () => setMobileOpen((v) => !v);
 
   const navLinks = [
     { text: 'BEBIDAS & COQUETÉIS', href: '/#bebidas-coqueteis' },
@@ -27,6 +25,11 @@ export function DashboardHeader() {
   ];
 
   const isHome = pathname === '/';
+
+  const scrollToCadastro = () => {
+    const el = document.getElementById('cadastro-tabs');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
 
   return (
     <>
@@ -39,7 +42,7 @@ export function DashboardHeader() {
           height: '88px',
           display: 'flex',
           justifyContent: 'center',
-          zIndex: 1300
+          zIndex: (theme) => theme.zIndex.drawer + 1,
         }}
       >
         <Toolbar
@@ -55,25 +58,25 @@ export function DashboardHeader() {
         >
           <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
             {!isHome && (
-                <IconButton
-                    edge="start"
-                    aria-label="back"
-                    component={Link}
-                    href="/"
-                    sx={{ color: '#000000', display: { xs: 'none', md: 'flex' } }}
-                >
-                    <ArrowBackIosNewIcon />
-                </IconButton>
+              <IconButton
+                edge="start"
+                aria-label="back"
+                component={Link}
+                href="/"
+                sx={{ color: '#000000', display: { xs: 'none', md: 'flex' } }}
+              >
+                <ArrowBackIosNewIcon />
+              </IconButton>
             )}
 
             <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-                <Image
-                  src="/assets/chilli-drinks-app-logo-circulo-vermelho.png"
-                  alt="Chilli Drinks Logo"
-                  width={64}
-                  height={64}
-                  priority
-                />
+              <Image
+                src="/assets/chilli-drinks-app-logo-circulo-vermelho.png"
+                alt="Chilli Drinks Logo"
+                width={64}
+                height={64}
+                priority
+              />
             </Link>
           </Box>
 
@@ -83,7 +86,7 @@ export function DashboardHeader() {
               gap: 4,
               mx: 4,
               flex: 1,
-              justifyContent: 'center'
+              justifyContent: 'center',
             }}
           >
             {navLinks.map((link) => (
@@ -100,9 +103,7 @@ export function DashboardHeader() {
                   fontFamily: 'Raleway, sans-serif',
                   whiteSpace: 'nowrap',
                   cursor: 'pointer',
-                  '&:hover': {
-                    color: '#D40B28',
-                  }
+                  '&:hover': { color: '#D40B28' },
                 }}
               >
                 {link.text}
@@ -128,15 +129,14 @@ export function DashboardHeader() {
                 '&:hover': { bgcolor: '#FFCC00', boxShadow: 'none' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
-                display: { xs: 'none', sm: 'flex' }
+                display: { xs: 'none', sm: 'flex' },
               }}
             >
               MEU GIFTCARD
             </Button>
 
             <Button
-              component={Link}
-              href="/dashboard#cadastro-tabs"
+              onClick={scrollToCadastro}
               variant="text"
               sx={{
                 color: '#6B6B6B',
@@ -150,23 +150,19 @@ export function DashboardHeader() {
                 '&:hover': { bgcolor: 'rgba(0,0,0,0.05)', color: '#D40B28' },
                 fontSize: { xs: '12px', md: '14px' },
                 fontFamily: 'Raleway, sans-serif',
-                display: { xs: 'none', md: 'flex' }
+                display: { xs: 'none', md: 'flex' },
               }}
             >
               CADASTRAR TAB
             </Button>
 
-            <IconButton
-              edge="end"
-              aria-label="menu"
-              onClick={handleDrawerToggle}
-              sx={{ color: '#000000', ml: 1 }}
-            >
+            <IconButton edge="end" aria-label="menu" onClick={handleDrawerToggle} sx={{ color: '#000000', ml: 1 }}>
               <MenuIcon />
             </IconButton>
           </Box>
         </Toolbar>
       </AppBar>
+
       <AppDrawer open={mobileOpen} onClose={handleDrawerToggle} />
     </>
   );

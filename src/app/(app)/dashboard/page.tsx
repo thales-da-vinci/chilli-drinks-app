@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
@@ -15,10 +15,10 @@ export default function DashboardPage() {
     const { openModal, updateBalance } = useGiftCardModal();
     const { data: userCodes = [], isLoading: isCodesLoading } = useUserCodesQuery();
 
-    const waitingCodes = userCodes.map(code => ({
+    const waitingCodes = userCodes.map((code) => ({
         id: code.id.toString(),
         code: code.code,
-        value: code.value
+        value: code.value,
     }));
 
     useEffect(() => {
@@ -57,7 +57,7 @@ export default function DashboardPage() {
                 p: { xs: 3, md: 4 },
                 mx: 'auto',
                 mt: { xs: 4, md: 6 },
-                mb: 8
+                mb: 8,
             }}
         >
             {/* Cabeçalho */}
@@ -73,8 +73,12 @@ export default function DashboardPage() {
             {/* 01. Adicionar Códigos */}
             <Box id="cadastro-tabs" sx={{ mt: 2, scrollMarginTop: '120px' }}>
                 <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, mb: 2 }}>
-                    <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>01.</Box>
-                    <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>Adicionar Códigos TAB</Box>
+                    <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>
+                        01.
+                    </Box>
+                    <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>
+                        Adicionar Códigos TAB
+                    </Box>
                 </Typography>
 
                 <Box sx={{ display: 'flex', gap: 2, alignItems: 'center', flexWrap: 'wrap' }}>
@@ -98,53 +102,40 @@ export default function DashboardPage() {
             {/* 02. Códigos em Espera */}
             <Box sx={{ mt: 4, pt: 3, borderBottom: '2px solid #E6EAEE' }}>
                 <Typography sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, mb: 2 }}>
-                    <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>02.</Box>
-                    <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>Códigos TAB em Espera ({waitingCodes.length})</Box>
+                    <Box component="span" sx={{ color: '#D40B28', fontWeight: 900, mr: 1 }}>
+                        02.
+                    </Box>
+                    <Box component="span" sx={{ color: '#000000', fontWeight: 900 }}>
+                        Códigos TAB em Espera ({waitingCodes.length})
+                    </Box>
                 </Typography>
 
                 <WaitingCodeList codes={waitingCodes} onRemoveCode={handleRemoveCode} />
             </Box>
 
             {/* Saldo e Resgate - Centralizado */}
-            <Box sx={{
-                mt: 6,
-                pt: 4,
-                pb: 6,
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                textAlign: 'center',
-                gap: 3,
-                width: '100%',
-                maxWidth: '500px',
-                mx: 'auto',
-                px: 3
-            }}>
-                <Typography
-                    component="h3"
-                    sx={{
-                        fontFamily: 'Raleway, sans-serif',
-                        fontWeight: 700,
-                        fontSize: { xs: '18px', sm: '20px' },
-                        color: '#000000',
-                        lineHeight: 1.2
-                    }}
-                >
+            <Box
+                sx={{
+                    mt: 6,
+                    pt: 4,
+                    pb: 6,
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    textAlign: 'center',
+                    gap: 3,
+                    width: '100%',
+                    maxWidth: '500px',
+                    mx: 'auto',
+                    px: 3,
+                }}
+            >
+                <Typography component="h3" sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 700, fontSize: { xs: '18px', sm: '20px' }, color: '#000000', lineHeight: 1.2 }}>
                     Saldo Acumulado para Resgate:
                 </Typography>
 
-                <Typography
-                    component="p"
-                    sx={{
-                        fontFamily: 'Raleway, sans-serif',
-                        fontWeight: 900,
-                        fontSize: { xs: '40px', sm: '48px', md: '56px' },
-                        color: '#D40B28',
-                        lineHeight: 1,
-                        my: 1
-                    }}
-                >
+                <Typography component="p" sx={{ fontFamily: 'Raleway, sans-serif', fontWeight: 900, fontSize: { xs: '40px', sm: '48px', md: '56px' }, color: '#D40B28', lineHeight: 1, my: 1 }}>
                     R$ {accumulatedBalance.toFixed(2).replace('.', ',')}
                 </Typography>
 
@@ -164,7 +155,7 @@ export default function DashboardPage() {
                         textTransform: 'uppercase',
                         border: 'none',
                         '&:hover': { bgcolor: '#FFD700', boxShadow: 'none', transform: 'translateY(-1px)' },
-                        '&.Mui-disabled': { bgcolor: '#E0E0E0', color: '#9E9E9E' }
+                        '&.Mui-disabled': { bgcolor: '#E0E0E0', color: '#9E9E9E' },
                     }}
                 >
                     RESGATAR AGORA
