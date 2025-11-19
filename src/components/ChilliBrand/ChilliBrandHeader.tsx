@@ -17,7 +17,7 @@ export default function ChilliBrandHeader() {
         { label: 'COMO FUNCIONA', href: '#como-funciona' },
         { label: 'REGULAMENTO', href: '#regulamento' },
         { label: 'PERGUNTAS FREQUENTES', href: '#faq' },
-        { label: 'COMEÇAR', href: '#comecar' },
+        { label: 'COMEÇAR', href: '/login' },
     ];
 
     return (

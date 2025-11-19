@@ -25,7 +25,7 @@ export default function ChilliBrandFooter() {
           <Button href="#como-funciona" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMO FUNCIONA</Button>
           <Button href="/regulamento" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>REGULAMENTO</Button>
           <Button href="#faq" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>PERGUNTAS FREQUENTES</Button>
-          <Button href="#comecar" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMEÇAR</Button>
+          <Button href="/login" variant="text" sx={{ color: '#6B6B6B', fontFamily: 'Raleway, sans-serif', fontWeight: 700, textTransform: 'uppercase' }}>COMEÇAR</Button>
         </Box>
 
         {/* Coluna 3 - Social & Copyright */}
