@@ -53,7 +53,7 @@ export function CodeRegistrationForm() {
     <Box 
       component="form" 
       onSubmit={handleSubmit(onSubmit)} 
-      sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', mb: 2 }}
+      sx={{ display: 'flex', gap: 2, alignItems: 'flex-start', mb: 2 }}
     >
       <TextField
         {...register('code')}
@@ -70,7 +70,7 @@ export function CodeRegistrationForm() {
         color="primary" 
         endIcon={<SendIcon />}
         disabled={isPending}
-        sx={{ minWidth: 150, height: '56px', mt: 0, mb: 0 }}
+        sx={{ minWidth: 150, height: '56px', mt: 1 }}
       >
         {isPending ? 'Adicionando...' : 'ADICIONAR'}
       </Button>

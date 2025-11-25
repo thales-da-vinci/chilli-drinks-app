@@ -1,5 +1,9 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 5.2 - STYLE(UI): Ajuste Fino de Alinhamento - 2025-11-19
+- FIX(Form): Correção de alinhamento vertical do botão "ADICIONAR" com o campo de input (`alignItems: 'flex-start'` + `mt: 1`) para ignorar altura extra do helperText e alinhar opticamente com o TextField.
+- STYLE(UX): Alinhamento visual perfeito entre input e botão no formulário de cadastro de TABs.
+
 ## FASE 5.1 - STYLE(UI/UX): Polimento Visual - 2025-11-19
 - STYLE(Theme): Remoção global de bordas em botões (`border: 'none'`, `boxShadow: 'none'`) para visual clean e flat em variantes `contained` e `outlined`.
 - FIX(Form): Correção de alinhamento do formulário de cadastro de TABs (`alignItems: 'flex-end'`) e ajuste de altura do botão (`height: '56px'`) para perfeito alinhamento vertical com o TextField.
