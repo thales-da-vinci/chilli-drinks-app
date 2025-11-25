@@ -1,5 +1,11 @@
 # CHANGELOG - Chilli Drinks App
 
+## FASE 5.1 - STYLE(UI/UX): Polimento Visual - 2025-11-19
+- STYLE(Theme): Remoção global de bordas em botões (`border: 'none'`, `boxShadow: 'none'`) para visual clean e flat em variantes `contained` e `outlined`.
+- FIX(Form): Correção de alinhamento do formulário de cadastro de TABs (`alignItems: 'flex-end'`) e ajuste de altura do botão (`height: '56px'`) para perfeito alinhamento vertical com o TextField.
+- FEAT(Microcopy): Atualização do helper text para linguagem orientada ao usuário final: "O código de 12 caracteres está localizado no lacre da lata. Exemplo: A1B2C3D4E5F6" (substituindo listagem técnica de UIDs válidos).
+- CHORE(UX): Polimento final da interface para melhor experiência do usuário com textos instrutivos e visual limpo.
+
 ## UNRELEASED - FASES 7 → 9 (Implementação Homepage & Regulamento) - 2025-11-17
 - FEAT(RegulationSection): Adicionada seção "Regulamento" (`src/components/RegulationSection.tsx`) com faixa colorida, imagem decorativa e grid de regras.
 - FEAT(DrinksSection): Grid responsivo de bebidas com cartões e animação; refatorado para CSS Grid por compatibilidade com MUI v6.

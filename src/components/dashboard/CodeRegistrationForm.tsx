@@ -53,14 +53,14 @@ export function CodeRegistrationForm() {
     <Box 
       component="form" 
       onSubmit={handleSubmit(onSubmit)} 
-      sx={{ display: 'flex', gap: 2, alignItems: 'center', mb: 2 }}
+      sx={{ display: 'flex', gap: 2, alignItems: 'flex-end', mb: 2 }}
     >
       <TextField
         {...register('code')}
         label="Insira o Código TAB (UUID)"
         fullWidth
         error={!!errors.code}
-        helperText={errors.code ? errors.code.message : 'UIDs válidas: A1B2C3D4E5F6, G7H8I9J1K2L3, M4N5P6Q7R8S9, T1U2V3W4X5Y6, Z7A8B9C1D2E3'}
+        helperText={errors.code ? errors.code.message : 'O código de 12 caracteres está localizado no lacre da lata. Exemplo: A1B2C3D4E5F6'}
         variant="outlined"
         disabled={isPending}
       />
@@ -70,7 +70,7 @@ export function CodeRegistrationForm() {
         color="primary" 
         endIcon={<SendIcon />}
         disabled={isPending}
-        sx={{ minWidth: 150, py: 1.5 }}
+        sx={{ minWidth: 150, height: '56px', mt: 0, mb: 0 }}
       >
         {isPending ? 'Adicionando...' : 'ADICIONAR'}
       </Button>
